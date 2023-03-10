@@ -1,0 +1,23 @@
+*.aux
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.lof
+*.los
+*.maf
+*.mtc*
+
+*.gz
+*.ipynb_checkpoints*
+*.pyc
+*.pdf
+
+.DS_Store
+workspace.code-workspace
+Cours/TP ANUM/TP2021-2022/DM_reponses/Ludovic Arnaud Fwd Tp4 anum/Tp anum à rendre.pdf
