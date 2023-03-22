@@ -9,8 +9,8 @@ from math import *
 from cmath import *
 import numpy.polynomial.polynomial as nppol
 
-from .utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
-from .boundaries import Dirichlet
+from utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
+from boundaries import Dirichlet
 
 
 class Scheme:
@@ -28,6 +28,7 @@ class Scheme:
         self.center = center
         self.r = center
         self.p = len(self.int) - self.r - 1
+        self.boundaryname = boundary.name()
         littleboundary, self.gn = boundary(center, sigma=self.sigma, dx=dx, a=a, g=g, dg=dg, d2g=d2g, d3g=d3g)
         self.m = max(len(littleboundary[0]), self.r + self.p)
         self.boundary = np.zeros((self.r, self.m))
@@ -106,31 +107,30 @@ class Scheme:
         assert len(RootsFromInside) == self.center
         return RootsFromInside
 
-    def DKL(self):
-        z0 = sp.Symbol("z0", imaginary=True)
+    def DKL(self): 
+        z0 = sp.Symbol("z0", imaginary = True)
         B = copy.deepcopy(self.boundary_quasi_toep)
-        B = sp.Matrix(B) - z0 * sp.eye(self.r, self.m)
-        b = sp.ones(1, self.r + 1)
-        for i in range(self.r + 1):
-            b[i] = sp.Symbol("b" + str(i), imaginary=True)
-        for j in range(self.m - self.r):
-            row = sp.zeros(1, self.m)
-            for k in range(self.r + 1):
-                row[self.m - self.r - j + k - 1] = b[k]
-            B = B - np.dot(B[:, self.m - 1 - j], row)
-        fdetKL = sp.lambdify([z0, b], sp.det(B[: self.r, : self.r]), "numpy")
+        B = sp.Matrix(B) - z0*sp.eye(self.r,self.m)
+        b = sp.ones(1,self.r+1)
+        for i in range (self.r+1):
+            b[i] = sp.Symbol("b"+str(i), imaginary = True)
+        for j in range (self.m-self.r):
+            row = sp.zeros(1,self.m)
+            for k in range (self.r+1):
+                row[self.m-self.r-j+k-1] = b[k]
+            B = B - np.dot(B[:,self.m-1-j],row)
+        fdetKL = sp.lambdify([z0,b],sp.det(B[:self.r,:self.r]),"numpy")
         return fdetKL
 
     def detKL(self, n_param, DKL_formula, parametrization_bool):
-        def scalar_detKL(self, z):
+        def scalar_detKL(self,z):
             Rz = nppol.polyfromroots(self.Kappa(z))
-            return DKL_formula(z, Rz)
-
+            return DKL_formula(z,Rz)
         if parametrization_bool:
-            return parametrization(n_param, lambda z: scalar_detKL(self, z))
+            return parametrization(n_param,lambda z:scalar_detKL(self,z))
         else:
-            param = np.linspace(0, 2 * pi, n_param)
-            return np.vectorize(scalar_detKL)(self, np.exp(1j * param))
+            param = np.linspace(0,2*pi,n_param)
+            return param, np.vectorize(scalar_detKL)(self,np.exp(1j*param))
 
     def shortname(self):
         r = self.center
@@ -150,8 +150,16 @@ class Scheme:
             s += str(round(self.int[-1], 3)) + " U_{j+" + str(i - r + 1) + "}^n"
         return s
 
-    def name(self):
-        return self.shortname()
+    def name(self, boundary_bool=False, sigma_bool=False, lambda_bool=False):
+        string = self.shortname()
+        if boundary_bool:
+            string += r" with boundary " + self.boundaryname
+        if sigma_bool and self.sigma != 0:
+            string += r" with $\sigma$ = " +str(self.sigma)
+        if lambda_bool:
+            string += r" for $\lambda$ = " + str(round(self.lamb,2))
+        return string
+    
 
     def __repr__(self):
         r = self.center
@@ -173,13 +181,17 @@ class SchemeP0(Scheme):
         super().__init__(int=int, center=center, boundary=boundary, **kwargs)
         assert len(int) == center + 1
 
-    def detKL(self, z, DKL_formula):
-        def scalar_detKL(self, z):
-            b = np.array([self.int[i] / (self.int[-1] - z) for i in range(len(self.int))])
+    def detKL(self,n_param,DKL_formula, parametrization_bool):
+        def scalar_detKL(self,z):
+            b = np.array([self.int[i]/(self.int[-1]-z) for i in range (len(self.int))])
             b[-1] = 1
-            return DKL_formula(z, b)
+            return DKL_formula(z,b)
+        if parametrization_bool:
+            return parametrization(n_param,lambda z:scalar_detKL(self,z))
+        else:
+            param = np.linspace(0,2*pi,n_param)
+            return param, np.vectorize(scalar_detKL)(self,np.exp(1j*param))
 
-        return np.vectorize(scalar_detKL)(self, z)
 
 
 class O3Upwind4(SchemeP0):
@@ -206,8 +218,6 @@ class O3Upwind4(SchemeP0):
     def shortname(self):
         return "O3Upwind"
 
-    def name(self):
-        return r"O3Upwind for $\lambda$ = " + str(self.lamb)
 
 
 class BWUpwind(SchemeP0):
@@ -249,8 +259,6 @@ class BeamWarming(SchemeP0):
     def shortname(self):
         return "BeamWarming"
 
-    def name(self):
-        return r"BeamWarming for $\lambda$ = " + str(self.lamb)
 
 
 class Upwind(SchemeP0):
@@ -271,8 +279,6 @@ class Upwind(SchemeP0):
     def shortname(self):
         return "Upwind"
 
-    def name(self):
-        return r"Upwind for $\lambda$ = " + str(self.lamb)
 
 
 class LaxWendroff(Scheme):
@@ -292,8 +298,6 @@ class LaxWendroff(Scheme):
     def shortname(self):
         return "LaxWendroff"
 
-    def name(self):
-        return r"LaxWendroff for $\lambda$ = " + str(self.lamb)
 
 
 class LaxFriedrichs(Scheme):
@@ -310,8 +314,6 @@ class LaxFriedrichs(Scheme):
     def shortname(self):
         return "LaxFriedrichs"
 
-    def name(self):
-        return r"LaxFriedrichs for $\lambda$ = " + str(self.lamb)
 
 
 class ThirdOrder(Scheme):
@@ -337,8 +339,6 @@ class ThirdOrder(Scheme):
     def shortname(self):
         return "ThirdOrder"
 
-    def name(self):
-        return r"ThirdOrder for $\lambda$ = " + str(self.lamb)
 
 
 class BB(Scheme):
@@ -355,8 +355,6 @@ class BB(Scheme):
     def shortname(self):
         return "BB"
 
-    def name(self):
-        return r"BB for $\lambda$ = " + str(self.lamb)
 
 
 class Dissipatif(Scheme):
@@ -372,8 +370,6 @@ class Dissipatif(Scheme):
     def shortname(self):
         return "Dissipatif"
 
-    def name(self):
-        return r"Dissipatif for $\lambda$ = " + str(self.lamb)
 
 
 class LW(Scheme):
@@ -441,8 +437,6 @@ class LW(Scheme):
     def shortname(self):
         return f"Lax Wendroff {self.order}"
 
-    def name(self):
-        return "Lax Wendroff" + str(self.order) + r"for $\lambda$ = " + str(self.lamb)
 
 
 class LeapFrog(Scheme):

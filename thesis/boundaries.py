@@ -48,7 +48,7 @@ class SILW(Bord):
         for j in range(r):
             for m in range(self.kd, self.d):
                 for l in range(m + 1):
-                    B[r - 1 - j, l] += (-(j + 1) + sigma) ** m / factorial(m) * sc.special.binom(m, l) * (-1) ** (m - l)
+                    B[r - 1 - j, l] += (-(j + 1) + sigma) ** m / factorial(m) * comb(m, l) * (-1) ** (m - l)
         functions = [g, dg, d2g, d3g]
 
         def gn_func(t):
@@ -111,3 +111,4 @@ class DDJ(Bord):
 
     def name(self):
         return f"DDJ{self.d},{self.kd}"
+

@@ -4,22 +4,27 @@ This file aims at testing and plotting the DKL function with cursor
 
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
+import sys
 
-from thesis.schemes import LW
-from thesis.boundaries import DDJ
+# appending a path
+sys.path.append('thesis')
+from schemes import *
+from boundaries import *
 
+#Choix du schéma 
+scheme = BeamWarming
+order = 5
+CFL = 2
+sigma = 0
+
+#Choix du bord
+boundary = SILW(2, 3)
 
 if __name__ == "__main__":
     fig = plt.figure(1, figsize=(10, 8))
     ax = fig.add_subplot(111)
     fig.subplots_adjust(left=0.25, bottom=0.25)
 
-    scheme = LW
-    boundary = DDJ(6, 1)
-
-    order = 5
-    CFL = 1
-    sigma = 0.0
     lambda_0 = CFL / 2
     n_param = 100
     parametrization_bool = True

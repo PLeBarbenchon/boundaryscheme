@@ -50,6 +50,7 @@ def neighboor(sector1, z2):
     return abs((sector(z2) - sector1) % 8) <= 1
 
 
+
 def parametrization(n_param, curve_formula):
     """
     n_param is an integer for the default discretization of [0,2pi]
@@ -61,19 +62,19 @@ def parametrization(n_param, curve_formula):
     current_param = 0
     Param = [current_param]
     curve = [curve_formula(1)]
-    current_sector = sector(curve_formula(np.exp(1j * Param[0])))  # calcul le secteur du premier point
+    current_sector = sector(curve_formula(np.exp(1j * Param[0])))#calcul le secteur du premier point
     c = 0
     s = 0
     while Param[-1] < 2 * pi:
         current_param = Param[-1] + current_dx
         current_curve_point = curve_formula(np.exp(1j * current_param))
-        if neighboor(current_sector, current_curve_point):
+        if neighboor(current_sector,current_curve_point):
             Param.append(current_param)
             curve.append(current_curve_point)
             current_sector = sector(current_curve_point)
             current_dx = dx
             c = 0
-        elif c < 40:
+        elif c<40:
             current_dx = current_dx / 2
             c += 1
         else:
@@ -84,10 +85,10 @@ def parametrization(n_param, curve_formula):
             current_dx = dx
             c = 0
         s += 1
-    if Param[-1] > 2 * pi:
+    if Param[-1]>2*pi:
         Param[-1] = 0
         curve[-1] = curve_formula(1)
-    return np.array(curve)
+    return np.array(Param), np.array(curve)
 
 
 def epsilon(L):
