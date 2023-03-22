@@ -4,22 +4,23 @@ This file aims at testing and plotting the DKL function
 
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+path_here = os. getcwd()
 import sys
+sys.path.insert(0,path_here+"/thesis")
 
-# appending a path
-sys.path.append('thesis')
 from schemes import *
 from boundaries import *
 from complex_winding_number import *
 
 
-#Choix du schéma 
+# scheme choice
 scheme = BeamWarming
 order = 5
 CFL = 2
 sigma = 0
 
-#Choix du bord
+# boundary choice
 boundary = SILW(2, 3)
 
 

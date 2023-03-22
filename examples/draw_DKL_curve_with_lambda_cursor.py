@@ -4,20 +4,21 @@ This file aims at testing and plotting the DKL function with cursor
 
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
+import os
+path_here = os. getcwd()
 import sys
+sys.path.insert(0,path_here+"/thesis")
 
-# appending a path
-sys.path.append('thesis')
 from schemes import *
 from boundaries import *
 
-#Choix du schéma 
+# scheme choice
 scheme = BeamWarming
 order = 5
 CFL = 2
 sigma = 0
 
-#Choix du bord
+# boundary choice
 boundary = SILW(2, 3)
 
 if __name__ == "__main__":
