@@ -13,7 +13,7 @@ from schemes import *
 
 
 # scheme choice
-scheme = ThirdOrder
+scheme = BeamWarming
 order = 5
 lamb = 0.35
 

@@ -46,7 +46,7 @@ if __name__ == "__main__":
     def calc_det(l, sigm):
         S = scheme(l, boundary, sigma=sigm, order=order)
         fDKL = S.DKL()
-        return S.detKL(n_param, fDKL, parametrization_bool)
+        return S.detKL(n_param, fDKL, parametrization_bool)[1]
 
     Det = calc_det(lambda_0, sigma_0)
     [line] = ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, color='red')
