@@ -6,6 +6,9 @@ import scipy as sc
 import numpy as np
 from math import *
 
+from utils import coefBinomial
+
+
 
 class Bord:
     def __init__(self, B):
@@ -48,7 +51,7 @@ class SILW(Bord):
         for j in range(r):
             for m in range(self.kd, self.d):
                 for l in range(m + 1):
-                    B[r - 1 - j, l] += (-(j + 1) + sigma) ** m / factorial(m) * comb(m, l) * (-1) ** (m - l)
+                    B[r - 1 - j, l] += (-(j + 1) + sigma) ** m / factorial(m) * coefBinomial(m, l) * (-1) ** (m - l)
         functions = [g, dg, d2g, d3g]
 
         def gn_func(t):

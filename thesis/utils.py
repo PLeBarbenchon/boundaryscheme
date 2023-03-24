@@ -7,6 +7,15 @@ from math import *
 from cmath import *
 
 
+def coefBinomial(n, k):
+    if(k > (n - k)):
+        k = n - k
+    coef = 1
+    for i in range(k):
+        coef = coef * (n - i)
+        coef = coef // (i + 1)
+    return coef
+
 def sort(L):
     """
     bubble sort
