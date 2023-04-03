@@ -13,4 +13,5 @@ The folder "thesis" contains the library needed in the plot of the examples
 # Citing
 
 The code is citable via Zenodo. Please cite as:
+
 P. Le Barbenchon, boundaryscheme: package Python for numerical schemes with boundaries. 2023. [![DOI](https://zenodo.org/badge/610313213.svg)](https://zenodo.org/badge/latestdoi/610313213)
