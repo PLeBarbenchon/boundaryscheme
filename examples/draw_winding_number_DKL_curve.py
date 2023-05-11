@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import os
 path_here = os. getcwd()
 import sys
-sys.path.insert(0,path_here+"/boundary_scheme")
+sys.path.insert(0,path_here+"/boundaryscheme")
 
-from boundary_scheme.schemes import *
+from schemes import *
 from boundaries import *
 from complex_winding_number import *
 
@@ -36,8 +36,7 @@ if __name__ == "__main__":
     S = scheme(1/2,boundary, sigma=sigma, order = order) 
     for l in lamb:
         S = scheme(l,boundary, sigma = sigma, order = order)
-        fDKL = S.DKL()
-        Param, Det = S.detKL(n_param,fDKL, parametrization_bool)
+        Param, Det = S.detKL(n_param, parametrization_bool)
         IndiceComplexe.append(Indice(Det))
 
     plt.plot(lamb, S.r - np.array(IndiceComplexe))

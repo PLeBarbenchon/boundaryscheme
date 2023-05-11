@@ -167,8 +167,8 @@ class Scheme:
 
 
 class SchemeP0(Scheme):
-    def __init__(self, int, center, boundary, sigma = 0, **kwargs):
-        super().__init__(int=int, center=center, boundary=boundary,sigma = sigma, **kwargs)
+    def __init__(self, int, center, boundary, sigma = 0):
+        super().__init__(int=int, center=center, boundary=boundary,sigma = sigma)
         assert len(int) == center + 1
 
     def detKL(self,n_param, parametrization_bool):
@@ -237,7 +237,7 @@ class BeamWarming(SchemeP0):
         while self.int[0] == 0:
             self.int = self.int[1:]
             self.center -= 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma)
 
     def CFL(self):
         return 2
@@ -427,9 +427,9 @@ class LW(Scheme):
 
 
 
-class LeapFrog(Scheme):
-    raise NotImplementedError('')
+# class LeapFrog(Scheme):
+#     raise NotImplementedError('')
 
 
-class CrankNicholson(Scheme):
-    raise NotImplementedError('')
+# class CrankNicholson(Scheme):
+#     raise NotImplementedError('')
