@@ -18,6 +18,8 @@
 *.pyc
 *.pdf
 
+venv/
+
 .DS_Store
 workspace.code-workspace
 Cours/TP ANUM/TP2021-2022/DM_reponses/Ludovic Arnaud Fwd Tp4 anum/Tp anum à rendre.pdf

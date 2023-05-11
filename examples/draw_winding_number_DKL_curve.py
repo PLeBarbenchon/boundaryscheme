@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import os
 path_here = os. getcwd()
 import sys
-sys.path.insert(0,path_here+"/thesis")
+sys.path.insert(0,path_here+"/boundary_scheme")
 
-from schemes import *
+from boundary_scheme.schemes import *
 from boundaries import *
 from complex_winding_number import *
 

@@ -14,26 +14,31 @@ from boundaries import Dirichlet
 
 
 class Scheme:
-    def __init__(self, int, center, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
-        t = kwargs.get("t", 0)
-        J = kwargs.get("J", 50)
-        dx = kwargs.get("dx", 0.1)
-        a = kwargs.get("a", 1)
-        g = kwargs.get("g", lambda x: 0)
-        dg = kwargs.get("dg", lambda x: 0)
-        d2g = kwargs.get("d2g", lambda x: 0)
-        d3g = kwargs.get("d3g", lambda x: 0)
+    def __init__(self, int, center, boundary=Dirichlet(), sigma = 0):
+        self.sigma = sigma
         self.int = int
         self.center = center
         self.r = center
         self.p = len(self.int) - self.r - 1
         self.boundaryname = boundary.name()
-        littleboundary, self.gn = boundary(center, sigma=self.sigma, dx=dx, a=a, g=g, dg=dg, d2g=d2g, d3g=d3g)
+        littleboundary, self.gn = boundary(center, sigma=self.sigma)
         self.m = max(len(littleboundary[0]), self.r + self.p)
         self.boundary = np.zeros((self.r, self.m))
         self.boundary[: self.r, : len(littleboundary[0])] = littleboundary
         self.boundary_quasi_toep, self.bn = boundary_to_boundary_quasi_toep(self.boundary, self.gn, int, center)
+     
+        z0 = sp.Symbol("z0", imaginary = True)
+        B = copy.deepcopy(self.boundary_quasi_toep)
+        B = sp.Matrix(B) - z0*sp.eye(self.r,self.m)
+        b = sp.ones(1,self.r+1)
+        for i in range (self.r+1):
+            b[i] = sp.Symbol("b"+str(i), imaginary = True)
+        for j in range (self.m-self.r):
+            row = sp.zeros(1,self.m)
+            for k in range (self.r+1):
+                row[self.m-self.r-j+k-1] = b[k]
+            B = B - np.dot(B[:,self.m-1-j],row)
+        self.DKL = sp.lambdify([z0,b],sp.det(B[:self.r,:self.r]),"numpy")
 
     def scheme(self):
         return self.int, self.center
@@ -107,25 +112,10 @@ class Scheme:
         assert len(RootsFromInside) == self.center
         return RootsFromInside
 
-    def DKL(self): 
-        z0 = sp.Symbol("z0", imaginary = True)
-        B = copy.deepcopy(self.boundary_quasi_toep)
-        B = sp.Matrix(B) - z0*sp.eye(self.r,self.m)
-        b = sp.ones(1,self.r+1)
-        for i in range (self.r+1):
-            b[i] = sp.Symbol("b"+str(i), imaginary = True)
-        for j in range (self.m-self.r):
-            row = sp.zeros(1,self.m)
-            for k in range (self.r+1):
-                row[self.m-self.r-j+k-1] = b[k]
-            B = B - np.dot(B[:,self.m-1-j],row)
-        fdetKL = sp.lambdify([z0,b],sp.det(B[:self.r,:self.r]),"numpy")
-        return fdetKL
-
-    def detKL(self, n_param, DKL_formula, parametrization_bool):
+    def detKL(self, n_param, parametrization_bool):
         def scalar_detKL(self,z):
             Rz = nppol.polyfromroots(self.Kappa(z))
-            return DKL_formula(z,Rz)
+            return self.DKL(z,Rz)
         if parametrization_bool:
             return parametrization(n_param,lambda z:scalar_detKL(self,z))
         else:
@@ -177,15 +167,15 @@ class Scheme:
 
 
 class SchemeP0(Scheme):
-    def __init__(self, int, center, boundary, **kwargs):
-        super().__init__(int=int, center=center, boundary=boundary, **kwargs)
+    def __init__(self, int, center, boundary, sigma = 0, **kwargs):
+        super().__init__(int=int, center=center, boundary=boundary,sigma = sigma, **kwargs)
         assert len(int) == center + 1
 
-    def detKL(self,n_param,DKL_formula, parametrization_bool):
+    def detKL(self,n_param, parametrization_bool):
         def scalar_detKL(self,z):
             b = np.array([self.int[i]/(self.int[-1]-z) for i in range (len(self.int))])
             b[-1] = 1
-            return DKL_formula(z,b)
+            return self.DKL(z,b)
         if parametrization_bool:
             return parametrization(n_param,lambda z:scalar_detKL(self,z))
         else:
@@ -195,11 +185,8 @@ class SchemeP0(Scheme):
 
 
 class O3Upwind4(SchemeP0):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
-        a0 = kwargs.get("a0", 0)
-        a5 = kwargs.get("a5", 0)
-        a6 = kwargs.get("a6", 0)
+    def __init__(self, lamb, boundary=Dirichlet(),sigma = 0, a0 = 0, a5 = 0, a6 = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         self.a0 = a0
         self.a5 = a5
@@ -213,7 +200,7 @@ class O3Upwind4(SchemeP0):
         while self.int[0] == 0:
             self.int = self.int[1:]
             self.center -= 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma=sigma, **kwargs)
 
     def shortname(self):
         return "O3Upwind"
@@ -221,9 +208,8 @@ class O3Upwind4(SchemeP0):
 
 
 class BWUpwind(SchemeP0):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
-        theta = kwargs.get("theta", 1 / 2)
+    def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, theta = 1/2, **kwargs):
+        self.sigma = sigma
         self.theta = theta
         self.lamb = lamb
         coeff1 = theta * (lamb - 1) * (lamb - 2) / 2 + (1 - theta) * (1 - lamb)
@@ -234,12 +220,12 @@ class BWUpwind(SchemeP0):
         while self.int[0] == 0:
             self.int = self.int[1:]
             self.center -= 1
-        super().__init__(**kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
 
 class BeamWarming(SchemeP0):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
+    def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         self.p = 0
         self.r = 2
@@ -251,7 +237,7 @@ class BeamWarming(SchemeP0):
         while self.int[0] == 0:
             self.int = self.int[1:]
             self.center -= 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
     def CFL(self):
         return 2
@@ -262,8 +248,8 @@ class BeamWarming(SchemeP0):
 
 
 class Upwind(SchemeP0):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
+    def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         self.p = 0
         self.r = 1
@@ -271,7 +257,7 @@ class Upwind(SchemeP0):
         coeff2 = lamb
         self.int = np.array([coeff2, coeff1])
         self.center = 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
     def CFL(self):
         return 1
@@ -282,15 +268,15 @@ class Upwind(SchemeP0):
 
 
 class LaxWendroff(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
+    def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         coeff1 = -(lamb - lamb**2) / 2
         coeff2 = 1 - lamb**2
         coeff3 = (lamb**2 + lamb) / 2
         self.int = np.array([coeff3, coeff2, coeff1])
         self.center = 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
     def CFL(self):
         return 1
@@ -301,12 +287,12 @@ class LaxWendroff(Scheme):
 
 
 class LaxFriedrichs(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
+    def __init__(self, lamb, boundary=Dirichlet(),sigma = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         self.int = np.array([(1 + lamb) / 2, 0, (1 - lamb) / 2])
         self.center = 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma =sigma, **kwargs)
 
     def CFL(self):
         return 1
@@ -317,8 +303,8 @@ class LaxFriedrichs(Scheme):
 
 
 class ThirdOrder(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
+    def __init__(self, lamb, boundary=Dirichlet(),sigma = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         self.r = 2
         self.p = 1
@@ -331,7 +317,7 @@ class ThirdOrder(Scheme):
             ]
         )
         self.center = 2
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma = sigma, **kwargs)
 
     def CFL(self):
         return 1
@@ -342,12 +328,12 @@ class ThirdOrder(Scheme):
 
 
 class BB(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
+    def __init__(self, lamb, boundary=Dirichlet(),sigma = 0, **kwargs):
+        self.sigma = sigma
         self.lamb = lamb
         self.int = np.array([self.lamb / 4, self.lamb / 4, 1 - self.lamb / 4, -self.lamb / 4])
         self.center = 2
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma =sigma **kwargs)
 
     def CFL(self):
         return 1
@@ -358,14 +344,14 @@ class BB(Scheme):
 
 
 class Dissipatif(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
-        self.D = kwargs.get("D", 0)
+    def __init__(self, lamb, boundary=Dirichlet(),sigma = 0, D=0, **kwargs):
+        self.sigma = sigma
+        self.D = D
         self.lamb = lamb
         l = 2
         self.int = np.array([lamb / (2 * l), self.D, 1 - 2 * self.D, self.D, -lamb / (2 * l)])
         self.center = 2
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
     def shortname(self):
         return "Dissipatif"
@@ -373,9 +359,11 @@ class Dissipatif(Scheme):
 
 
 class LW(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), **kwargs):
-        self.sigma = kwargs.get("sigma", 0)
-        self.order = kwargs.get("order", 2)
+    def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, order = 2, **kwargs):
+        if order < 2 or order > 6:
+            raise NotImplementedError("Lax Wendroff scheme is implemented only for orders between 2 and 6") 
+        self.sigma = sigma
+        self.order = order
         self.lamb = lamb
         if self.order == 2:
             coeff1 = -(lamb - lamb**2) / 2
@@ -429,7 +417,7 @@ class LW(Scheme):
                 ]
             )
             self.center = 3
-        super().__init__(int=self.int, center=self.center, boundary=boundary, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma = sigma, **kwargs)
 
     def CFL(self):
         return 1
@@ -440,8 +428,8 @@ class LW(Scheme):
 
 
 class LeapFrog(Scheme):
-    pass
+    raise NotImplementedError('')
 
 
 class CrankNicholson(Scheme):
-    pass
+    raise NotImplementedError('')
