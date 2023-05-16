@@ -16,9 +16,8 @@ python3 examples/draw_symbol.py
 
 # Example 
 ```python
-import boundaryscheme as bs
-from bs.schemes import BeamWarming
-import bs.pyplot as bsplt
+from boundaryscheme.schemes import BeamWarming
+import boundaryscheme.pyplot as bsplt
 
 bsplt.symbolplot(BeamWarming, lambdacursor = True)
 plt.show()

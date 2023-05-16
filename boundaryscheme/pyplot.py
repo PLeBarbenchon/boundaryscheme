@@ -12,19 +12,25 @@ from .boundaries import Dirichlet, SILW
 from .schemes import *
 
 
+def show():
+    plt.show()
+
 def detKLplotsimple(s, n_param = 300, parametrization_bool = True):
     """
     draw the Kreiss-Lopatinskii curve for a numerical scheme s of the class Scheme 
     """
+    ax = plt.subplot()
     Param, Det = s.detKL(n_param, parametrization_bool)
-    plt.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2)
-    plt.axvline(x=0, color="0.5")
-    plt.axhline(y=0, color="0.5")
-    plt.axis('equal')
-    plt.show()
+    ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2)
+    ax.axvline(x=0, color="0.5")
+    ax.axhline(y=0, color="0.5")
+    ax.axis('equal')
+    return ax
 
-# detKLplotsimple(BeamWarming(1, SILW(2,3)),parametrization_bool=False)
 
+
+detKLplotsimple(BeamWarming(1, SILW(2,3)),parametrization_bool=False)
+plt.plot()
 
 def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacursor = False, sigmacursor = False):
     """

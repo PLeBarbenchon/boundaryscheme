@@ -5,4 +5,4 @@ from . import pyplot
 
 __all__ = ("boundaries", "schemes", "pyplot")
 
-__version__ = '0.1.0'
+__version__ = '1.0'
