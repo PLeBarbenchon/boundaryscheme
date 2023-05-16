@@ -2,7 +2,8 @@ This is the architecture for the package "boundaryscheme"
 
 
 # boundaryscheme
-Package Python to use numerical scheme with boundaries
+Package Python to use numerical scheme with boundaries which is described in the PhD manuscript 
+> P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, 2023.
 
 # Installation
 
@@ -28,3 +29,4 @@ plt.show()
 The code is citable via Zenodo. Please cite as:
 
 P. Le Barbenchon, boundaryscheme: package Python for numerical schemes with boundaries. 2023. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7773742.svg)](https://doi.org/10.5281/zenodo.7773742)
+
