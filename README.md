@@ -9,6 +9,15 @@ The folder "thesis" contains the library needed in the plot of the examples
 - Check that the package in "requirements.txt" are well installed on your computer and reachable with the version of Python you use.
 - Execute one the file in the folder "examples" : for instance, use the command-line "python3 examples/draw_symbol.py"
 
+# Installation
+
+```bash
+git clone https://github.com/PLeBarbenchon/boundaryscheme.git
+cd boundaryscheme
+pip3 install -r requirements.txt
+pip3 install -e .
+python3 examples/draw_symbol.py
+```
 
 # Citing
 

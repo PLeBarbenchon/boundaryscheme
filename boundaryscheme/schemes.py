@@ -9,8 +9,8 @@ from math import *
 from cmath import *
 import numpy.polynomial.polynomial as nppol
 
-from utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
-from boundaries import Dirichlet
+from .utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
+from .boundaries import Dirichlet
 
 
 class Scheme:

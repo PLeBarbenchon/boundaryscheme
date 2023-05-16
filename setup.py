@@ -13,7 +13,7 @@ def read_from(filename):
 
 
 def get_version():
-    data = read_from(rel_file('boundary_scheme', '__init__.py'))
+    data = read_from(rel_file('boundaryscheme', '__init__.py'))
     return re.search(r"__version__ = '([^']+)'", data).group(1)
 
 
@@ -24,7 +24,7 @@ def get_requirements():
 
 
 setup(
-    name='boundary_scheme',
+    name='boundaryscheme',
     version=get_version(),
     description="This library implements Kreiss-Lopatinskii determinant for numerical scheme with boundary",
     long_description=read_from('README.md'),
