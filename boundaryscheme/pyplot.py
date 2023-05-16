@@ -97,8 +97,8 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
 
             plt.ylim(-1,1)
             plt.xlim(-1,1)
-            plt.plot(np.cos(T),np.sin(T), color = "black", label = "unit circle")
-            plt.plot(X,Y, label = "symbol")
+            plt.plot(np.cos(T),np.sin(T),"--",  color = "black", label = "unit circle")
+            plt.plot(X,Y, linewidth=2, label = "symbol")
             plt.axis("equal")
             plt.legend(loc="best")
             plt.title("Symbol of "+ S.name(lambda_bool = True))
@@ -110,9 +110,9 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
 
                 plt.ylim(-1,1)
                 plt.xlim(-1,1)
-                plt.plot(X,Y, label = f"$\lambda = $ {l}")
+                plt.plot(X,Y, linewidth=2, label = f"$\lambda = $ {l}")
             T = np.linspace(0,7,1000)
-            plt.plot(np.cos(T),np.sin(T), color = "black", label = "unit circle")
+            plt.plot(np.cos(T),np.sin(T),"--", color = "black", label = "unit circle")
             plt.axis("equal")
             plt.legend(loc="upper left")
             plt.title("Symbol of "+ S.name(lambda_bool = False))
@@ -123,6 +123,7 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
         if isinstance(lamb, (int,float)):
             lamb = np.array([lamb], dtype=float)
         fig = plt.figure(1, figsize=(10, 8))
+        plt.title("Symbol of "+ schem(1).name(lambda_bool = False))
         ax = fig.add_subplot(111)
         fig.subplots_adjust(left=0.25, bottom=0.25)
         ax.set_xlim(-3,3)
@@ -138,8 +139,9 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
         Theta = np.linspace(0,2*pi,500)
 
         X,Y = schem(lamb0, order = order).symbol(nparam)
-        [line] = ax.plot(X,Y, linewidth=2, color='red')
-        [cible] = ax.plot(np.cos(Theta),np.sin(Theta), color = "black", label = "unit circle")
+        [line] = ax.plot(X,Y, linewidth=2, label = "symbol")
+        [cible] = ax.plot(np.cos(Theta),np.sin(Theta),"--",  color = "black", label = "unit circle")
+        ax.legend(loc="best")
         ax.set_xlim(-6, 2)
         ax.axis("equal")
         if len(lamb) == 1:
@@ -177,11 +179,9 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
         def reset(event):
             lambda_slider.reset()
         button.on_clicked(reset)
-
     plt.show()
 
 
-symbolplot(BeamWarming, lambdacursor = True)
 
 
 
