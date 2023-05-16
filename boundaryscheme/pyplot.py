@@ -5,6 +5,7 @@ This file defines utils function specific to the library
 import numpy as np
 from math import *
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider, Button
 
 from utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
 from boundaries import Dirichlet, SILW
@@ -86,11 +87,12 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
 
 
 
-def symbolplot(schem, lamb, order = 2, lambdacursor = False):
+def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
     if lambdacursor == False:
+        fig = plt.figure(1, figsize=(10, 8))
         if isinstance(lamb, (int,float)):
             S = schem(lamb,order = order)
-            X,Y = S.symbol()
+            X,Y = S.symbol(nparam)
             T = np.linspace(0,7,1000)
 
             plt.ylim(-1,1)
@@ -104,7 +106,7 @@ def symbolplot(schem, lamb, order = 2, lambdacursor = False):
             assert (type(lamb) == np.ndarray and lamb.ndim == 1) or type(lamb) == list
             for l in lamb:
                 S = schem(l,order = order)
-                X,Y = S.symbol()
+                X,Y = S.symbol(nparam)
 
                 plt.ylim(-1,1)
                 plt.xlim(-1,1)
@@ -116,10 +118,71 @@ def symbolplot(schem, lamb, order = 2, lambdacursor = False):
             plt.title("Symbol of "+ S.name(lambda_bool = False))
 
     else:
-        pass
+        if lamb == None:
+            lamb = schem(1).CFL
+        if isinstance(lamb, (int,float)):
+            lamb = np.array([lamb], dtype=float)
+        fig = plt.figure(1, figsize=(10, 8))
+        ax = fig.add_subplot(111)
+        fig.subplots_adjust(left=0.25, bottom=0.25)
+        ax.set_xlim(-3,3)
+        ax.axis("equal")
 
-# symbolplot(BeamWarming, np.array([1.4,0.7]))
-# plt.show()
+        if len(lamb) == 1:
+            lamb0 = lamb[0]/2
+        else:
+            lamb0 = (np.min(lamb) +np.max(lamb))/2
+
+        Param = np.linspace(0,1,nparam)
+        Param = np.cos(2*pi*Param) + 1j * np.sin(2*pi*Param)
+        Theta = np.linspace(0,2*pi,500)
+
+        X,Y = schem(lamb0, order = order).symbol(nparam)
+        [line] = ax.plot(X,Y, linewidth=2, color='red')
+        [cible] = ax.plot(np.cos(Theta),np.sin(Theta), color = "black", label = "unit circle")
+        ax.set_xlim(-6, 2)
+        ax.axis("equal")
+        if len(lamb) == 1:
+            minvalue = 0.0001
+            maxvalue = lamb[0]
+        else:
+            minvalue = np.min(lamb)
+            maxvalue = np.max(lamb)
+
+        axlamb = plt.axes([0.25, 0.08, 0.65, 0.03])
+        lambda_slider = Slider(
+            ax=axlamb,
+            label="lambda",
+            valmin=minvalue,
+            valmax=maxvalue,
+            valinit=lamb0,
+        )
+
+    
+
+        def update(val):
+            S = schem(lambda_slider.val,order=order)
+            X,Y = S.symbol(nparam)
+            line.set_xdata(X)
+            line.set_ydata(Y)
+            fig.canvas.draw_idle()
+
+        # register the update function with each slider
+        lambda_slider.on_changed(update)
+
+        # Create a `matplotlib.widgets.Button` to reset the sliders to initial values.
+        resetax = plt.axes([0.8, 0.025, 0.1, 0.04])
+        button = Button(resetax, 'Reset', hovercolor='0.975')
+
+        def reset(event):
+            lambda_slider.reset()
+        button.on_clicked(reset)
+
+    plt.show()
+
+
+symbolplot(BeamWarming, lambdacursor = True)
+
 
 
 def numberzerosdetKL():

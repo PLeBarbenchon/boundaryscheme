@@ -184,45 +184,6 @@ class SchemeP0(Scheme):
 
 
 
-class O3Upwind4(SchemeP0):
-    def __init__(self, lamb, boundary=Dirichlet(),sigma = 0, a0 = 0, a5 = 0, a6 = 0, **kwargs):
-        self.sigma = sigma
-        self.lamb = lamb
-        self.a0 = a0
-        self.a5 = a5
-        self.a6 = a6
-        a1 = -(lamb**3) / 6 + 3 * lamb**2 / 2 - 13 * lamb / 3 + a5 + 4 * a6 - 4 * a0 + 4
-        a2 = (lamb**3 - 8 * lamb**2 + 19 * lamb - 2 * (4 * a5 + 15 * a6 - 6 * a0 + 6)) / 2
-        a3 = -(lamb**3) / 2 + 7 * lamb**2 / 2 - 7 * lamb + 6 * a5 + 20 * a6 - 4 * a0 + 4
-        a4 = lamb**3 / 6 - lamb**2 + 11 * lamb / 6 - 4 * a5 - 10 * a6 + a0 - 1
-        self.int = np.array([a6, a5, a4, a3, a2, a1, a0])
-        self.center = 6
-        while self.int[0] == 0:
-            self.int = self.int[1:]
-            self.center -= 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma=sigma, **kwargs)
-
-    def shortname(self):
-        return "O3Upwind"
-
-
-
-class BWUpwind(SchemeP0):
-    def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, theta = 1/2, **kwargs):
-        self.sigma = sigma
-        self.theta = theta
-        self.lamb = lamb
-        coeff1 = theta * (lamb - 1) * (lamb - 2) / 2 + (1 - theta) * (1 - lamb)
-        coeff2 = theta * lamb * (2 - lamb) + (1 - theta) * lamb
-        coeff3 = theta * lamb * (lamb - 1) / 2
-        self.int = np.array([coeff3, coeff2, coeff1])
-        self.center = 2
-        while self.int[0] == 0:
-            self.int = self.int[1:]
-            self.center -= 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
-
-
 class BeamWarming(SchemeP0):
     def __init__(self, lamb, boundary=Dirichlet(), sigma = 0, **kwargs):
         self.sigma = sigma
@@ -234,13 +195,11 @@ class BeamWarming(SchemeP0):
         coeff3 = lamb * (lamb - 1) / 2
         self.int = np.array([coeff3, coeff2, coeff1])
         self.center = 2
+        self.CFL = 2
         while self.int[0] == 0:
             self.int = self.int[1:]
             self.center -= 1
         super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma)
-
-    def CFL(self):
-        return 2
 
     def shortname(self):
         return "BeamWarming"
@@ -257,10 +216,8 @@ class Upwind(SchemeP0):
         coeff2 = lamb
         self.int = np.array([coeff2, coeff1])
         self.center = 1
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
-
-    def CFL(self):
-        return 1
 
     def shortname(self):
         return "Upwind"
@@ -276,10 +233,8 @@ class LaxWendroff(Scheme):
         coeff3 = (lamb**2 + lamb) / 2
         self.int = np.array([coeff3, coeff2, coeff1])
         self.center = 1
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
-
-    def CFL(self):
-        return 1
 
     def shortname(self):
         return "LaxWendroff"
@@ -292,10 +247,8 @@ class LaxFriedrichs(Scheme):
         self.lamb = lamb
         self.int = np.array([(1 + lamb) / 2, 0, (1 - lamb) / 2])
         self.center = 1
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
-
-    def CFL(self):
-        return 1
 
     def shortname(self):
         return "LaxFriedrichs"
@@ -317,10 +270,8 @@ class ThirdOrder(Scheme):
             ]
         )
         self.center = 2
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary,sigma = sigma, **kwargs)
-
-    def CFL(self):
-        return 1
 
     def shortname(self):
         return "ThirdOrder"
@@ -333,10 +284,8 @@ class BB(Scheme):
         self.lamb = lamb
         self.int = np.array([self.lamb / 4, self.lamb / 4, 1 - self.lamb / 4, -self.lamb / 4])
         self.center = 2
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary,sigma =sigma, **kwargs)
-
-    def CFL(self):
-        return 1
 
     def shortname(self):
         return "BB"
@@ -351,6 +300,7 @@ class Dissipatif(Scheme):
         l = 2
         self.int = np.array([lamb / (2 * l), self.D, 1 - 2 * self.D, self.D, -lamb / (2 * l)])
         self.center = 2
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
     def shortname(self):
@@ -417,10 +367,8 @@ class LW(Scheme):
                 ]
             )
             self.center = 3
+        self.CFL = 1
         super().__init__(int=self.int, center=self.center, boundary=boundary,sigma = sigma, **kwargs)
-
-    def CFL(self):
-        return 1
 
     def shortname(self):
         return f"Lax Wendroff {self.order}"
