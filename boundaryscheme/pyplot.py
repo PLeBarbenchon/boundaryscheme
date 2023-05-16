@@ -7,9 +7,9 @@ from math import *
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button
 
-from utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
-from boundaries import Dirichlet, SILW
-from schemes import *
+from .utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
+from .boundaries import Dirichlet, SILW
+from .schemes import *
 
 
 def detKLplotsimple(s, n_param = 300, parametrization_bool = True):

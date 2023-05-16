@@ -6,7 +6,7 @@ import scipy as sc
 import numpy as np
 from math import *
 
-from utils import coefBinomial
+from .utils import coefBinomial
 
 
 
