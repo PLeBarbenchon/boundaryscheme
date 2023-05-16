@@ -28,4 +28,4 @@ plt.show()
 
 The code is citable via Zenodo. Please cite as:
 
-P. Le Barbenchon, boundaryscheme: package Python for numerical schemes with boundaries. 2023. [![DOI](https://zenodo.org/badge/610313213.svg)](https://zenodo.org/badge/latestdoi/610313213)
+P. Le Barbenchon, boundaryscheme: package Python for numerical schemes with boundaries. 2023. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7773742.svg)](https://doi.org/10.5281/zenodo.7773742)
