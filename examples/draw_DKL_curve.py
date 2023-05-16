@@ -33,8 +33,7 @@ if __name__ == "__main__":
 
     for l in lamb:
         S = scheme(l, boundary, order=order, sigma=sigma)
-        fDKL = S.DKL()
-        Param, Det = S.detKL(n_param, fDKL, parametrization_bool)
+        Param, Det = S.detKL(n_param, parametrization_bool)
         plt.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\lambda$ = " + str(l))
 
     plt.axvline(x=0, color="0.5")

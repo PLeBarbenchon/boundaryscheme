@@ -14,7 +14,7 @@ from boundaries import Dirichlet
 
 
 class Scheme:
-    def __init__(self, int, center, boundary=Dirichlet(), sigma = 0):
+    def __init__(self, int, center, boundary=Dirichlet(), sigma = 0,**kwargs):
         self.sigma = sigma
         self.int = int
         self.center = center
@@ -292,7 +292,7 @@ class LaxFriedrichs(Scheme):
         self.lamb = lamb
         self.int = np.array([(1 + lamb) / 2, 0, (1 - lamb) / 2])
         self.center = 1
-        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma =sigma, **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary, sigma = sigma, **kwargs)
 
     def CFL(self):
         return 1
@@ -333,7 +333,7 @@ class BB(Scheme):
         self.lamb = lamb
         self.int = np.array([self.lamb / 4, self.lamb / 4, 1 - self.lamb / 4, -self.lamb / 4])
         self.center = 2
-        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma =sigma **kwargs)
+        super().__init__(int=self.int, center=self.center, boundary=boundary,sigma =sigma, **kwargs)
 
     def CFL(self):
         return 1

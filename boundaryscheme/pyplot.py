@@ -7,20 +7,22 @@ from math import *
 import matplotlib.pyplot as plt
 
 from utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
-from boundaries import Dirichlet
+from boundaries import Dirichlet, SILW
+from schemes import *
 
 
 def detKLplotsimple(s, n_param = 300, parametrization_bool = True):
     """
     draw the Kreiss-Lopatinskii curve for a numerical scheme s of the class Scheme 
     """
-    fDKL = s.DKL()
-    Param, Det = s.detKL(n_param, fDKL, parametrization_bool)
+    Param, Det = s.detKL(n_param, parametrization_bool)
     plt.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2)
     plt.axvline(x=0, color="0.5")
     plt.axhline(y=0, color="0.5")
     plt.axis('equal')
     plt.show()
+
+# detKLplotsimple(BeamWarming(1, SILW(2,3)),parametrization_bool=False)
 
 
 def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacursor = False, sigmacursor = False):
@@ -84,8 +86,42 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
 
 
 
-def symbolplot():
-    pass
+def symbolplot(schem, lamb, order = 2, lambdacursor = False):
+    if lambdacursor == False:
+        if isinstance(lamb, (int,float)):
+            S = schem(lamb,order = order)
+            X,Y = S.symbol()
+            T = np.linspace(0,7,1000)
+
+            plt.ylim(-1,1)
+            plt.xlim(-1,1)
+            plt.plot(np.cos(T),np.sin(T), color = "black", label = "unit circle")
+            plt.plot(X,Y, label = "symbol")
+            plt.axis("equal")
+            plt.legend(loc="best")
+            plt.title("Symbol of "+ S.name(lambda_bool = True))
+        else:
+            assert (type(lamb) == np.ndarray and lamb.ndim == 1) or type(lamb) == list
+            for l in lamb:
+                S = schem(l,order = order)
+                X,Y = S.symbol()
+
+                plt.ylim(-1,1)
+                plt.xlim(-1,1)
+                plt.plot(X,Y, label = f"$\lambda = $ {l}")
+            T = np.linspace(0,7,1000)
+            plt.plot(np.cos(T),np.sin(T), color = "black", label = "unit circle")
+            plt.axis("equal")
+            plt.legend(loc="upper left")
+            plt.title("Symbol of "+ S.name(lambda_bool = False))
+
+    else:
+        pass
+
+# symbolplot(BeamWarming, np.array([1.4,0.7]))
+# plt.show()
+
 
 def numberzerosdetKL():
     pass
+
