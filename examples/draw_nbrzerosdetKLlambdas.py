@@ -1,6 +1,6 @@
 """
-This file aims at testing and plotting the symbol curve
-"""
+This file aims at testing and plotting the number of zeros of the Kreiss-Lopatinskii determinant with respect to  lambda
+""" 
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,6 +11,8 @@ import boundaryscheme.pyplot as bsplt
 
 
 #You can import the following different schemes : BeamWarming, Upwind, LaxWendroff, LaxFriedrichs, ThirdOrder, BB, Dissipatif, LW
+
+#You can import the following different boundaries : Dirichlet, SILW, DDJ
 
 
 if __name__ == "__main__":
