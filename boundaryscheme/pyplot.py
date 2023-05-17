@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button
 
 from .utils import boundary_to_boundary_quasi_toep, sort, epsilon, eta_func, parametrization
-from .boundaries import Dirichlet, SILW
-from .schemes import *
+from .boundaries import Dirichlet
+from .complex_winding_number import *
 
 
 def show():
@@ -365,6 +365,28 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300, 
 
 
 
-def numberzerosdetKL():
-    pass
-
+def nbrzerosdetKL(schem, left_bound= Dirichlet(), lamb = None, sigma = 0,  order = 2, nparam=200,parametrization_bool = True, fig_size = (6,4)):
+    fig,ax = plt.subplots(figsize=fig_size)
+    if lamb is None:
+        lambmin = 0.001
+        lambmax = schem(1).CFL
+    else:
+        if isinstance(lamb, (int,float)):
+            lamb = np.array([lamb], dtype=float)
+        if len(lamb)==1:
+            if lamb[0]<0:
+                raise ValueError("lambda has to be non negative")
+            lambmin = 0.001
+            lambmax = lamb[0]
+        else:
+            lambmin = min(lamb)
+            lambmax = max(lamb)
+    lambdas = np.linspace(lambmin,lambmax,nparam)
+    WindingNumbers = []
+    for l in lambdas:
+        S = schem(l,left_bound, sigma = sigma, order = order)
+        Param, Det = S.detKL(nparam, parametrization_bool)
+        WindingNumbers.append(Indice(Det))
+    ax.plot(lambdas, S.r - np.array(WindingNumbers))
+    plt.title(f"Number of zeros of KL determinant for {schem(1/2,left_bound, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$")
+    return ax

@@ -1,45 +1,24 @@
 """
-This file aims at testing and plotting the DKL function
+This file aims at testing and plotting the symbol curve
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-import os
-path_here = os. getcwd()
-import sys
-sys.path.insert(0,path_here+"/boundaryscheme")
+import numpy as np
 
-from schemes import *
-from boundaries import *
-from complex_winding_number import *
+from boundaryscheme.schemes import BeamWarming
+from boundaryscheme.boundaries import SILW
+import boundaryscheme.pyplot as bsplt
 
 
-# scheme choice
-scheme = BeamWarming
-order = 5
-CFL = 2
-sigma = 0
-
-# boundary choice
-boundary = SILW(2, 3)
+#You can import the following different schemes : BeamWarming, Upwind, LaxWendroff, LaxFriedrichs, ThirdOrder, BB, Dissipatif, LW
 
 
 if __name__ == "__main__":
-    fig = plt.figure(1, figsize=(6, 4))
+    """plot the number of zeros of Kreiss-Lopatinskii determinant of BeamWarming with SILW(2,3) for lambda between 0 and the CFL condition"""
+    bsplt.nbrzerosdetKL(BeamWarming, SILW(2,3))
 
-        
-    lamb = np.linspace(0.01,CFL,200)
-    n_param = 60
-    parametrization_bool = True
+    """plot the number of zeros of Kreiss-Lopatinskii determinant of BeamWarming with SILW(2,3) for lambda between 1.4 and 1.7"""
+    # bsplt.nbrzerosdetKL(BeamWarming, SILW(2,3),lamb = [1.4,1.7], nparam = 100)
 
-    IndiceComplexe = []
-    S = scheme(1/2,boundary, sigma=sigma, order = order) 
-    for l in lamb:
-        S = scheme(l,boundary, sigma = sigma, order = order)
-        Param, Det = S.detKL(n_param, parametrization_bool)
-        IndiceComplexe.append(Indice(Det))
-
-    plt.plot(lamb, S.r - np.array(IndiceComplexe))
-    plt.title(f"Number of zeros of KL determinant for {scheme(1/2,boundary, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$")
     plt.show()
 
