@@ -3,7 +3,7 @@ This is the architecture for the package "boundaryscheme"
 
 # boundaryscheme
 Package Python to use numerical scheme with boundaries which is described in the PhD manuscript 
-> P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, 2023.
+> P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, PhD, 2023.
 
 # Installation
 

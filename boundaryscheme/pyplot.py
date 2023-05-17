@@ -29,10 +29,7 @@ def detKLplotsimple(s, n_param = 300, parametrization_bool = True):
 
 
 
-detKLplotsimple(BeamWarming(1, SILW(2,3)),parametrization_bool=False)
-plt.plot()
-
-def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacursor = False, sigmacursor = False):
+def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacursor = False, sigmacursor = False, nparam = 300, parametrization_bool = True,  order = 2, fig_size = (6,4)):
     """
     draw the Kreiss-Lopatinskii curve for different lambdas and different sigmas or with cursor(s) 
 
@@ -44,7 +41,7 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
     lambdacursor : boolean to indicate the use of a cursor for lambda's moving among the lamb values
     sigmacursor : boolean to indicate the use of a cursor for sigma's moving among the sigma values
     """
-    if lamb == None:
+    if lamb is None:
         lamb = np.array([schem(1).CFL])
     if isinstance(lamb, (int,float)):
         lamb = np.array([lamb], dtype=float)
@@ -53,22 +50,96 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
     if sigmacursor == False:
         if lambdacursor == False:
             if len(sigma)==1:
+                lamb = np.sort(lamb)
+                fig,ax = plt.subplots(figsize=fig_size)
                 for l in lamb:
-                    pass
+                    S = schem(l, left_bound, order=order, sigma=sigma[0])
+                    Param, Det = S.detKL(nparam, parametrization_bool)
+                    ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\lambda$ = " + str(l))
+                ax.axvline(x=0, color="0.5")
+                ax.axhline(y=0, color="0.5")
+                ax.legend(loc='best')
+                plt.title("Symbol of "+ S.name(boundary_bool = True, sigma_bool = True,lambda_bool = False))
             elif len(lamb) == 1:
+                sigma = np.sort(sigma)
+                fig,ax = plt.subplots(figsize=fig_size)
                 for sig in sigma:
-                    pass
+                    S = schem(lamb[0], left_bound, order=order, sigma=sig)
+                    Param, Det = S.detKL(nparam, parametrization_bool)
+                    ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\sigma$ = " + str(sig))
+                ax.axvline(x=0, color="0.5")
+                ax.axhline(y=0, color="0.5")
+                ax.legend(loc='best')
+                plt.title("Symbol of "+ S.name(boundary_bool = True, sigma_bool = False,lambda_bool = True))
             else:
+                sigma = np.sort(sigma)
+                fig,ax = plt.subplots(figsize=fig_size)
                 for l in lamb:
                     for sig in sigma:
-                        pass
+                        S = schem(l, left_bound, order=order, sigma=sig)
+                        Param, Det = S.detKL(nparam, parametrization_bool)
+                        ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\lambda$ = " + str(l) + f"et $\sigma$ = " + str(sig))
+                ax.axvline(x=0, color="0.5")
+                ax.axhline(y=0, color="0.5")
+                ax.legend(loc='best')
+                plt.title("Symbol of "+ S.name(boundary_bool = True, sigma_bool = False,lambda_bool = False))
         else:
+            if len(sigma)>1:
+                raise TypeError("with a lambda cursor, sigma has to be a single value")
             lambmax = np.max(lamb)
             if len(lamb) == 1 or np.min(lamb) < 0.001:
                 lambmin = 0.001
             else:
                 lambmin = np.min(lamb)
-            pass
+            
+            lamb0 = (lambmax + lambmin) / 2
+            fig = plt.figure(1, figsize=(10, 8))
+            plt.title("DKL curve of "+ schem(1, left_bound,sigma=sigma[0]).name(boundary_bool = True, sigma_bool=True))
+            ax = fig.add_subplot(111)
+            fig.subplots_adjust(left=0.25, bottom=0.25)
+            ax.set_xlim(-3,3)
+            ax.axis("equal")
+
+
+            def calc_det(l):
+                S = schem(l, left_bound, sigma=sigma[0], order=order)
+                return S.detKL(nparam, parametrization_bool)[1]
+
+            Det = calc_det(lamb0)
+            [line] = ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, color='red')
+            ax.axvline(x=0, color="0.5")
+            ax.axhline(y=0, color="0.5")
+            ax.axis("equal")
+            
+            lambda_slider_ax = fig.add_axes([0.25, 0.15, 0.65, 0.03])
+            lambda_slider = Slider(ax = lambda_slider_ax, label='lambda', valmin=lambmin, valmax=lambmax, valinit=lamb0)
+
+
+        
+
+            def update(val):
+                Det = calc_det(lambda_slider.val)
+                line.set_xdata([z.real for z in Det])
+                line.set_ydata([z.imag for z in Det])
+                xmin = min([z.real for z in Det])
+                xmax = max([z.real for z in Det])
+                ymin = min([z.imag for z in Det])
+                ymax = max([z.imag for z in Det])
+                ax.set_xlim(xmin,xmax)
+                ax.set_ylim(ymin,ymax)
+                fig.canvas.draw_idle()
+
+            # register the update function with each slider
+            lambda_slider.on_changed(update)
+
+            # Create a `matplotlib.widgets.Button` to reset the sliders to initial values.
+            resetax = plt.axes([0.8, 0.025, 0.1, 0.04])
+            button = Button(resetax, 'Reset', hovercolor='0.975')
+
+            def reset(event):
+                lambda_slider.reset()
+            button.on_clicked(reset)
+
     else:
         if len(sigma) == 1:
             sigmax = 1/2
@@ -77,7 +148,52 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
             sigmax = np.max(sigma)
             sigmin = np.min(sigma)
         if lambdacursor == False:
-            pass
+            if len(lamb)>1:
+                raise TypeError("With a sigma cursor, lambda has to be a single value")
+            sigma0 = (sigmax + sigmin) / 2
+            fig = plt.figure(1, figsize=(10, 8))
+            plt.title("DKL curve of "+ schem(lamb[0], left_bound).name(boundary_bool = True, lambda_bool = True))
+            ax = fig.add_subplot(111)
+            fig.subplots_adjust(left=0.25, bottom=0.25)
+            ax.set_xlim(-3,3)
+            ax.axis("equal")
+
+
+            def calc_det(sig):
+                S = schem(lamb[0], left_bound, sigma=sig, order=order)
+                return S.detKL(nparam, parametrization_bool)[1]
+
+            Det = calc_det(sigma0)
+            [line] = ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, color='red')
+            ax.axvline(x=0, color="0.5")
+            ax.axhline(y=0, color="0.5")
+            ax.axis("equal")
+            
+            sigma_slider_ax = fig.add_axes([0.25, 0.15, 0.65, 0.03])
+            sigma_slider = Slider(ax = sigma_slider_ax, label='sigma', valmin=sigmin, valmax=sigmax, valinit=sigma0)
+        
+            def update(val):
+                Det = calc_det(sigma_slider.val)
+                line.set_xdata([z.real for z in Det])
+                line.set_ydata([z.imag for z in Det])
+                xmin = min([z.real for z in Det])
+                xmax = max([z.real for z in Det])
+                ymin = min([z.imag for z in Det])
+                ymax = max([z.imag for z in Det])
+                ax.set_xlim(xmin,xmax)
+                ax.set_ylim(ymin,ymax)
+                fig.canvas.draw_idle()
+
+            # register the update function with each slider
+            sigma_slider.on_changed(update)
+
+            # Create a `matplotlib.widgets.Button` to reset the sliders to initial values.
+            resetax = plt.axes([0.8, 0.025, 0.1, 0.04])
+            button = Button(resetax, 'Reset', hovercolor='0.975')
+
+            def reset(event):
+                sigma_slider.reset()
+            button.on_clicked(reset)
 
         else:
             lambmax = np.max(lamb)
@@ -86,6 +202,7 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
             else:
                 lambmin = np.min(lamb)
             pass
+    return ax
         
 
 
@@ -93,9 +210,9 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
 
 
 
-def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
+def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300, fig_size = (10,8)):
     if lambdacursor == False:
-        fig = plt.figure(1, figsize=(10, 8))
+        fig,ax = plt.subplots(figsize=fig_size)
         if isinstance(lamb, (int,float)):
             S = schem(lamb,order = order)
             X,Y = S.symbol(nparam)
@@ -103,24 +220,23 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
 
             plt.ylim(-1,1)
             plt.xlim(-1,1)
-            plt.plot(np.cos(T),np.sin(T),"--",  color = "black", label = "unit circle")
-            plt.plot(X,Y, linewidth=2, label = "symbol")
-            plt.axis("equal")
-            plt.legend(loc="best")
+            ax.plot(np.cos(T),np.sin(T),"--",  color = "black", label = "unit circle")
+            ax.plot(X,Y, linewidth=2, label = "symbol")
+            ax.axis("equal")
+            ax.legend(loc="best")
             plt.title("Symbol of "+ S.name(lambda_bool = True))
         else:
             assert (type(lamb) == np.ndarray and lamb.ndim == 1) or type(lamb) == list
+            plt.ylim(-1,1)
+            plt.xlim(-1,1)
             for l in lamb:
                 S = schem(l,order = order)
                 X,Y = S.symbol(nparam)
-
-                plt.ylim(-1,1)
-                plt.xlim(-1,1)
-                plt.plot(X,Y, linewidth=2, label = f"$\lambda = $ {l}")
+                ax.plot(X,Y, linewidth=2, label = f"$\lambda = $ {l}")
             T = np.linspace(0,7,1000)
-            plt.plot(np.cos(T),np.sin(T),"--", color = "black", label = "unit circle")
-            plt.axis("equal")
-            plt.legend(loc="upper left")
+            ax.plot(np.cos(T),np.sin(T),"--", color = "black", label = "unit circle")
+            ax.axis("equal")
+            ax.legend(loc="upper left")
             plt.title("Symbol of "+ S.name(lambda_bool = False))
 
     else:
@@ -185,7 +301,7 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300):
         def reset(event):
             lambda_slider.reset()
         button.on_clicked(reset)
-    plt.show()
+    return ax
 
 
 

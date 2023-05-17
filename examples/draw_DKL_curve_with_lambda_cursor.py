@@ -57,6 +57,12 @@ if __name__ == "__main__":
         Det = calc_det(lambda_slider.val)
         line.set_xdata([z.real for z in Det])
         line.set_ydata([z.imag for z in Det])
+        xmin = min([z.real for z in Det])
+        xmax = max([z.real for z in Det])
+        ymin = min([z.imag for z in Det])
+        ymax = max([z.imag for z in Det])
+        ax.set_xlim(xmin,xmax)
+        ax.set_ylim(ymin,ymax)
         fig.canvas.draw_idle()
 
     lambda_slider.on_changed(sliders_on_changed)
