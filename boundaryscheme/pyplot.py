@@ -258,7 +258,7 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
                 lambda_slider.reset()
                 sigma_slider.reset()
 
-    button.on_clicked(reset)
+            button.on_clicked(reset)
 
     return ax
         

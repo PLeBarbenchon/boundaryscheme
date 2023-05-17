@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from boundaryscheme.boundaries import SILW
-from boundaryscheme.schemes import BeamWarming
+from boundaryscheme.schemes import BeamWarming, LaxWendroff
 import boundaryscheme.pyplot as bsplt
 
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = 1.4)
 
     """plot the Kreiss-Lopatinskii determinant curve for BeamWarming and for lambda in [1.4, 0.7, 1] with sigma = 0.4"""
-    bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = np.array([1.4, 0.7, 1]), sigma = 0.4)
+    # bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = np.array([1.4, 0.7, 1]), sigma = 0.4)
 
     """plot the Kreiss-Lopatinskii determinant curve for BeamWarming and for lambda = 1 with sigma in [-0.2, 0, 0.1,0.4]"""
     # bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = 1, sigma = np.array([-0.2, 0, 0.1,0.4]))
@@ -36,6 +36,7 @@ if __name__ == "__main__":
     # bsplt.detKLplot(BeamWarming, SILW(2,3), lambdacursor = True)
 
     """plot the Kreiss-Lopatinskii determinant curve for BeamWarming with a cursor for lambda between 0 and the CFL condition and a cursor for sigma between -0.5 and 0.5"""
-    # bsplt.detKLplot(BeamWarming, SILW(2,3), lambdacursor = True, sigmacursor = True)
+    bsplt.detKLplot(LaxWendroff, SILW(2,3), lambdacursor = True, sigmacursor = True)
+
 
     plt.show()
