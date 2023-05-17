@@ -6,7 +6,6 @@ Package Python to use numerical scheme with boundaries which is described in the
 > P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, PhD, 2023.
 
 # Installation
-
 ```bash
 git clone https://github.com/PLeBarbenchon/boundaryscheme.git
 cd boundaryscheme
@@ -17,6 +16,8 @@ python3 examples/draw_symbol.py
 
 # Example 
 ```python
+import matplotlib.pyplot as plt
+
 from boundaryscheme.schemes import BeamWarming
 import boundaryscheme.pyplot as bsplt
 

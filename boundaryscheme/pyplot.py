@@ -201,7 +201,65 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
                 lambmin = 0.001
             else:
                 lambmin = np.min(lamb)
-            pass
+            
+            sigma0 = (sigmax + sigmin)/2
+            lamb0 = (lambmin + lambmax)/2
+
+            fig = plt.figure(1, figsize=(10, 8))
+            plt.title("DKL curve of "+ schem(1, left_bound).name(boundary_bool = True))
+            ax = fig.add_subplot(111)
+            fig.subplots_adjust(left=0.25, bottom=0.25)
+            ax.set_xlim(-3,3)
+            ax.axis("equal")
+
+            def calc_det(l, sigm):
+                S = schem(l, left_bound, sigma=sigm, order=order)
+                return S.detKL(nparam, parametrization_bool)[1]
+            
+            Det = calc_det(lamb0, sigma0)
+            [line] = ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, color='red')
+            plt.axvline(x=0, color="0.5")
+            plt.axhline(y=0, color="0.5")
+
+
+            axlambda = plt.axes([0.25, 0.1, 0.65, 0.03])
+            lambda_slider = Slider(
+                ax=axlambda,
+                label='lambda',
+                valmin=lambmin,
+                valmax=lambmax,
+                valinit=lamb0,
+            )
+
+            # Make a vertically oriented slider to control the amplitude
+            axsigm = plt.axes([0.1, 0.25, 0.0225, 0.63])
+            sigma_slider = Slider(
+                ax=axsigm, label="sigma", valmin=sigmin, valmax=sigmax, valinit=sigma0, orientation="vertical"
+            )
+
+            def update(val):
+                Det = calc_det(lambda_slider.val, sigma_slider.val)
+                line.set_xdata([z.real for z in Det])
+                line.set_ydata([z.imag for z in Det])
+                xmin = min([z.real for z in Det])
+                xmax = max([z.real for z in Det])
+                ymin = min([z.imag for z in Det])
+                ymax = max([z.imag for z in Det])
+                ax.set_xlim(xmin,xmax)
+                ax.set_ylim(ymin,ymax)
+                fig.canvas.draw_idle()
+            
+            lambda_slider.on_changed(update)
+            sigma_slider.on_changed(update)
+            resetax = plt.axes([0.8, 0.025, 0.1, 0.04])
+            button = Button(resetax, 'Reset', hovercolor='0.975')
+
+            def reset(event):
+                lambda_slider.reset()
+                sigma_slider.reset()
+
+    button.on_clicked(reset)
+
     return ax
         
 
