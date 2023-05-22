@@ -20,7 +20,14 @@ if __name__ == "__main__":
     # bsplt.nbrzerosdetKL(BeamWarming, SILW(2,3))
 
     """plot the number of zeros of Kreiss-Lopatinskii determinant of BeamWarming with SILW(2,3) for lambda between 1.4 and 1.7"""
-    bsplt.nbrzerosdetKL(BeamWarming, SILW(2,3),lamb = [1.4,1.7], nparam = 100)
+    # bsplt.nbrzerosdetKL(BeamWarming,  SILW(2,3),lamb = np.array([1.4,1.7]), nparam = 150)
+
+
+    """plot the number of zeros of Kreiss-Lopatinskii determinant of BeamWarming with several boundary conditions"""
+    # bsplt.nbrzerosdetKL(BeamWarming, [SILW(1,3), SILW(2,3),SILW(2,4),SILW(3,4),DDJ(3,0),DDJ(3,1)],nlambda = 60)
+
+    """plot the number of zeros of Kreiss-Lopatinskii determinant of BeamWarming with SILW(2,3) with respect to lambda and sigma"""
+    bsplt.nbrzerosdetKL(BeamWarming, SILW(2,3), sigma=True, nlambda=50, nsigma = 50)
 
     plt.show()
  

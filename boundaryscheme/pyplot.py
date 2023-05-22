@@ -365,28 +365,90 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300, 
 
 
 
-def nbrzerosdetKL(schem, left_bound = Dirichlet(), lamb = None, sigma = 0,  order = 2, nparam=200,parametrization_bool = True, fig_size = (6,4)):
-    fig,ax = plt.subplots(figsize=fig_size)
+def nbrzerosdetKL(schem, left_bound = Dirichlet(), lamb = None, sigma = 0,  order = 2, nparam=100, nlambda=200, nsigma = 30,parametrization_bool = True, fig_size = (15,7), fontsize=18):
     if lamb is None:
-        lambmin = 0.001
+        lambmin = 0.01
         lambmax = schem(1).CFL
     else:
         if isinstance(lamb, (int,float)):
             lamb = np.array([lamb], dtype=float)
         if len(lamb)==1:
-            if lamb[0]<0:
+            if lamb[0]<=0:
                 raise ValueError("lambda has to be non negative")
-            lambmin = 0.001
+            lambmin = 0.01
             lambmax = lamb[0]
         else:
             lambmin = min(lamb)
             lambmax = max(lamb)
-    lambdas = np.linspace(lambmin,lambmax,nparam)
-    WindingNumbers = []
-    for l in lambdas:
-        S = schem(l,left_bound, sigma = sigma, order = order)
-        Param, Det = S.detKL(nparam, parametrization_bool)
-        WindingNumbers.append(Indice(Det))
-    ax.plot(lambdas, S.r - np.array(WindingNumbers))
-    plt.title(f"Number of zeros of KL determinant for {schem(1/2,left_bound, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$")
-    return ax
+    lambdas = np.linspace(lambmin,lambmax,nlambda)
+    if isinstance(left_bound, list) or (isinstance(left_bound,np.ndarray) and left_bound.ndim == 1):
+        n = len(left_bound)
+        fig,axs = plt.subplots(nrows = n, ncols = 1, figsize = fig_size) 
+        axs[0].set_title(f"Number of zeros of KL determinant for {schem(1/2, order = order, sigma=sigma).name(sigma_bool=True)} with respect to $\lambda$")
+        for i,bound in enumerate(left_bound):
+            if i == n-1:
+                axs[i].set_xlabel("$\lambda$")
+            else:
+                axs[i].xaxis.set_ticklabels([])
+            axs[i].set_xlim(lambmin,lambmax)
+            axs[i].set_ylim(0,1)
+            axs[i].yaxis.set_ticks([])
+            axs[i].set_ylabel(bound.name())
+            WindingNumbers = []
+            for l in lambdas:
+                S = schem(l,bound, sigma = sigma, order = order)
+                Param, Det = S.detKL(nparam, parametrization_bool)
+                WindingNumbers.append(Indice(Det))
+            separator = []
+            value = []
+            for j in range (len(WindingNumbers)-1):
+                if WindingNumbers[j] != WindingNumbers[j+1]:
+                    separator.append((lambdas[j]+lambdas[j+1])/2)
+                    value.append(S.r - WindingNumbers[j])
+            value.append(WindingNumbers[-1])
+            if separator == []:
+                axs[i].text((lambmax+lambmin)/2,0.5,value[0],horizontalalignment='center',verticalalignment='center',fontsize=fontsize)
+            else:
+                for j in range (len(separator)+1):
+                    if j == 0:
+                        axs[i].plot([separator[j],separator[j]],[0,1],color = "black")
+                        axs[i].text(separator[0]/2,0.5,value[j],horizontalalignment='center',verticalalignment='center',fontsize=fontsize)
+                    elif j == len(separator):
+                        axs[i].text((separator[j-1]+lambmax)/2,0.5,value[j],horizontalalignment='center',verticalalignment='center',fontsize=fontsize)
+                    else:
+                        axs[i].plot([separator[j],separator[j]],[0,1],color = "black")
+                        axs[i].text((separator[j]+separator[j-1])/2,0.5,value[j],horizontalalignment='center',verticalalignment='center',fontsize=fontsize)
+        return axs
+    else:
+        fig,ax = plt.subplots(figsize=fig_size)
+        if isinstance(sigma, (int,float)) and not isinstance(sigma,bool):
+            WindingNumbers = []
+            for l in lambdas:
+                S = schem(l,left_bound, sigma = sigma, order = order)
+                Param, Det = S.detKL(nparam, parametrization_bool)
+                WindingNumbers.append(Indice(Det))
+            ax.plot(lambdas, S.r - np.array(WindingNumbers))
+            plt.title(f"Number of zeros of KL determinant for {schem(1/2,left_bound, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$")
+        else:
+            if sigma:
+                sigmin = -1/2
+                sigmax = 1/2
+            else:
+                sigmax = max(sigma)
+                sigmin = min(sigma)
+            
+            sigmas = np.linspace(sigmin,sigmax,nsigma)
+            WindingNumbers = np.zeros((nsigma,nlambda))
+            for i,l in enumerate(lambdas):
+                for j,sig in enumerate(sigmas):
+                    S = schem(l,left_bound, sigma = sig, order = order)
+                    Param,Det = S.detKL(nparam, parametrization_bool)
+                    WindingNumbers[j,i] = Indice(Det)
+            data = S.r - WindingNumbers
+            sigmas,lambdas = np.meshgrid(lambdas,sigmas)
+            plt.contourf(sigmas,lambdas,data)
+            plt.colorbar()
+            plt.title(f"Number of zeros of KL determinant for {schem(1/2,left_bound, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = False, lambda_bool = False)} with respect to $\lambda$ and $\sigma$")
+            plt.xlabel("$\lambda$")
+            plt.ylabel("$\sigma$")
+        return ax

@@ -5,8 +5,8 @@ This file aims at testing and plotting the Kreiss-Lopatinskii determinant curve
 import matplotlib.pyplot as plt
 import numpy as np
 
-from boundaryscheme.boundaries import SILW
-from boundaryscheme.schemes import BeamWarming, LaxWendroff
+from boundaryscheme.boundaries import *
+from boundaryscheme.schemes import *
 import boundaryscheme.pyplot as bsplt
 
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # bsplt.detKLplot(BeamWarming, SILW(2,3), lambdacursor = True)
 
     """plot the Kreiss-Lopatinskii determinant curve for BeamWarming with a cursor for lambda between 0 and the CFL condition and a cursor for sigma between -0.5 and 0.5"""
-    bsplt.detKLplot(LaxWendroff, SILW(2,3), lambdacursor = True, sigmacursor = True)
+    bsplt.detKLplot(BeamWarming, SILW(2,3), lambdacursor = True, sigmacursor = True)
 
 
     plt.show()

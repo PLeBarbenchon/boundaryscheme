@@ -181,3 +181,6 @@ def boundary_quasi_toep_to_boundary(boundary, bn, Int, center):
         return np.linalg.inv(A).dot(bn(t))
 
     return np.linalg.inv(A).dot(BB - Ap), gn_func
+
+
+

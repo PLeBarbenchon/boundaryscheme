@@ -5,7 +5,7 @@ This file aims at testing and plotting the symbol curve
 import matplotlib.pyplot as plt
 import numpy as np
 
-from boundaryscheme.schemes import BeamWarming
+from boundaryscheme.schemes import *
 import boundaryscheme.pyplot as bsplt
 
 
