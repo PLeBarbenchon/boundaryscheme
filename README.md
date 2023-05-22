@@ -25,7 +25,8 @@ bsplt.symbolplot(BeamWarming, lambdacursor = True)
 plt.show()
 ```
 
-<video src='mp4' width=180/>
+
+https://github.com/PLeBarbenchon/boundaryscheme/assets/92107096/972a5f81-5322-482e-9c10-50f2b688c119
 
 # Citing
 
