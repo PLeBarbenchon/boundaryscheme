@@ -11,7 +11,7 @@ git clone https://github.com/PLeBarbenchon/boundaryscheme.git
 cd boundaryscheme
 pip3 install -r requirements.txt
 pip3 install -e .
-python3 examples/draw_symbol.py
+python3 examples/draw_detKLcurve.py
 ```
 
 # Example 
