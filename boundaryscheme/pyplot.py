@@ -365,7 +365,7 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300, 
 
 
 
-def nbrzerosdetKL(schem, left_bound= Dirichlet(), lamb = None, sigma = 0,  order = 2, nparam=200,parametrization_bool = True, fig_size = (6,4)):
+def nbrzerosdetKL(schem, left_bound = Dirichlet(), lamb = None, sigma = 0,  order = 2, nparam=200,parametrization_bool = True, fig_size = (6,4)):
     fig,ax = plt.subplots(figsize=fig_size)
     if lamb is None:
         lambmin = 0.001
