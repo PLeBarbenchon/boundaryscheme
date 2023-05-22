@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 from boundaryscheme.schemes import BeamWarming
 import boundaryscheme.pyplot as bsplt
 
-bsplt.symbolplot(BeamWarming, lambdacursor = True)
+bsplt.detKLcurve(BeamWarming, SILW(2,3),lambdacursor = True)
 plt.show()
 ```
 
