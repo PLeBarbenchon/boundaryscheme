@@ -8,6 +8,9 @@ from cmath import *
 
 
 def coefBinomial(n, k):
+    """
+    return the binomial coefficient
+    """
     if(k > (n - k)):
         k = n - k
     coef = 1
