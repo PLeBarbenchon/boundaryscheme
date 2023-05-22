@@ -25,7 +25,8 @@ bsplt.detKLcurve(BeamWarming, SILW(2,3),lambdacursor = True)
 plt.show()
 ```
 
-<video src='mp4' width=180/>
+![mygif](https://github.com/PLeBarbenchon/boundaryscheme/assets/92107096/2ca0d414-77a6-410e-a582-a3950699dcf0)
+
 
 # Citing
 
