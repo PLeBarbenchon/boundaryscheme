@@ -28,6 +28,9 @@ class Dirichlet(Bord):
 
 
 class SILW(Bord):
+    """
+    Simplified Inverse Lax Wendroff boundary procedure, see [Vilar,Shu, 2015 : Development and stability analysis of the inverse Lax Wendroff boundary treatment for central compact schemes]
+    """
     def __init__(self, kd, d, dx = 0.1, a = 1, gderivatives = None):
         self.kd = kd
         self.d = d
@@ -69,6 +72,10 @@ class SILW(Bord):
 
 class DDJ(Bord):
     """
+    Boundary Reconstruction procedure explained in [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations] and in [Dakin Desprès Jaouen, 2018 : Inverse Lax–Wendroff boundary treatment for compressible Lagrange-remap hydrodynamics on cartesian grids]
+    """
+
+    """
     Warning d represents the order  and kd represente the truncature, the notation is not in the same order than SILW, it is to respect the order of [DakinDespresJaouen18]
     """
     def __init__(self, d, kd, dx = 0.1, a = 1, gderivatives = None):
@@ -84,12 +91,12 @@ class DDJ(Bord):
 
     def __call__(self, r, sigma = 0):
         """
-        renvoie une fonction qui construit la matrice
         return a function that build the matrix
         b_{-r,0} ... b_{-r,m-1}
            |            |
         b_{-1,0} ... b_{-1,m-1}
-        and the function gn
+        and the function gn such as 
+        (U_{-r}^n, ..., U_{-1}^n)^T = B (U_0^n, ..., U_{m-1}^n)^T + gn(t)
         """
         ymoins = np.zeros((r, self.d - self.kd - 1))
         yplus = np.zeros((self.d - self.kd - 1, self.d - self.kd - 1))
@@ -106,7 +113,7 @@ class DDJ(Bord):
         if np.linalg.det(yplus) == 0:
             print(yplus, sigma)
         ConditionBord = ymoins.dot(np.linalg.inv(yplus))
-        #"""Ecrire la condition de bord avec le gn"""
+        #"""write the boundary condition with gn"""
         return ConditionBord[::-1], lambda x: 0
 
     def name(self):

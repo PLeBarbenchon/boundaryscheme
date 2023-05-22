@@ -14,6 +14,25 @@ from .boundaries import Dirichlet
 
 
 class Scheme:
+    """
+    A class to represent a numerical scheme.
+
+    ...
+
+    Attributes
+    ----------
+    sigma : float
+        first name of the person
+    int : list
+        interior coefficient of the scheme
+    center : int
+        index 0 of the scheme 
+
+    Methods
+    -------
+    info(additional=""):
+        Prints the person's name and age.
+    """
     def __init__(self, int, center, boundary=Dirichlet(), sigma = 0,**kwargs):
         self.sigma = sigma
         self.int = int
@@ -44,6 +63,8 @@ class Scheme:
         return self.int, self.center
 
     def toep(self, J, Borddroit=np.array([[]])):
+        """
+        J """
         A = np.zeros((J, J))
         for k in range(len(self.int)):
             A += self.int[k] * np.diag(np.ones(J - abs(k - self.center)), k - self.center)
