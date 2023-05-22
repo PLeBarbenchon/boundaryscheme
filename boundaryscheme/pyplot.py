@@ -15,12 +15,12 @@ from .complex_winding_number import *
 def show():
     plt.show()
 
-def detKLplotsimple(s, n_param = 300, parametrization_bool = True):
+def detKLplotsimple(schem, n_param = 300, parametrization_bool = True):
     """
     draw the Kreiss-Lopatinskii curve for a numerical scheme s of the class Scheme 
     """
     ax = plt.subplot()
-    Param, Det = s.detKL(n_param, parametrization_bool)
+    Param, Det = schem.detKL(n_param, parametrization_bool)
     ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2)
     ax.axvline(x=0, color="0.5")
     ax.axhline(y=0, color="0.5")

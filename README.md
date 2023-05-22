@@ -25,6 +25,8 @@ bsplt.symbolplot(BeamWarming, lambdacursor = True)
 plt.show()
 ```
 
+<video src='mp4' width=180/>
+
 # Citing
 
 The code is citable via Zenodo. Please cite as:
