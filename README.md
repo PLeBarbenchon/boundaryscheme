@@ -19,6 +19,7 @@ python3 examples/draw_detKLcurve.py
 import matplotlib.pyplot as plt
 
 from boundaryscheme.schemes import BeamWarming
+from boundaryscheme.boundaries import SILW
 import boundaryscheme.pyplot as bsplt
 
 bsplt.detKLcurve(BeamWarming, SILW(2,3),lambdacursor = True)
