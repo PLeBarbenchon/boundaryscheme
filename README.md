@@ -25,8 +25,8 @@ bsplt.symbolplot(BeamWarming, lambdacursor = True)
 plt.show()
 ```
 
+![mygif](https://github.com/PLeBarbenchon/boundaryscheme/assets/92107096/2ca0d414-77a6-410e-a582-a3950699dcf0)
 
-https://github.com/PLeBarbenchon/boundaryscheme/assets/92107096/972a5f81-5322-482e-9c10-50f2b688c119
 
 # Citing
 
