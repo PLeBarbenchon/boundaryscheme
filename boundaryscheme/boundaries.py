@@ -30,7 +30,7 @@ class Dirichlet(Boundary):
     def __init__(self):
         self.d = 0
 
-    def __call__(self, r):
+    def __call__(self, r, sigma = 0):
         """Builds the left boundary condition
 
         :param r: Number of left ghost points to define the numerical scheme considered
