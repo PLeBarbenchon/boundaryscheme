@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = 1.4)
 
     """plot the Kreiss-Lopatinskii determinant curve for BeamWarming and for lambda in [1.4, 0.7, 1] with sigma = 0.4"""
-    bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = np.array([1.4, 0.7, 1]), sigma = 0)
+    bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = np.array([1.4, 0.7, 1]), sigma = 0.4)
 
     """plot the Kreiss-Lopatinskii determinant curve for BeamWarming and for lambda = 1 with sigma in [-0.2, 0, 0.1,0.4]"""
     # bsplt.detKLplot(BeamWarming, SILW(2,3), lamb = 1, sigma = np.array([-0.2, 0, 0.1,0.4]))
