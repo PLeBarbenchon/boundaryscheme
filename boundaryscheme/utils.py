@@ -8,8 +8,14 @@ from cmath import *
 
 
 def coefBinomial(n, k):
-    """
-    return the binomial coefficient
+    """Computes the binomial coefficient
+
+    :param n: Number of elements
+    :type n: int
+    :param k: Number of choosen elements
+    :type k: int
+    :return: Binomial coefficient "n choose k"
+    :rtype: int
     """
     if(k > (n - k)):
         k = n - k
@@ -20,9 +26,12 @@ def coefBinomial(n, k):
     return coef
 
 def sort(L):
-    """
-    bubble sort
-    sorting in the ascending order of modulus and for values with same modulus, sort in the ascending order of argument (between -pi and pi)
+    """Sort (bubble sort)
+    
+    :param L: List of complex numbers
+    :type L: list
+    :return: The same list but in the ascending order of modulus and for values with same modulus, sort in the ascending order of argument (between -pi and pi)
+    :rtype: list
     """
     nbr = len(L)
     for i in range(nbr):
@@ -42,9 +51,14 @@ def sort(L):
 
 
 def sector(z):
-    """
-    return the sector of z, it is an integer "a" between 0 and 7 which correspond to the angular sector [a*pi/4, (a+1)*pi/4[
-    Warning : the argument is between -pi and pi and here "a" is between 0 and 7
+    """Finds the sector of z
+    
+    .. warning:: the argument is between -pi and pi and here "a" is between 0 and 7
+
+    :param z: Complex number
+    :type z: complex
+    :return: The sector of z, it is an integer "a" between 0 and 7 which correspond to the angular sector [a*pi/4, (a+1)*pi/4[
+    :rtype: int
     """
     ph = phase(z) * 4 / pi
     if ph < 0:
@@ -54,20 +68,28 @@ def sector(z):
 
 
 def neighboor(sector1, z2):
-    """
-    sector1 is an integer between 0 and 7 and represent the angular sector [sector1*pi/4, (sector1+1)*pi/4[
-    z2 is a complex number
-    return True iff the complex z2 is in a neighboring sector of [sector1*pi/4, (sector1+1)*pi/4[
+    """Checks if z2 is in a neighboring sector of sector1
+
+    :param sector1: Integer between 0 and 7 and represent the angular sector [sector1*pi/4, (sector1+1)*pi/4[
+    :type sector1: int
+    :param z2: Complex number
+    :type z2: complex
+    :return: True if and only if the complex z2 is in a neighboring sector of [sector1*pi/4, (sector1+1)*pi/4[
+    :rtype: bool
     """
     return abs((sector(z2) - sector1) % 8) <= 1
 
 
 
 def parametrization(n_param, curve_formula):
-    """
-    n_param is an integer for the default discretization of [0,2pi]
-    curve_formula is a fonction : z in the unit circle mapsto a complex and represent a curve
-    return the discretization of the curve refine if it is needed (as [ZapataMartin2014] procedure).
+    """Finds the discretization of the curve refine if it is needed (as [ZapataMartin2014] procedure).
+
+    :param n_param: Integer for the default discretization of [0,2pi]
+    :type n_param: int
+    :param curve_formula: A fonction : z in the unit circle mapsto a complex and represent a curve
+    :type curve_fomula: function
+    :return: The discretization of the unit circle and the values of the curve for this discretization
+    :rtype: (list,list)
     """
     dx = 2 * pi / n_param
     current_dx = dx
@@ -104,9 +126,12 @@ def parametrization(n_param, curve_formula):
 
 
 def epsilon(L):
-    """
-    L is a list of elements x_i
-    return min |x_i - x_j| / 2 (when x_i != x_j)
+    """Computes the half of the smallest distance between two distincts elements of the list L
+
+    :param L: List of complex numbers (z_i)
+    :type L: list
+    :return: min |z_i - z_j| / 2 (when z_i != z_j)
+    :rtype: float
     """
     assert len(L) > 1
     diff = []
@@ -120,9 +145,21 @@ def epsilon(L):
 
 
 def eta_func(eps, kappa0, N, polynom, r):
-    """
-    return min |polynom(kappa)|/(1+eps)^r for kappa on the circle centered in kappa0 of radius eps
-    N is the number of discretization of the circle
+    """Computes the distance eta
+    .. note:: for more details, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]
+    
+    :param eps: Radius
+    :type eps: float
+    :param kappa0: Center
+    :type kappa0: complex
+    :param N: Number of discretization of the circle centered in kappa0 of radius eps
+    :type N: int
+    :param polynom: Polynomial
+    :type polynom: Polynomial
+    :param r: Integer
+    :type r: int
+    :return: min |polynom(kappa)|/(1+eps)^r for kappa on the circle centered in kappa0 of radius eps
+    :rtype: float
     """
     theta = np.linspace(0, 2 * pi, N)
     circle = np.cos(theta) + 1j * np.sin(theta)
@@ -134,6 +171,15 @@ def eta_func(eps, kappa0, N, polynom, r):
 
 
 def schemsum(schem1, schem2):
+    """Addition of two numerical schemes
+
+    :param schem1: Representation of a numerical scheme with the interior coefficients and the center
+    :type schem1: (list,int)
+    :param schem2: Representation of a numerical scheme with the interior coefficients and the center
+    :type schem2: (list,int)
+    :return: Sum of schem1 and schem2 
+    :rtype: (list,int)
+    """
     inter1, center1 = schem1
     inter2, center2 = schem2
     center = max(center1,center2)
@@ -146,13 +192,31 @@ def schemsum(schem1, schem2):
     return newinter, center
 
 def schemscal(schem,scal):
+    """Multiplication of a scheme by a scalar 
+
+    :param schem: Representation of a numerical scheme with the interior coefficients and the center
+    :type schem: (list,int)
+    :param scal: Scalar element
+    :type scal: float
+    :return: Multiplication of schem by scal
+    :rtype: (list,int)
+    """
     inter,center = schem
     return scal*inter, center
 
 def boundary_to_boundary_quasi_toep(boundary_condition, gn, inter, center):
-    """
-    take a boundary condition written as U_{-r} = ..., ...,U_{-1} =..., etc
-    return T_J the extraction of the r first rows of the Quasi-Toeplitz matrix and the function b_n(t) such that (U_0^{n+1},...,U_{r-1}^{n+1}) = T_J (U_0^n,...,U_{m-1}^n) + b_n(t^n)
+    """Transformation from a boundary condition written with ghost points to a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix
+
+    :param boundary_condition: Boundary condition written as U_{-r} = ..., ...,U_{-1} =..., etc
+    :type boundary_condition: numpy.ndarray
+    :param gn: Boundary data
+    :type gn: function
+    :param inter: List of float coefficient that represent the interior scheme
+    :type inter: list
+    :param center: Index of the central coefficient of the scheme
+    :type center: int
+    :return: Extraction of the r first rows of the Quasi-Toeplitz matrix and the function b_n(t) such that (U_0^{n+1},...,U_{r-1}^{n+1}) = T_J (U_0^n,...,U_{m-1}^n) + b_n(t^n)
+    :rtype: (numpy.ndarray,function)
     """
     r = center
     p = len(inter) - r - 1
@@ -175,15 +239,24 @@ def boundary_to_boundary_quasi_toep(boundary_condition, gn, inter, center):
     return A.dot(BB) + Ap, bn_func
 
 
-def boundary_quasi_toep_to_boundary(boundary, bn, inter, center):
-    """
-    take T_J (boundary) the extraction of the r first rows of a Quasi-Toeplitz matrix and a function bn such that (U_0^{n+1},...,U_{r-1}^{n+1}) = T_J (U_0^n,...,U_{m-1}^n) + b_n(t^n)
-    return B the boundary condition written as U_{-r} = ..., ..., U_{-1} =...
+def boundary_quasi_toep_to_boundary(quasi_toep_boundary, bn, inter, center):
+    """Transformation from a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix to a boundary condition written with ghost points.
+
+    :param quasi_toep_boundary: Boundary condition BB written as the extraction of the r first rows of a Quasi-Toeplitz matrix 
+    :type quasi_toep_boundary: numpy.ndarray
+    :param bn: Boundary data bn such that (U_0^{n+1},...,U_{r-1}^{n+1}) = BB (U_0^n,...,U_{m-1}^n) + b_n(t^n)
+    :type bn: function
+    :param inter: List of float coefficient that represent the interior scheme
+    :type inter: list
+    :param center: Index of the central coefficient of the scheme
+    :type center: int
+    :return: Boundary condition B written as U_{-r} = ..., ..., U_{-1} =...
     and the function g_n such that (U_{-r}^n,...,U_{-1}^n) = B(U_0^n,...,U_{m-1}^n) + g_n(t^n)
+    :rtype: (numpy.ndarray,function)
     """
     r = center
     p = len(inter) - r - 1
-    m = max(len(boundary[0]), r + p)
+    m = max(len(quasi_toep_boundary[0]), r + p)
     A = np.zeros((r, r))
     for j in range(r):
         A += inter[j] * np.diag(np.ones(r - j), j)
@@ -194,7 +267,7 @@ def boundary_quasi_toep_to_boundary(boundary, bn, inter, center):
         else:
             Ap[:r, j - r : j] += inter[j] * np.diag(np.ones(r), 0)
     BB = np.zeros((r, m))
-    BB[:r, : len(boundary[0])] = boundary
+    BB[:r, : len(quasi_toep_boundary[0])] = quasi_toep_boundary
 
     def gn_func(t):
         return np.linalg.inv(A).dot(bn(t))
@@ -204,6 +277,15 @@ def boundary_quasi_toep_to_boundary(boundary, bn, inter, center):
 
 
 def recflux(N, lamb):
+    """Computes the coefficient of the Lax-Wendroff scheme at any order. Recursive function.
+
+    :param N: Order of Lax Wendroff scheme
+    :type N: int
+    :param lamb: The Courant number, i.e  a.dt/dx where "a" is the velocity, "dt" the time discretization and "dx" the space discretization
+    :type lamb: float
+    :return: Parameters of the Lax-Wendroff scheme : interior coefficient and the center.
+    :rtype: (np.ndarray,int)
+    """
     if N == 1:
         return np.array([1]), 0
     else:
@@ -221,6 +303,13 @@ def recflux(N, lamb):
         return schemsum(recflux(N-1,lamb),(a,center))
 
 def Lwconstructor(order):
+    """Constructor of Lax-Wendroff scheme.
+
+    :param order: Order of Lax Wendroff scheme
+    :type order: int
+    :return: Function depending on the Courant number lambda and maps to the parameters of the Lax-Wendroff scheme
+    :rtype: function
+    """
     def LWconstructorlamb(lamb):
         fluxschem = recflux(order,lamb)
         newfluxschem = -fluxschem[0], fluxschem[1]+1

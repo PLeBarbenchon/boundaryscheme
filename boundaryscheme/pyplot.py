@@ -16,8 +16,16 @@ def show():
     plt.show()
 
 def detKLplotsimple(schem, n_param = 300, parametrization_bool = True):
-    """
-    draw the Kreiss-Lopatinskii curve for a numerical scheme s of the class Scheme 
+    """Computes the Kreiss-Lopatinskii determinant curve for a given scheme
+
+    :param schem: Scheme considered
+    :type schem: class:`Scheme`
+    :param n_param: Size of the discretization of the unit circle, defaults to 300
+    :type n_param: int, optional
+    :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True
+    :type parametrization_bool: bool, optional
+    :return: the Kreiss-Lopatinskii curve
+    :rtype: plot object
     """
     ax = plt.subplot()
     Param, Det = schem.detKL(n_param, parametrization_bool)
@@ -30,16 +38,30 @@ def detKLplotsimple(schem, n_param = 300, parametrization_bool = True):
 
 
 def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacursor = False, sigmacursor = False, nparam = 300, parametrization_bool = True,  order = 2, fig_size = (6,4)):
-    """
-    draw the Kreiss-Lopatinskii curve for different lambdas and different sigmas or with cursor(s) 
+    """Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)
 
-    arguments : 
-    schem :  a numerical scheme of the class Scheme depending on a parameter lambda
-    left_bound : a left boundary of the class Boundary
-    lamb : a value lambda or a numpy.ndarray of several values of lambda
-    sigma : a real parameter representing the gap between the mesh and the boundary condition or a numpy.ndarray of several values of sigma
-    lambdacursor : boolean to indicate the use of a cursor for lambda's moving among the lamb values
-    sigmacursor : boolean to indicate the use of a cursor for sigma's moving among the sigma values
+    :param schem: Scheme depending on a parameter lambda
+    :type schem: class:`Scheme`
+    :param left_bound: Left boundary of the class Boundary, defaults to Dirichlet()
+    :type left_bound: class:`Boundary`, optional
+    :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None
+    :type lamb: int or float or list or numpy.ndarray, optional
+    :param sigma: Gap between the mesh and the boundary condition, defaults to 0 
+    :type sigma: int or float or list or numpy.ndarray, optional
+    :param lambdacursor: Boolean to indicate the use of a cursor for lambda's moving among the lamb values, defaults to False
+    :type lambdacursor: bool, optional
+    :param sigmacursor: Boolean to indicate the use of a cursor for sigma's moving among the sigma values, defaults to False
+    :type sigmacursor: bool, optional
+    :param n_param: Size of the discretization of the unit circle, defaults to 300
+    :type n_param: int, optional
+    :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True
+    :type parametrization_bool: bool, optional
+    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2
+    :type order: int, optional
+    :param fig_size: Size of the figure, defaults to (6,4)
+    :type fig_size: (int,int), optional
+    :return: the Kreiss-Lopatinskii curve for the scheme
+    :rtype: plot object
     """
     if lamb is None:
         lamb = np.array([schem(1).CFL])
@@ -269,6 +291,23 @@ def detKLplot(schem, left_bound = Dirichlet(), lamb = None, sigma = 0, lambdacur
 
 
 def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300, fig_size = (10,8)):
+    """Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)
+
+    :param schem: Scheme depending on a parameter lambda
+    :type schem: class:`Scheme`
+    :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None
+    :type lamb: int or float or list or numpy.ndarray, optional
+    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2
+    :type order: int, optional
+    :param lambdacursor: Boolean to indicate the use of a cursor for lambda's moving among the lamb values, defaults to False
+    :type lambdacursor: bool, optional
+    :param nparam: Size of the discretization of the unit circle, defaults to 300
+    :type nparam: int, optional
+    :param fig_size: Size of the figure, defaults to (10,8)
+    :type fig_size: (int,int), optional
+    :return: the symbol curve of the scheme
+    :rtype: plot object
+    """
     if lambdacursor == False:
         fig,ax = plt.subplots(figsize=fig_size)
         if isinstance(lamb, (int,float)):
@@ -366,6 +405,35 @@ def symbolplot(schem, lamb = None, order = 2, lambdacursor = False, nparam=300, 
 
 
 def nbrzerosdetKL(schem, left_bound = Dirichlet(), lamb = None, sigma = 0,  order = 2, nparam=100, nlambda=200, nsigma = 30,parametrization_bool = True, fig_size = (15,7), fontsize=18):
+    """Computes the number of zeros of the Kreiss-Lopatinskii determinant for different boundary conditions, for different lambdas or/and for different sigmas
+
+    .. seealso:: for more details and examples, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]
+
+    :param schem: Scheme depending on a parameter lambda
+    :type schem: class:`Scheme`
+    :param left_bound: Left boundary of the class Boundary, defaults to Dirichlet()
+    :type left_bound: class:`Boundary` or list of class:`Boundary`, optional
+    :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None
+    :type lamb: int or float or list or numpy.ndarray, optional
+    :param sigma: Gap between the mesh and the boundary condition, defaults to 0 
+    :type sigma: int or float or list or numpy.ndarray, optional
+    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2
+    :type order: int, optional
+    :param nparam: Size of the discretization of the unit circle for the Kreiss-Lopatinskii curve, defaults to 100
+    :type nparam: int, optional
+    :param nlambda: Size of the discretization of the lambda's, defaults to 200
+    :type nlambda: int, optional
+    :param nsigma: Size of the discretization of the sigma's, defaults to 30
+    :type nsigma: int, optional
+    :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True
+    :type parametrization_bool: bool, optional
+    :param fig_size: Size of the figure, defaults to (15,7)
+    :type fig_size: (int,int), optional
+    :param fontsize: Size of the font of the text in the plot, defaults to 18
+    :type fontsize: int , optional
+    :return: the number of zeros of the Kreiss-Lopatinskii determinant for the scheme
+    :rtype: plot object
+    """
     if lamb is None:
         lambmin = 0.01
         lambmax = schem(1).CFL
