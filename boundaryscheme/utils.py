@@ -133,23 +133,39 @@ def eta_func(eps, kappa0, N, polynom, r):
     return mini / ((1 + eps) ** r)
 
 
-def boundary_to_boundary_quasi_toep(boundary_condition, gn, Int, center):
+def schemsum(schem1, schem2):
+    inter1, center1 = schem1
+    inter2, center2 = schem2
+    center = max(center1,center2)
+    p = max(len(inter1)-center1, len(inter2)-center2)-1
+    newinter = np.zeros(p+center+1)
+    for i in range (len(inter1)):
+        newinter[center-center1+i] += inter1[i]
+    for i in  range (len(inter2)):
+        newinter[center-center2+i] += inter2[i]
+    return newinter, center
+
+def schemscal(schem,scal):
+    inter,center = schem
+    return scal*inter, center
+
+def boundary_to_boundary_quasi_toep(boundary_condition, gn, inter, center):
     """
     take a boundary condition written as U_{-r} = ..., ...,U_{-1} =..., etc
     return T_J the extraction of the r first rows of the Quasi-Toeplitz matrix and the function b_n(t) such that (U_0^{n+1},...,U_{r-1}^{n+1}) = T_J (U_0^n,...,U_{m-1}^n) + b_n(t^n)
     """
     r = center
-    p = len(Int) - r - 1
+    p = len(inter) - r - 1
     m = max(len(boundary_condition[0]), r + p)
     A = np.zeros((r, r))
     for j in range(r):
-        A += Int[j] * np.diag(np.ones(r - j), j)
+        A += inter[j] * np.diag(np.ones(r - j), j)
     Ap = np.zeros((r, m))
     for j in range(1, r + p + 1):
         if j < r:
-            Ap[:r, :r] += Int[j] * np.diag(np.ones(j), -r + j)
+            Ap[:r, :r] += inter[j] * np.diag(np.ones(j), -r + j)
         else:
-            Ap[:r, j - r : j] += Int[j] * np.diag(np.ones(r), 0)
+            Ap[:r, j - r : j] += inter[j] * np.diag(np.ones(r), 0)
     BB = np.zeros((r, m))
     BB[:r, : len(boundary_condition[0])] = boundary_condition
 
@@ -159,24 +175,24 @@ def boundary_to_boundary_quasi_toep(boundary_condition, gn, Int, center):
     return A.dot(BB) + Ap, bn_func
 
 
-def boundary_quasi_toep_to_boundary(boundary, bn, Int, center):
+def boundary_quasi_toep_to_boundary(boundary, bn, inter, center):
     """
     take T_J (boundary) the extraction of the r first rows of a Quasi-Toeplitz matrix and a function bn such that (U_0^{n+1},...,U_{r-1}^{n+1}) = T_J (U_0^n,...,U_{m-1}^n) + b_n(t^n)
     return B the boundary condition written as U_{-r} = ..., ..., U_{-1} =...
     and the function g_n such that (U_{-r}^n,...,U_{-1}^n) = B(U_0^n,...,U_{m-1}^n) + g_n(t^n)
     """
     r = center
-    p = len(Int) - r - 1
+    p = len(inter) - r - 1
     m = max(len(boundary[0]), r + p)
     A = np.zeros((r, r))
     for j in range(r):
-        A += Int[j] * np.diag(np.ones(r - j), j)
+        A += inter[j] * np.diag(np.ones(r - j), j)
     Ap = np.zeros((r, m))
     for j in range(1, r + p + 1):
         if j < r:
-            Ap[:r, :r] += Int[j] * np.diag(np.ones(j), -r + j)
+            Ap[:r, :r] += inter[j] * np.diag(np.ones(j), -r + j)
         else:
-            Ap[:r, j - r : j] += Int[j] * np.diag(np.ones(r), 0)
+            Ap[:r, j - r : j] += inter[j] * np.diag(np.ones(r), 0)
     BB = np.zeros((r, m))
     BB[:r, : len(boundary[0])] = boundary
 
@@ -187,3 +203,27 @@ def boundary_quasi_toep_to_boundary(boundary, bn, Int, center):
 
 
 
+def recflux(N, lamb):
+    if N == 1:
+        return np.array([1]), 0
+    else:
+        m = N // 2
+        M = (N - 1) // 2
+        a = np.zeros(N)
+        for k in range(N):
+            a[N - 1 - k] = (-1) ** (k + N) * coefBinomial(N - 1, k)
+        center = N - 1 - m
+        prod = 1
+        for i in range(-m, M + 1):
+            if i != 0:
+                prod *= lamb+i
+        a = -a*prod/factorial(N)
+        return schemsum(recflux(N-1,lamb),(a,center))
+
+def Lwconstructor(order):
+    def LWconstructorlamb(lamb):
+        fluxschem = recflux(order,lamb)
+        newfluxschem = -fluxschem[0], fluxschem[1]+1
+        susfluxschem = schemscal(schemsum(fluxschem,newfluxschem), -lamb)
+        return schemsum((np.array([1]),0),susfluxschem)
+    return LWconstructorlamb
