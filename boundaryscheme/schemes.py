@@ -27,9 +27,9 @@ class Scheme:
 
     .. seealso:: [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]
     """
+
     def __init__(self, inter, center, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.inter = inter
         self.center = center
@@ -79,7 +79,7 @@ class Scheme:
         return A
 
     def toep_circ(self, J):
-        """Returns the circulant Toeplitz matrix of the scheme 
+        """Returns the circulant Toeplitz matrix of the scheme
         :param J: Size of the circulant matrix
         :type J: int
         :return: Circulant matrix of the scheme
@@ -132,12 +132,12 @@ class Scheme:
         return sort(Racinestotales)
 
     def count_root(self, eta, eps, z0, kappa):
-        """Counts the number of roots from kappa(z0) that comes from the inside of the unit disk 
-        :param eta: Gap between z and z0 
+        """Counts the number of roots from kappa(z0) that comes from the inside of the unit disk
+        :param eta: Gap between z and z0
         :type eta: float
         :param eps: Threshold
         :type eps: float
-        :param z0: Parameter z0 
+        :param z0: Parameter z0
         :type z0: complex
         :param kappa: Multiple root kappa linked to z0
         :type kappa: complex
@@ -182,6 +182,7 @@ class Scheme:
         :return: The parametrization of the unit circle and the value of the Kreiss-Lopatinskii determinant on the unit circle
         :rtype: (numpy.ndarray, numpy.ndarray)
         """
+
         def scalar_detKL(self, z):
             Rz = nppol.polyfromroots(self.Kappa(z))
             return self.DKL(z, Rz)
@@ -193,8 +194,7 @@ class Scheme:
             return param, np.vectorize(scalar_detKL)(self, np.exp(1j * param))
 
     def shortname(self):
-        """Gives a short name of the scheme
-        """
+        """Gives a short name of the scheme"""
         r = self.center
         s = "U_j^{n+1} = " + str(round(self.inter[0], 3)) + " U_{j-" + str(r) + "}^n + "
         for i in range(1, len(self.inter) - 1):
@@ -249,14 +249,15 @@ class SchemeP0(Scheme):
 
     .. seealso:: [Boutin, Le Barbenchon, Seguin, 2023 : On the stability of totally upwind schemes for the hyperbolic initial boundary value problem]
     """
+
     def __init__(self, inter, center, boundary, sigma=0):
-        """Constructor Method
-        """
+        """Constructor Method"""
         super().__init__(inter=inter, center=center, boundary=boundary, sigma=sigma)
         assert len(inter) == center + 1
 
     def detKL(self, n_param, parametrization_bool):
         """Redefinition of the detKL method of the :class: `Scheme`but in the particular case of totally upwind scheme"""
+
         def scalar_detKL(self, z):
             b = np.array([self.inter[i] / (self.inter[-1] - z) for i in range(len(self.inter))])
             b[-1] = 1
@@ -279,9 +280,9 @@ class BeamWarming(SchemeP0):
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
         self.p = 0
@@ -298,8 +299,7 @@ class BeamWarming(SchemeP0):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "BeamWarming"
 
 
@@ -313,9 +313,9 @@ class Upwind(SchemeP0):
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
         self.p = 0
@@ -328,8 +328,7 @@ class Upwind(SchemeP0):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "Upwind"
 
 
@@ -343,9 +342,9 @@ class LaxWendroff(Scheme):
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
         coeff1 = -(lamb - lamb**2) / 2
@@ -357,8 +356,7 @@ class LaxWendroff(Scheme):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "LaxWendroff"
 
 
@@ -372,9 +370,9 @@ class LaxFriedrichs(Scheme):
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
         self.inter = np.array([(1 + lamb) / 2, 0, (1 - lamb) / 2])
@@ -383,8 +381,7 @@ class LaxFriedrichs(Scheme):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "LaxFriedrichs"
 
 
@@ -398,9 +395,9 @@ class ThirdOrder(Scheme):
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
         self.r = 2
@@ -418,8 +415,7 @@ class ThirdOrder(Scheme):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "ThirdOrder"
 
 
@@ -433,9 +429,9 @@ class BB(Scheme):
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
         self.inter = np.array([self.lamb / 4, self.lamb / 4, 1 - self.lamb / 4, -self.lamb / 4])
@@ -444,8 +440,7 @@ class BB(Scheme):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "BB"
 
 
@@ -461,9 +456,9 @@ class Dissipatif(Scheme):
     :param D: A parameter of the dissipativity, defaults to 0
     :type D: float, optional
     """
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, D=0, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.D = D
         self.lamb = lamb
@@ -474,11 +469,8 @@ class Dissipatif(Scheme):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return "Dissipative"
-
-
 
 
 class LW(Scheme):
@@ -493,16 +485,17 @@ class LW(Scheme):
     :param order: Order of the Lax-Wendroff scheme, defaults to 2
     :type order: int, optional
     """
-    allordersschem = [None,None,Lwconstructor(2)]
+
+    allordersschem = [None, None, Lwconstructor(2)]
+
     def __init__(self, lamb, boundary=Dirichlet(), sigma=0, order=2, **kwargs):
-        """Constructor method
-        """
+        """Constructor method"""
         self.sigma = sigma
         self.order = order
         self.lamb = lamb
         n = len(LW.allordersschem) - 1
         if order > n:
-            for i in range (order - n):
+            for i in range(order - n):
                 LW.allordersschem.append(None)
             LW.allordersschem[order] = Lwconstructor(order)
         if LW.allordersschem[order] == None:
@@ -512,8 +505,7 @@ class LW(Scheme):
         super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
     def shortname(self):
-        """Name method
-        """
+        """Name method"""
         return f"Lax Wendroff {self.order}"
 
 

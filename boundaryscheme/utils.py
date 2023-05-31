@@ -17,7 +17,7 @@ def coefBinomial(n, k):
     :return: Binomial coefficient "n choose k"
     :rtype: int
     """
-    if(k > (n - k)):
+    if k > (n - k):
         k = n - k
     coef = 1
     for i in range(k):
@@ -25,9 +25,10 @@ def coefBinomial(n, k):
         coef = coef // (i + 1)
     return coef
 
+
 def sort(L):
     """Sort (bubble sort)
-    
+
     :param L: List of complex numbers
     :type L: list
     :return: The same list but in the ascending order of modulus and for values with same modulus, sort in the ascending order of argument (between -pi and pi)
@@ -52,7 +53,7 @@ def sort(L):
 
 def sector(z):
     """Finds the sector of z
-    
+
     .. warning:: the argument is between -pi and pi and here "a" is between 0 and 7
 
     :param z: Complex number
@@ -80,7 +81,6 @@ def neighboor(sector1, z2):
     return abs((sector(z2) - sector1) % 8) <= 1
 
 
-
 def parametrization(n_param, curve_formula):
     """Finds the discretization of the curve refine if it is needed (as [ZapataMartin2014] procedure).
 
@@ -96,19 +96,19 @@ def parametrization(n_param, curve_formula):
     current_param = 0
     Param = [current_param]
     curve = [curve_formula(1)]
-    current_sector = sector(curve_formula(np.exp(1j * Param[0])))#calcul le secteur du premier point
+    current_sector = sector(curve_formula(np.exp(1j * Param[0])))  # calcul le secteur du premier point
     c = 0
     s = 0
     while Param[-1] < 2 * pi:
         current_param = Param[-1] + current_dx
         current_curve_point = curve_formula(np.exp(1j * current_param))
-        if neighboor(current_sector,current_curve_point):
+        if neighboor(current_sector, current_curve_point):
             Param.append(current_param)
             curve.append(current_curve_point)
             current_sector = sector(current_curve_point)
             current_dx = dx
             c = 0
-        elif c<40:
+        elif c < 40:
             current_dx = current_dx / 2
             c += 1
         else:
@@ -119,7 +119,7 @@ def parametrization(n_param, curve_formula):
             current_dx = dx
             c = 0
         s += 1
-    if Param[-1]>2*pi:
+    if Param[-1] > 2 * pi:
         Param[-1] = 0
         curve[-1] = curve_formula(1)
     return np.array(Param), np.array(curve)
@@ -147,7 +147,7 @@ def epsilon(L):
 def eta_func(eps, kappa0, N, polynom, r):
     """Computes the distance eta
     .. note:: for more details, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]
-    
+
     :param eps: Radius
     :type eps: float
     :param kappa0: Center
@@ -177,22 +177,23 @@ def schemsum(schem1, schem2):
     :type schem1: (list,int)
     :param schem2: Representation of a numerical scheme with the interior coefficients and the center
     :type schem2: (list,int)
-    :return: Sum of schem1 and schem2 
+    :return: Sum of schem1 and schem2
     :rtype: (list,int)
     """
     inter1, center1 = schem1
     inter2, center2 = schem2
-    center = max(center1,center2)
-    p = max(len(inter1)-center1, len(inter2)-center2)-1
-    newinter = np.zeros(p+center+1)
-    for i in range (len(inter1)):
-        newinter[center-center1+i] += inter1[i]
-    for i in  range (len(inter2)):
-        newinter[center-center2+i] += inter2[i]
+    center = max(center1, center2)
+    p = max(len(inter1) - center1, len(inter2) - center2) - 1
+    newinter = np.zeros(p + center + 1)
+    for i in range(len(inter1)):
+        newinter[center - center1 + i] += inter1[i]
+    for i in range(len(inter2)):
+        newinter[center - center2 + i] += inter2[i]
     return newinter, center
 
-def schemscal(schem,scal):
-    """Multiplication of a scheme by a scalar 
+
+def schemscal(schem, scal):
+    """Multiplication of a scheme by a scalar
 
     :param schem: Representation of a numerical scheme with the interior coefficients and the center
     :type schem: (list,int)
@@ -201,8 +202,9 @@ def schemscal(schem,scal):
     :return: Multiplication of schem by scal
     :rtype: (list,int)
     """
-    inter,center = schem
-    return scal*inter, center
+    inter, center = schem
+    return scal * inter, center
+
 
 def boundary_to_boundary_quasi_toep(boundary_condition, gn, inter, center):
     """Transformation from a boundary condition written with ghost points to a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix
@@ -242,7 +244,7 @@ def boundary_to_boundary_quasi_toep(boundary_condition, gn, inter, center):
 def boundary_quasi_toep_to_boundary(quasi_toep_boundary, bn, inter, center):
     """Transformation from a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix to a boundary condition written with ghost points.
 
-    :param quasi_toep_boundary: Boundary condition BB written as the extraction of the r first rows of a Quasi-Toeplitz matrix 
+    :param quasi_toep_boundary: Boundary condition BB written as the extraction of the r first rows of a Quasi-Toeplitz matrix
     :type quasi_toep_boundary: numpy.ndarray
     :param bn: Boundary data bn such that (U_0^{n+1},...,U_{r-1}^{n+1}) = BB (U_0^n,...,U_{m-1}^n) + b_n(t^n)
     :type bn: function
@@ -275,7 +277,6 @@ def boundary_quasi_toep_to_boundary(quasi_toep_boundary, bn, inter, center):
     return np.linalg.inv(A).dot(BB - Ap), gn_func
 
 
-
 def recflux(N, lamb):
     """Computes the coefficient of the Lax-Wendroff scheme at any order. Recursive function.
 
@@ -298,9 +299,10 @@ def recflux(N, lamb):
         prod = 1
         for i in range(-m, M + 1):
             if i != 0:
-                prod *= lamb+i
-        a = -a*prod/factorial(N)
-        return schemsum(recflux(N-1,lamb),(a,center))
+                prod *= lamb + i
+        a = -a * prod / factorial(N)
+        return schemsum(recflux(N - 1, lamb), (a, center))
+
 
 def Lwconstructor(order):
     """Constructor of Lax-Wendroff scheme.
@@ -310,9 +312,11 @@ def Lwconstructor(order):
     :return: Function depending on the Courant number lambda and maps to the parameters of the Lax-Wendroff scheme
     :rtype: function
     """
+
     def LWconstructorlamb(lamb):
-        fluxschem = recflux(order,lamb)
-        newfluxschem = -fluxschem[0], fluxschem[1]+1
-        susfluxschem = schemscal(schemsum(fluxschem,newfluxschem), -lamb)
-        return schemsum((np.array([1]),0),susfluxschem)
+        fluxschem = recflux(order, lamb)
+        newfluxschem = -fluxschem[0], fluxschem[1] + 1
+        susfluxschem = schemscal(schemsum(fluxschem, newfluxschem), -lamb)
+        return schemsum((np.array([1]), 0), susfluxschem)
+
     return LWconstructorlamb
