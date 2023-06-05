@@ -28,6 +28,7 @@ setup(
     version=get_version(),
     description="This library implements Kreiss-Lopatinskii determinant for numerical scheme with boundary",
     long_description=read_from('README.md'),
+    long_description_content_type='text/markdown',
     author='Pierre Le Barbenchon',
     packages=find_packages(),
     install_requires=get_requirements(),

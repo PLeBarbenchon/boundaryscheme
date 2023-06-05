@@ -32,14 +32,6 @@ plt.show()
 
 ![mygif](https://github.com/PLeBarbenchon/boundaryscheme/assets/92107096/2ca0d414-77a6-410e-a582-a3950699dcf0)
 
-# Plot a Kreiss--Lopatinskii determinant curve
-
-à écrire
-
-# Create a scheme
-
-In schemes.py, create 
-
 # Citing
 
 The code is citable via Zenodo. Please cite as:
