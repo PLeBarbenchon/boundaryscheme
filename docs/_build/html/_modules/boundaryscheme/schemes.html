@@ -1,0 +1,758 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>boundaryscheme.schemes - boundaryscheme 2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">boundaryscheme 2.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../_static/lightlogo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../_static/darklogo.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">boundaryscheme 2.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../boundaryscheme.html">boundaryscheme package</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for boundaryscheme.schemes</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file defines the schemes classes</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">cmath</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy.polynomial.polynomial</span> <span class="k">as</span> <span class="nn">nppol</span>
+
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">boundary_to_boundary_quasi_toep</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">eta_func</span><span class="p">,</span> <span class="n">parametrization</span><span class="p">,</span> <span class="n">Lwconstructor</span>
+<span class="kn">from</span> <span class="nn">.boundaries</span> <span class="kn">import</span> <span class="n">Dirichlet</span>
+
+
+<div class="viewcode-block" id="Scheme"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme">[docs]</a><span class="k">class</span> <span class="nc">Scheme</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent a numerical scheme.</span>
+
+<span class="sd">    :param inter: List of float coefficient that represent the interior scheme</span>
+<span class="sd">    :type inter: list</span>
+<span class="sd">    :param center: Index of the central coefficient of the scheme</span>
+<span class="sd">    :type center: int</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+
+<span class="sd">    .. seealso:: [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">inter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundaryname</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+        <span class="n">littleboundary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gn</span> <span class="o">=</span> <span class="n">boundary</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">littleboundary</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">littleboundary</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">littleboundary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary_quasi_toep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="o">=</span> <span class="n">boundary_to_boundary_quasi_toep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gn</span><span class="p">,</span> <span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+
+        <span class="n">z0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s2">&quot;z0&quot;</span><span class="p">,</span> <span class="n">imaginary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary_quasi_toep</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="n">z0</span> <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s2">&quot;b&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">imaginary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">B</span> <span class="o">=</span> <span class="n">B</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">j</span><span class="p">],</span> <span class="n">row</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DKL</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">([</span><span class="n">z0</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">sp</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">B</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">]),</span> <span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Scheme.scheme"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.scheme">[docs]</a>    <span class="k">def</span> <span class="nf">scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the parameters of the scheme : the interior coefficients et the center</span>
+<span class="sd">        :return: Parameters of the scheme</span>
+<span class="sd">        :rtype: (list,int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span></div>
+
+<div class="viewcode-block" id="Scheme.toep"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.toep">[docs]</a>    <span class="k">def</span> <span class="nf">toep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">right_bound</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[]])):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the Toeplitz matrix of the scheme with two boundaries</span>
+<span class="sd">        :param J: Size of the Toeplitz matrix</span>
+<span class="sd">        :type J: int</span>
+<span class="sd">        :param right_bound: Right boundary of the scheme</span>
+<span class="sd">        :type right_bound: class:`Boundary`</span>
+<span class="sd">        :return: Toeplitz matrix of the scheme</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">J</span><span class="p">,</span> <span class="n">J</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)):</span>
+            <span class="n">A</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">J</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)),</span> <span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary_quasi_toep</span><span class="p">),</span> <span class="mi">0</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary_quasi_toep</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_quasi_toep</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">J</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">right_bound</span><span class="p">)</span> <span class="p">:</span> <span class="n">J</span><span class="p">,</span> <span class="n">J</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">right_bound</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span> <span class="n">J</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_bound</span>
+        <span class="k">return</span> <span class="n">A</span></div>
+
+<div class="viewcode-block" id="Scheme.toep_circ"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.toep_circ">[docs]</a>    <span class="k">def</span> <span class="nf">toep_circ</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">J</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the circulant Toeplitz matrix of the scheme</span>
+<span class="sd">        :param J: Size of the circulant matrix</span>
+<span class="sd">        :type J: int</span>
+<span class="sd">        :return: Circulant matrix of the scheme</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">J</span><span class="p">,</span> <span class="n">J</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)):</span>
+            <span class="n">C</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">J</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)),</span> <span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">C</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)),</span> <span class="o">-</span><span class="n">J</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">C</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)),</span> <span class="n">J</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">C</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Scheme.symbol"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.symbol">[docs]</a>    <span class="k">def</span> <span class="nf">symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;To draw the symbol curve of the scheme</span>
+<span class="sd">        :param n: Number of points of the parametrisation of the unit circle, defaults to 300</span>
+<span class="sd">        :type n: int, optional</span>
+<span class="sd">        :return: Abscissa and Ordinate of the symbol curve of the scheme</span>
+<span class="sd">        :rtype: (list,list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)):</span>
+            <span class="n">X</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span>
+            <span class="n">Y</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span></div>
+
+<div class="viewcode-block" id="Scheme.pol"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.pol">[docs]</a>    <span class="k">def</span> <span class="nf">pol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the characteristic polynomial of the scheme</span>
+<span class="sd">        :param z: Parameter z of the characteristic polynomial</span>
+<span class="sd">        :type z: complex</span>
+<span class="sd">        :return: Characteristic polynomial of the scheme</span>
+<span class="sd">        :rtype: class: Polynomial</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
+        <span class="n">monome</span> <span class="o">=</span> <span class="n">nppol</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">nppol</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="n">monome</span><span class="o">**</span><span class="n">r</span>
+        <span class="k">return</span> <span class="n">P</span></div>
+
+<div class="viewcode-block" id="Scheme.roots"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.roots">[docs]</a>    <span class="k">def</span> <span class="nf">roots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the roots of the characteristic polynomial</span>
+<span class="sd">        :param z: Parameter z of the characteristic polynomial</span>
+<span class="sd">        :type z: complex</span>
+<span class="sd">        :return: Roots of the characteristic polynomial sorting by utils.sort function</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Racinestotales</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">roots</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">sort</span><span class="p">(</span><span class="n">Racinestotales</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Scheme.count_root"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.count_root">[docs]</a>    <span class="k">def</span> <span class="nf">count_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">kappa</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Counts the number of roots from kappa(z0) that comes from the inside of the unit disk</span>
+<span class="sd">        :param eta: Gap between z and z0</span>
+<span class="sd">        :type eta: float</span>
+<span class="sd">        :param eps: Threshold</span>
+<span class="sd">        :type eps: float</span>
+<span class="sd">        :param z0: Parameter z0</span>
+<span class="sd">        :type z0: complex</span>
+<span class="sd">        :param kappa: Multiple root kappa linked to z0</span>
+<span class="sd">        :type kappa: complex</span>
+<span class="sd">        :return: Number of roots coming from the inside of the unit disk</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">z0</span> <span class="o">+</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">z0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z0</span><span class="p">))</span>
+        <span class="n">NewRoots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">selection</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">kappa</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">,</span> <span class="n">NewRoots</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">selection</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="Scheme.Kappa"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.Kappa">[docs]</a>    <span class="k">def</span> <span class="nf">Kappa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Selection of kappas that come from the inside of the unit disk</span>
+<span class="sd">        :param z0: Parameter z0 of the characteristic polynomial</span>
+<span class="sd">        :type z0: complex</span>
+<span class="sd">        :return: Roots of the characteristic polynomial for z0 that are inside the unit disk or are coming from the inside of the unit disk</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">Racinestotales</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">z0</span><span class="p">)</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">(</span><span class="n">Racinestotales</span><span class="p">)</span>
+        <span class="n">RootsFromInside</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">stock</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">Racinestotales</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">:</span>
+                <span class="n">RootsFromInside</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">delta</span> <span class="ow">and</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stock</span><span class="p">:</span>
+                <span class="n">stock</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">eta</span> <span class="o">=</span> <span class="n">eta_func</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="p">(</span><span class="n">z0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_root</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                    <span class="n">RootsFromInside</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">RootsFromInside</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
+        <span class="k">return</span> <span class="n">RootsFromInside</span></div>
+
+<div class="viewcode-block" id="Scheme.detKL"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.detKL">[docs]</a>    <span class="k">def</span> <span class="nf">detKL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_param</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the Kreiss-Lopatinskii determinant on the unit circle</span>
+<span class="sd">        :param n_param: Number of discretization of the unit circle</span>
+<span class="sd">        :type n_param: int</span>
+<span class="sd">        :param parametrization_bool: If True, the discretization is refined close to the origin. If False, the discretization is uniform on the unit circle.</span>
+<span class="sd">        :type parametrization_bool: bool</span>
+<span class="sd">        :return: The parametrization of the unit circle and the value of the Kreiss-Lopatinskii determinant on the unit circle</span>
+<span class="sd">        :rtype: (numpy.ndarray, numpy.ndarray)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">scalar_detKL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="n">Rz</span> <span class="o">=</span> <span class="n">nppol</span><span class="o">.</span><span class="n">polyfromroots</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Kappa</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">DKL</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">Rz</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parametrization_bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parametrization</span><span class="p">(</span><span class="n">n_param</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">scalar_detKL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span> <span class="n">n_param</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">param</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">scalar_detKL</span><span class="p">)(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">param</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Scheme.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gives a short name of the scheme&quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;U_j^{n+1} = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_{j-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}^n + &quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_{j-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}^n + &quot;</span>
+            <span class="k">elif</span> <span class="n">r</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_j^n + &quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_{j+&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}^n + &quot;</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_{j-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}^n&quot;</span>
+        <span class="k">elif</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_j^n&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_{j+&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}^n&quot;</span>
+        <span class="k">return</span> <span class="n">s</span></div>
+
+<div class="viewcode-block" id="Scheme.name"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Scheme.name">[docs]</a>    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boundary_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sigma_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lambda_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gives a name of the scheme&quot;&quot;&quot;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">boundary_bool</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="sa">r</span><span class="s2">&quot; with boundary &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundaryname</span>
+        <span class="k">if</span> <span class="n">sigma_bool</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="sa">r</span><span class="s2">&quot; with $\sigma$ = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">lambda_bool</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="sa">r</span><span class="s2">&quot; for $\lambda$ = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">string</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Print the numerical scheme&quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;the interior equation of the scheme is :</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">the boundary equation is :&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">)):</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">U_{-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}^n = &quot;</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;^n + &quot;</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; U_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;^n&quot;</span>
+        <span class="k">return</span> <span class="n">s</span></div>
+
+
+<div class="viewcode-block" id="SchemeP0"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.SchemeP0">[docs]</a><span class="k">class</span> <span class="nc">SchemeP0</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent a totally upwind scheme (with p = 0).</span>
+
+<span class="sd">    :param inter: List of float coefficient that represent the interior scheme</span>
+<span class="sd">    :type inter: list</span>
+<span class="sd">    :param center: Index of the central coefficient of the scheme</span>
+<span class="sd">    :type center: int</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+
+<span class="sd">    .. seealso:: [Boutin, Le Barbenchon, Seguin, 2023 : On the stability of totally upwind schemes for the hyperbolic initial boundary value problem]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor Method&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">inter</span><span class="p">)</span> <span class="o">==</span> <span class="n">center</span> <span class="o">+</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="SchemeP0.detKL"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.SchemeP0.detKL">[docs]</a>    <span class="k">def</span> <span class="nf">detKL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_param</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Redefinition of the detKL method of the :class: `Scheme` but in the particular case of totally upwind scheme</span>
+<span class="sd">        :param n_param: Number of discretization of the unit circle</span>
+<span class="sd">        :type n_param: int</span>
+<span class="sd">        :param parametrization_bool: If True, the discretization is refined close to the origin. If False, the discretization is uniform on the unit circle.</span>
+<span class="sd">        :type parametrization_bool: bool</span>
+<span class="sd">        :return: The parametrization of the unit circle and the value of the Kreiss-Lopatinskii determinant on the unit circle</span>
+<span class="sd">        :rtype: (numpy.ndarray, numpy.ndarray)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">scalar_detKL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">))])</span>
+            <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">DKL</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parametrization_bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parametrization</span><span class="p">(</span><span class="n">n_param</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">scalar_detKL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span> <span class="n">n_param</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">param</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">scalar_detKL</span><span class="p">)(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">param</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="BeamWarming"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.BeamWarming">[docs]</a><span class="k">class</span> <span class="nc">BeamWarming</span><span class="p">(</span><span class="n">SchemeP0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the Beam-Warming scheme (which is totally upwind).</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">coeff1</span> <span class="o">=</span> <span class="p">(</span><span class="n">lamb</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">lamb</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">coeff2</span> <span class="o">=</span> <span class="n">lamb</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">lamb</span><span class="p">)</span>
+        <span class="n">coeff3</span> <span class="o">=</span> <span class="n">lamb</span> <span class="o">*</span> <span class="p">(</span><span class="n">lamb</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">coeff3</span><span class="p">,</span> <span class="n">coeff2</span><span class="p">,</span> <span class="n">coeff1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BeamWarming.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.BeamWarming.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;BeamWarming&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="Upwind"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Upwind">[docs]</a><span class="k">class</span> <span class="nc">Upwind</span><span class="p">(</span><span class="n">SchemeP0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the Upwind scheme (which is totally upwind).</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">coeff1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lamb</span>
+        <span class="n">coeff2</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">coeff2</span><span class="p">,</span> <span class="n">coeff1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Upwind.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Upwind.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;Upwind&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="LaxWendroff"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxWendroff">[docs]</a><span class="k">class</span> <span class="nc">LaxWendroff</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the Lax-Wendroff scheme (of order 2).</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="n">coeff1</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">lamb</span> <span class="o">-</span> <span class="n">lamb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">coeff2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lamb</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">coeff3</span> <span class="o">=</span> <span class="p">(</span><span class="n">lamb</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">lamb</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">coeff3</span><span class="p">,</span> <span class="n">coeff2</span><span class="p">,</span> <span class="n">coeff1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LaxWendroff.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxWendroff.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;LaxWendroff&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="LaxFriedrichs"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxFriedrichs">[docs]</a><span class="k">class</span> <span class="nc">LaxFriedrichs</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the Lax-Friedrichs scheme.</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">lamb</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">lamb</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LaxFriedrichs.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxFriedrichs.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;LaxFriedrichs&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="ThirdOrder"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.ThirdOrder">[docs]</a><span class="k">class</span> <span class="nc">ThirdOrder</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the O3-scheme.</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">lamb</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">-</span> <span class="n">lamb</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span>
+                <span class="n">lamb</span> <span class="o">+</span> <span class="n">lamb</span> <span class="o">*</span> <span class="n">lamb</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">lamb</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="mi">1</span> <span class="o">-</span> <span class="n">lamb</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">lamb</span> <span class="o">*</span> <span class="n">lamb</span> <span class="o">+</span> <span class="n">lamb</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="o">-</span><span class="p">(</span><span class="n">lamb</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">+</span> <span class="n">lamb</span> <span class="o">*</span> <span class="n">lamb</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">lamb</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ThirdOrder.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.ThirdOrder.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;ThirdOrder&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="BB"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.BB">[docs]</a><span class="k">class</span> <span class="nc">BB</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent an example of numerical scheme.</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">/</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BB.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.BB.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;BB&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="Dissipatif"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Dissipatif">[docs]</a><span class="k">class</span> <span class="nc">Dissipatif</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent a dissipative scheme.</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    :param D: A parameter of the dissipativity, defaults to 0</span>
+<span class="sd">    :type D: float, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lamb</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">l</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="o">-</span><span class="n">lamb</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">l</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Dissipatif.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.Dissipatif.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;Dissipative&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="LW"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LW">[docs]</a><span class="k">class</span> <span class="nc">LW</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent a Lax-Wendroff scheme of any order.</span>
+
+<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">    :type lamb: float</span>
+<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">    :type boundary: class:`Boundary`, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: float, optional</span>
+<span class="sd">    :param order: Order of the Lax-Wendroff scheme, defaults to 2</span>
+<span class="sd">    :type order: int, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">allordersschem</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order</span> <span class="o">-</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">](</span><span class="n">lamb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LW.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LW.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Lax Wendroff </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="si">}</span><span class="s2">&quot;</span></div></div>
+
+
+<span class="c1"># class LeapFrog(Scheme):</span>
+<span class="c1">#     raise NotImplementedError(&#39;&#39;)</span>
+
+
+<span class="c1"># class CrankNicholson(Scheme):</span>
+<span class="c1">#     raise NotImplementedError(&#39;&#39;)</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Pierre Le Barbenchon
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    </body>
+</html>

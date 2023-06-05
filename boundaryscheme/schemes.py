@@ -256,7 +256,15 @@ class SchemeP0(Scheme):
         assert len(inter) == center + 1
 
     def detKL(self, n_param, parametrization_bool):
-        """Redefinition of the detKL method of the :class: `Scheme`but in the particular case of totally upwind scheme"""
+        """
+        Redefinition of the detKL method of the :class: `Scheme` but in the particular case of totally upwind scheme
+        :param n_param: Number of discretization of the unit circle
+        :type n_param: int
+        :param parametrization_bool: If True, the discretization is refined close to the origin. If False, the discretization is uniform on the unit circle.
+        :type parametrization_bool: bool
+        :return: The parametrization of the unit circle and the value of the Kreiss-Lopatinskii determinant on the unit circle
+        :rtype: (numpy.ndarray, numpy.ndarray)
+        """
 
         def scalar_detKL(self, z):
             b = np.array([self.inter[i] / (self.inter[-1] - z) for i in range(len(self.inter))])

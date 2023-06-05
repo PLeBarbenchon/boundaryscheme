@@ -130,7 +130,7 @@ def epsilon(L):
 
     :param L: List of complex numbers (z_i)
     :type L: list
-    :return: min |z_i - z_j| / 2 (when z_i != z_j)
+    :return: min \|z_i-z_j| / 2 (when z_i != z_j)
     :rtype: float
     """
     assert len(L) > 1
@@ -158,7 +158,7 @@ def eta_func(eps, kappa0, N, polynom, r):
     :type polynom: Polynomial
     :param r: Integer
     :type r: int
-    :return: min |polynom(kappa)|/(1+eps)^r for kappa on the circle centered in kappa0 of radius eps
+    :return: min \|polynom(kappa)|/(1+eps)^r for kappa on the circle centered in kappa0 of radius eps
     :rtype: float
     """
     theta = np.linspace(0, 2 * pi, N)
@@ -243,7 +243,6 @@ def boundary_to_boundary_quasi_toep(boundary_condition, gn, inter, center):
 
 def boundary_quasi_toep_to_boundary(quasi_toep_boundary, bn, inter, center):
     """Transformation from a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix to a boundary condition written with ghost points.
-
     :param quasi_toep_boundary: Boundary condition BB written as the extraction of the r first rows of a Quasi-Toeplitz matrix
     :type quasi_toep_boundary: numpy.ndarray
     :param bn: Boundary data bn such that (U_0^{n+1},...,U_{r-1}^{n+1}) = BB (U_0^n,...,U_{m-1}^n) + b_n(t^n)
