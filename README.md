@@ -5,6 +5,10 @@ This is the architecture for the package "boundaryscheme"
 Package Python to use numerical scheme with boundaries which is described in the PhD manuscript 
 > P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, PhD, 2023.
 
+# Documentations du package
+
+https://plebarbenchon.github.io/boundaryscheme
+
 # Installation
 ```bash
 git clone https://github.com/PLeBarbenchon/boundaryscheme.git
