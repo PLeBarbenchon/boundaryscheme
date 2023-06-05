@@ -1,0 +1,744 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>boundaryscheme.pyplot - boundaryscheme 2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">boundaryscheme 2.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../_static/lightlogo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../_static/darklogo.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">boundaryscheme 2.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../boundaryscheme.html">boundaryscheme package</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for boundaryscheme.pyplot</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file defines utils function specific to the library</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.widgets</span> <span class="kn">import</span> <span class="n">Slider</span><span class="p">,</span> <span class="n">Button</span>
+
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">boundary_to_boundary_quasi_toep</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">eta_func</span><span class="p">,</span> <span class="n">parametrization</span>
+<span class="kn">from</span> <span class="nn">.boundaries</span> <span class="kn">import</span> <span class="n">Dirichlet</span>
+<span class="kn">from</span> <span class="nn">.complex_winding_number</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="show"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.pyplot.show">[docs]</a><span class="k">def</span> <span class="nf">show</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="detKLplotsimple"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.pyplot.detKLplotsimple">[docs]</a><span class="k">def</span> <span class="nf">detKLplotsimple</span><span class="p">(</span><span class="n">schem</span><span class="p">,</span> <span class="n">n_param</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the Kreiss-Lopatinskii determinant curve for a given scheme</span>
+
+<span class="sd">    :param schem: Scheme considered</span>
+<span class="sd">    :type schem: class:`Scheme`</span>
+<span class="sd">    :param n_param: Size of the discretization of the unit circle, defaults to 300</span>
+<span class="sd">    :type n_param: int, optional</span>
+<span class="sd">    :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</span>
+<span class="sd">    :type parametrization_bool: bool, optional</span>
+<span class="sd">    :return: the Kreiss-Lopatinskii curve</span>
+<span class="sd">    :rtype: plot object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">()</span>
+    <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">schem</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">n_param</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="detKLplot"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.pyplot.detKLplot">[docs]</a><span class="k">def</span> <span class="nf">detKLplot</span><span class="p">(</span><span class="n">schem</span><span class="p">,</span> <span class="n">left_bound</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">lamb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lambdacursor</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sigmacursor</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nparam</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fig_size</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)</span>
+
+<span class="sd">    :param schem: Scheme depending on a parameter lambda</span>
+<span class="sd">    :type schem: class:`Scheme`</span>
+<span class="sd">    :param left_bound: Left boundary of the class Boundary, defaults to Dirichlet()</span>
+<span class="sd">    :type left_bound: class:`Boundary`, optional</span>
+<span class="sd">    :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</span>
+<span class="sd">    :type lamb: int or float or list or numpy.ndarray, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: int or float or list or numpy.ndarray, optional</span>
+<span class="sd">    :param lambdacursor: Boolean to indicate the use of a cursor for lambda&#39;s moving among the lamb values, defaults to False</span>
+<span class="sd">    :type lambdacursor: bool, optional</span>
+<span class="sd">    :param sigmacursor: Boolean to indicate the use of a cursor for sigma&#39;s moving among the sigma values, defaults to False</span>
+<span class="sd">    :type sigmacursor: bool, optional</span>
+<span class="sd">    :param n_param: Size of the discretization of the unit circle, defaults to 300</span>
+<span class="sd">    :type n_param: int, optional</span>
+<span class="sd">    :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</span>
+<span class="sd">    :type parametrization_bool: bool, optional</span>
+<span class="sd">    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2</span>
+<span class="sd">    :type order: int, optional</span>
+<span class="sd">    :param fig_size: Size of the figure, defaults to (6,4)</span>
+<span class="sd">    :type fig_size: (int,int), optional</span>
+<span class="sd">    :return: the Kreiss-Lopatinskii curve for the scheme</span>
+<span class="sd">    :rtype: plot object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">lamb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lamb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">CFL</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="n">lamb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lamb</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">sigma</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sigmacursor</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lambdacursor</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">lamb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lamb</span><span class="p">:</span>
+                    <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\lambda$ = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Symbol of &quot;</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sigma_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lambda_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">sigma</span><span class="p">:</span>
+                    <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sig</span><span class="p">)</span>
+                    <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\sigma$ = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sig</span><span class="p">))</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Symbol of &quot;</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sigma_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lambda_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lamb</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">sigma</span><span class="p">:</span>
+                        <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sig</span><span class="p">)</span>
+                        <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\lambda$ = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;et $\sigma$ = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sig</span><span class="p">))</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Symbol of &quot;</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sigma_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lambda_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;with a lambda cursor, sigma has to be a single value&quot;</span><span class="p">)</span>
+            <span class="n">lambmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">:</span>
+                <span class="n">lambmin</span> <span class="o">=</span> <span class="mf">0.001</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lambmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+
+            <span class="n">lamb0</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambmax</span> <span class="o">+</span> <span class="n">lambmin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DKL curve of &quot;</span> <span class="o">+</span> <span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sigma_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">calc_det</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">Det</span> <span class="o">=</span> <span class="n">calc_det</span><span class="p">(</span><span class="n">lamb0</span><span class="p">)</span>
+            <span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+            <span class="n">lambda_slider_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
+            <span class="n">lambda_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">lambda_slider_ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lambda&quot;</span><span class="p">,</span> <span class="n">valmin</span><span class="o">=</span><span class="n">lambmin</span><span class="p">,</span> <span class="n">valmax</span><span class="o">=</span><span class="n">lambmax</span><span class="p">,</span> <span class="n">valinit</span><span class="o">=</span><span class="n">lamb0</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="n">Det</span> <span class="o">=</span> <span class="n">calc_det</span><span class="p">(</span><span class="n">lambda_slider</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">xmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ymin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ymax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+
+            <span class="c1"># register the update function with each slider</span>
+            <span class="n">lambda_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+
+            <span class="c1"># Create a `matplotlib.widgets.Button` to reset the sliders to initial values.</span>
+            <span class="n">resetax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">])</span>
+            <span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">resetax</span><span class="p">,</span> <span class="s2">&quot;Reset&quot;</span><span class="p">,</span> <span class="n">hovercolor</span><span class="o">=</span><span class="s2">&quot;0.975&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+                <span class="n">lambda_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+            <span class="n">button</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">sigmax</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">sigmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sigmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+            <span class="n">sigmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">lambdacursor</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;With a sigma cursor, lambda has to be a single value&quot;</span><span class="p">)</span>
+            <span class="n">sigma0</span> <span class="o">=</span> <span class="p">(</span><span class="n">sigmax</span> <span class="o">+</span> <span class="n">sigmin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DKL curve of &quot;</span> <span class="o">+</span> <span class="n">schem</span><span class="p">(</span><span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">left_bound</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lambda_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">calc_det</span><span class="p">(</span><span class="n">sig</span><span class="p">):</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">Det</span> <span class="o">=</span> <span class="n">calc_det</span><span class="p">(</span><span class="n">sigma0</span><span class="p">)</span>
+            <span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+            <span class="n">sigma_slider_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
+            <span class="n">sigma_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">sigma_slider_ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">valmin</span><span class="o">=</span><span class="n">sigmin</span><span class="p">,</span> <span class="n">valmax</span><span class="o">=</span><span class="n">sigmax</span><span class="p">,</span> <span class="n">valinit</span><span class="o">=</span><span class="n">sigma0</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="n">Det</span> <span class="o">=</span> <span class="n">calc_det</span><span class="p">(</span><span class="n">sigma_slider</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">xmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ymin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ymax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+
+            <span class="c1"># register the update function with each slider</span>
+            <span class="n">sigma_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+
+            <span class="c1"># Create a `matplotlib.widgets.Button` to reset the sliders to initial values.</span>
+            <span class="n">resetax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">])</span>
+            <span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">resetax</span><span class="p">,</span> <span class="s2">&quot;Reset&quot;</span><span class="p">,</span> <span class="n">hovercolor</span><span class="o">=</span><span class="s2">&quot;0.975&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+                <span class="n">sigma_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+            <span class="n">button</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lambmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">:</span>
+                <span class="n">lambmin</span> <span class="o">=</span> <span class="mf">0.001</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lambmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+
+            <span class="n">sigma0</span> <span class="o">=</span> <span class="p">(</span><span class="n">sigmax</span> <span class="o">+</span> <span class="n">sigmin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">lamb0</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambmin</span> <span class="o">+</span> <span class="n">lambmax</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DKL curve of &quot;</span> <span class="o">+</span> <span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">calc_det</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">sigm</span><span class="p">):</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigm</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">Det</span> <span class="o">=</span> <span class="n">calc_det</span><span class="p">(</span><span class="n">lamb0</span><span class="p">,</span> <span class="n">sigma0</span><span class="p">)</span>
+            <span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+
+            <span class="n">axlambda</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
+            <span class="n">lambda_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span>
+                <span class="n">ax</span><span class="o">=</span><span class="n">axlambda</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lambda&quot;</span><span class="p">,</span>
+                <span class="n">valmin</span><span class="o">=</span><span class="n">lambmin</span><span class="p">,</span>
+                <span class="n">valmax</span><span class="o">=</span><span class="n">lambmax</span><span class="p">,</span>
+                <span class="n">valinit</span><span class="o">=</span><span class="n">lamb0</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Make a vertically oriented slider to control the amplitude</span>
+            <span class="n">axsigm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.0225</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">])</span>
+            <span class="n">sigma_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axsigm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">valmin</span><span class="o">=</span><span class="n">sigmin</span><span class="p">,</span> <span class="n">valmax</span><span class="o">=</span><span class="n">sigmax</span><span class="p">,</span> <span class="n">valinit</span><span class="o">=</span><span class="n">sigma0</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="n">Det</span> <span class="o">=</span> <span class="n">calc_det</span><span class="p">(</span><span class="n">lambda_slider</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sigma_slider</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">xmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ymin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ymax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Det</span><span class="p">])</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+
+            <span class="n">lambda_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+            <span class="n">sigma_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+            <span class="n">resetax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">])</span>
+            <span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">resetax</span><span class="p">,</span> <span class="s2">&quot;Reset&quot;</span><span class="p">,</span> <span class="n">hovercolor</span><span class="o">=</span><span class="s2">&quot;0.975&quot;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+                <span class="n">lambda_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+                <span class="n">sigma_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+            <span class="n">button</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="symbolplot"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.pyplot.symbolplot">[docs]</a><span class="k">def</span> <span class="nf">symbolplot</span><span class="p">(</span><span class="n">schem</span><span class="p">,</span> <span class="n">lamb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">lambdacursor</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nparam</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">fig_size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)</span>
+
+<span class="sd">    :param schem: Scheme depending on a parameter lambda</span>
+<span class="sd">    :type schem: class:`Scheme`</span>
+<span class="sd">    :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</span>
+<span class="sd">    :type lamb: int or float or list or numpy.ndarray, optional</span>
+<span class="sd">    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2</span>
+<span class="sd">    :type order: int, optional</span>
+<span class="sd">    :param lambdacursor: Boolean to indicate the use of a cursor for lambda&#39;s moving among the lamb values, defaults to False</span>
+<span class="sd">    :type lambdacursor: bool, optional</span>
+<span class="sd">    :param nparam: Size of the discretization of the unit circle, defaults to 300</span>
+<span class="sd">    :type nparam: int, optional</span>
+<span class="sd">    :param fig_size: Size of the figure, defaults to (10,8)</span>
+<span class="sd">    :type fig_size: (int,int), optional</span>
+<span class="sd">    :return: the symbol curve of the scheme</span>
+<span class="sd">    :rtype: plot object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">lambdacursor</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">nparam</span><span class="p">)</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;unit circle&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;symbol&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Symbol of &quot;</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">lambda_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="ow">and</span> <span class="n">lamb</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lamb</span><span class="p">:</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">nparam</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\lambda = $ </span><span class="si">{</span><span class="n">l</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;unit circle&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Symbol of &quot;</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">lambda_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lamb</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lamb</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">CFL</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="n">lamb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lamb</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Symbol of &quot;</span> <span class="o">+</span> <span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">lambda_bool</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">lamb0</span> <span class="o">=</span> <span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lamb0</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lamb</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">Param</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nparam</span><span class="p">)</span>
+        <span class="n">Param</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">Param</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">Param</span><span class="p">)</span>
+        <span class="n">Theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+        <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">lamb0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">nparam</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;symbol&quot;</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">cible</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">Theta</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;unit circle&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">minvalue</span> <span class="o">=</span> <span class="mf">0.0001</span>
+            <span class="n">maxvalue</span> <span class="o">=</span> <span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">minvalue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+            <span class="n">maxvalue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+
+        <span class="n">axlamb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
+        <span class="n">lambda_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axlamb</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lambda&quot;</span><span class="p">,</span>
+            <span class="n">valmin</span><span class="o">=</span><span class="n">minvalue</span><span class="p">,</span>
+            <span class="n">valmax</span><span class="o">=</span><span class="n">maxvalue</span><span class="p">,</span>
+            <span class="n">valinit</span><span class="o">=</span><span class="n">lamb0</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+            <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">lambda_slider</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">nparam</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+
+        <span class="c1"># register the update function with each slider</span>
+        <span class="n">lambda_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+
+        <span class="c1"># Create a `matplotlib.widgets.Button` to reset the sliders to initial values.</span>
+        <span class="n">resetax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">])</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">resetax</span><span class="p">,</span> <span class="s2">&quot;Reset&quot;</span><span class="p">,</span> <span class="n">hovercolor</span><span class="o">=</span><span class="s2">&quot;0.975&quot;</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+            <span class="n">lambda_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+        <span class="n">button</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="nbrzerosdetKL"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.pyplot.nbrzerosdetKL">[docs]</a><span class="k">def</span> <span class="nf">nbrzerosdetKL</span><span class="p">(</span><span class="n">schem</span><span class="p">,</span> <span class="n">left_bound</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">lamb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nparam</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nlambda</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fig_size</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the number of zeros of the Kreiss-Lopatinskii determinant for different boundary conditions, for different lambdas or/and for different sigmas</span>
+
+<span class="sd">    .. seealso:: for more details and examples, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]</span>
+
+<span class="sd">    :param schem: Scheme depending on a parameter lambda</span>
+<span class="sd">    :type schem: class:`Scheme`</span>
+<span class="sd">    :param left_bound: Left boundary of the class Boundary, defaults to Dirichlet()</span>
+<span class="sd">    :type left_bound: class:`Boundary` or list of class:`Boundary`, optional</span>
+<span class="sd">    :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</span>
+<span class="sd">    :type lamb: int or float or list or numpy.ndarray, optional</span>
+<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">    :type sigma: int or float or list or numpy.ndarray, optional</span>
+<span class="sd">    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2</span>
+<span class="sd">    :type order: int, optional</span>
+<span class="sd">    :param nparam: Size of the discretization of the unit circle for the Kreiss-Lopatinskii curve, defaults to 100</span>
+<span class="sd">    :type nparam: int, optional</span>
+<span class="sd">    :param nlambda: Size of the discretization of the lambda&#39;s, defaults to 200</span>
+<span class="sd">    :type nlambda: int, optional</span>
+<span class="sd">    :param nsigma: Size of the discretization of the sigma&#39;s, defaults to 30</span>
+<span class="sd">    :type nsigma: int, optional</span>
+<span class="sd">    :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</span>
+<span class="sd">    :type parametrization_bool: bool, optional</span>
+<span class="sd">    :param fig_size: Size of the figure, defaults to (15,7)</span>
+<span class="sd">    :type fig_size: (int,int), optional</span>
+<span class="sd">    :param fontsize: Size of the font of the text in the plot, defaults to 18</span>
+<span class="sd">    :type fontsize: int , optional</span>
+<span class="sd">    :return: the number of zeros of the Kreiss-Lopatinskii determinant for the scheme</span>
+<span class="sd">    :rtype: plot object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">lamb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lambmin</span> <span class="o">=</span> <span class="mf">0.01</span>
+        <span class="n">lambmax</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">CFL</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lamb</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="n">lamb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lamb</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;lambda has to be non negative&quot;</span><span class="p">)</span>
+            <span class="n">lambmin</span> <span class="o">=</span> <span class="mf">0.01</span>
+            <span class="n">lambmax</span> <span class="o">=</span> <span class="n">lamb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lambmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+            <span class="n">lambmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
+    <span class="n">lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lambmin</span><span class="p">,</span> <span class="n">lambmax</span><span class="p">,</span> <span class="n">nlambda</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">left_bound</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">left_bound</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">left_bound</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">left_bound</span><span class="p">)</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of zeros of KL determinant for </span><span class="si">{</span><span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">sigma_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2"> with respect to $\lambda$&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bound</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">left_bound</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lambmin</span><span class="p">,</span> <span class="n">lambmax</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([])</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">bound</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+            <span class="n">WindingNumbers</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lambdas</span><span class="p">:</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+                <span class="n">WindingNumbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Indice</span><span class="p">(</span><span class="n">Det</span><span class="p">))</span>
+            <span class="n">separator</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">WindingNumbers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">WindingNumbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">WindingNumbers</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">separator</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">lambdas</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">lambdas</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">WindingNumbers</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WindingNumbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">separator</span> <span class="o">==</span> <span class="p">[]:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">lambmax</span> <span class="o">+</span> <span class="n">lambmin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">separator</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">separator</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+                        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">separator</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">separator</span><span class="p">):</span>
+                        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">separator</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">lambmax</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">separator</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">separator</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+                        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">separator</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">separator</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">axs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">WindingNumbers</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lambdas</span><span class="p">:</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+                <span class="n">WindingNumbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Indice</span><span class="p">(</span><span class="n">Det</span><span class="p">))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambdas</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">WindingNumbers</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Number of zeros of KL determinant for </span><span class="si">{</span><span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">left_bound</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2"> with respect to $\lambda$&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sigma</span><span class="p">:</span>
+                <span class="n">sigmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">sigmax</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sigmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+                <span class="n">sigmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+
+            <span class="n">sigmas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sigmin</span><span class="p">,</span> <span class="n">sigmax</span><span class="p">,</span> <span class="n">nsigma</span><span class="p">)</span>
+            <span class="n">WindingNumbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nsigma</span><span class="p">,</span> <span class="n">nlambda</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lambdas</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">sig</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sigmas</span><span class="p">):</span>
+                    <span class="n">S</span> <span class="o">=</span> <span class="n">schem</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">left_bound</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+                    <span class="n">Param</span><span class="p">,</span> <span class="n">Det</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">detKL</span><span class="p">(</span><span class="n">nparam</span><span class="p">,</span> <span class="n">parametrization_bool</span><span class="p">)</span>
+                    <span class="n">WindingNumbers</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Indice</span><span class="p">(</span><span class="n">Det</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">WindingNumbers</span>
+            <span class="n">sigmas</span><span class="p">,</span> <span class="n">lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lambdas</span><span class="p">,</span> <span class="n">sigmas</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">lambdas</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Number of zeros of KL determinant for </span><span class="si">{</span><span class="n">schem</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">left_bound</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">boundary_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">False</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2"> with respect to $\lambda$ and $\sigma$&quot;</span>
+            <span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\sigma$&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ax</span></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Pierre Le Barbenchon
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    </body>
+</html>

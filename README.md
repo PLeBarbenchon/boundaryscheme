@@ -3,26 +3,38 @@ This is the architecture for the package "boundaryscheme"
 
 # boundaryscheme
 Package Python to use numerical scheme with boundaries which is described in the PhD manuscript 
-> P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, 2023.
+> P. Le Barbenchon, Étude théorique et numérique de la stabilité GKS pour des schémas d'ordre élevé en présence de bords, PhD, 2023.
 
 # Installation
-
 ```bash
 git clone https://github.com/PLeBarbenchon/boundaryscheme.git
 cd boundaryscheme
 pip3 install -r requirements.txt
 pip3 install -e .
-python3 examples/draw_symbol.py
+python3 examples/draw_detKLcurve.py
 ```
 
 # Example 
 ```python
+import matplotlib.pyplot as plt
+
 from boundaryscheme.schemes import BeamWarming
+from boundaryscheme.boundaries import SILW
 import boundaryscheme.pyplot as bsplt
 
-bsplt.symbolplot(BeamWarming, lambdacursor = True)
+bsplt.detKLcurve(BeamWarming, SILW(2,3),lambdacursor = True)
 plt.show()
 ```
+
+![mygif](https://github.com/PLeBarbenchon/boundaryscheme/assets/92107096/2ca0d414-77a6-410e-a582-a3950699dcf0)
+
+# Plot a Kreiss--Lopatinskii determinant curve
+
+à écrire
+
+# Create a scheme
+
+In schemes.py, create 
 
 # Citing
 
