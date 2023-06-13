@@ -1,4 +1,4 @@
-This is the architecture for the package "boundaryscheme" 
+This is the architecture for the package "boundaryscheme" : https://pypi.org/project/boundaryscheme/
 
 
 # boundaryscheme
@@ -8,6 +8,12 @@ Package Python to use numerical scheme with boundaries which is described in the
 # Package documentation
 
 https://plebarbenchon.github.io/boundaryscheme
+
+# Easy installation
+
+```bash
+pip install boundaryscheme
+```
 
 # Installation
 ```bash
