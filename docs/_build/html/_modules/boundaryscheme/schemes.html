@@ -654,6 +654,7 @@
 <span class="sd">    :param order: Order of the Lax-Wendroff scheme, defaults to 2</span>
 <span class="sd">    :type order: int, optional</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">class</span> <span class="nc">LW</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This is a class to represent a Lax-Wendroff scheme of any order.</span>
 
@@ -670,17 +671,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span>  <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)(</span><span class="n">lamb</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)(</span><span class="n">lamb</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Lax Wendroff </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="si">}</span><span class="s2">&quot;</span>
+
     <span class="k">return</span> <span class="n">LW</span></div>
-
-
-
 
 
 <span class="c1"># class LeapFrog(Scheme):</span>
