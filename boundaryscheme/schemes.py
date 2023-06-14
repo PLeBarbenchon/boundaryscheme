@@ -459,6 +459,7 @@ def LaxWendroff(order=2):
     :param order: Order of the Lax-Wendroff scheme, defaults to 2
     :type order: int, optional
     """
+
     class LW(Scheme):
         """This is a class to represent a Lax-Wendroff scheme of any order.
 
@@ -475,17 +476,15 @@ def LaxWendroff(order=2):
             self.sigma = sigma
             self.order = order
             self.lamb = lamb
-            self.inter,self.center =  Lwconstructor(order)(lamb)
+            self.inter, self.center = Lwconstructor(order)(lamb)
             self.CFL = 1
             super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
 
         def shortname(self):
             """Name method"""
             return f"Lax Wendroff {self.order}"
+
     return LW
-
-
-
 
 
 # class LeapFrog(Scheme):

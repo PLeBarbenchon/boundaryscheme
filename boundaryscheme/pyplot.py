@@ -115,7 +115,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             lamb0 = (lambmax + lambmin) / 2
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(1, left_bound, sigma=sigma[0]).name(boundary_bool=True, sigma_bool=True))
-            ax = fig.add_subplot(111,label = "cursor1")
+            ax = fig.add_subplot(111, label="cursor1")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -170,7 +170,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             sigma0 = (sigmax + sigmin) / 2
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(lamb[0], left_bound).name(boundary_bool=True, lambda_bool=True))
-            ax = fig.add_subplot(111,label = "cursor2")
+            ax = fig.add_subplot(111, label="cursor2")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -224,7 +224,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
 
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(1, left_bound).name(boundary_bool=True))
-            ax = fig.add_subplot(111,label = "cursor3")
+            ax = fig.add_subplot(111, label="cursor3")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -328,7 +328,7 @@ def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8
             lamb = np.array([lamb], dtype=float)
         fig = plt.figure(1, figsize=(10, 8))
         plt.title("Symbol of " + schem(1).name(lambda_bool=False))
-        ax = fig.add_subplot(111,label = "cursor4")
+        ax = fig.add_subplot(111, label="cursor4")
         fig.subplots_adjust(left=0.25, bottom=0.25)
         ax.set_xlim(-3, 3)
         ax.axis("equal")
@@ -475,9 +475,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100,
                 Param, Det = S.detKL(nparam, parametrization_bool)
                 WindingNumbers.append(Indice(Det))
             ax.plot(lambdas, S.r - np.array(WindingNumbers))
-            plt.title(
-                f"Number of zeros of KL determinant for {schem(1/2,left_bound, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$"
-            )
+            plt.title(f"Number of zeros of KL determinant for {schem(1/2,left_bound, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$")
         else:
             if sigma:
                 sigmin = -1 / 2
