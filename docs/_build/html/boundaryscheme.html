@@ -313,7 +313,7 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 <p>This file defines utils function specific to the library</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="boundaryscheme.pyplot.detKLplot">
-<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">detKLplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bound=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambdacursor=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigmacursor=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam=300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size=(6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#detKLplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.detKLplot" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">detKLplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bound=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambdacursor=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigmacursor=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam=300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size=(6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#detKLplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.detKLplot" title="Permalink to this definition">#</a></dt>
 <dd><p>Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -326,7 +326,6 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 <li><p><strong>sigmacursor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Boolean to indicate the use of a cursor for sigma’s moving among the sigma values, defaults to False</p></li>
 <li><p><strong>n_param</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle, defaults to 300</p></li>
 <li><p><strong>parametrization_bool</strong> (<em>bool</em><em>, </em><em>optional</em>) – True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</p></li>
-<li><p><strong>order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the scheme (for Lax-Wendroff scheme), defaults to 2</p></li>
 <li><p><strong>fig_size</strong> (<em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>, </em><em>optional</em>) – Size of the figure, defaults to (6,4)</p></li>
 </ul>
 </dd>
@@ -362,7 +361,7 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boundaryscheme.pyplot.nbrzerosdetKL">
-<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">nbrzerosdetKL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bound=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlambda=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsigma=30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size=(15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize=18</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#nbrzerosdetKL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.nbrzerosdetKL" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">nbrzerosdetKL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bound=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlambda=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsigma=30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size=(15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize=18</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#nbrzerosdetKL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.nbrzerosdetKL" title="Permalink to this definition">#</a></dt>
 <dd><p>Computes the number of zeros of the Kreiss-Lopatinskii determinant for different boundary conditions, for different lambdas or/and for different sigmas</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -375,7 +374,6 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 <li><p><strong>left_bound</strong> (class:<cite>Boundary</cite> or list of class:<cite>Boundary</cite>, optional) – Left boundary of the class Boundary, defaults to Dirichlet()</p></li>
 <li><p><strong>lamb</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</p></li>
 <li><p><strong>sigma</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
-<li><p><strong>order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the scheme (for Lax-Wendroff scheme), defaults to 2</p></li>
 <li><p><strong>nparam</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle for the Kreiss-Lopatinskii curve, defaults to 100</p></li>
 <li><p><strong>nlambda</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the lambda’s, defaults to 200</p></li>
 <li><p><strong>nsigma</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the sigma’s, defaults to 30</p></li>
@@ -400,14 +398,13 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boundaryscheme.pyplot.symbolplot">
-<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">symbolplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambdacursor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">8)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#symbolplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.symbolplot" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">symbolplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambdacursor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">8)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#symbolplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.symbolplot" title="Permalink to this definition">#</a></dt>
 <dd><p>Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>schem</strong> (class:<cite>Scheme</cite>) – Scheme depending on a parameter lambda</p></li>
 <li><p><strong>lamb</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</p></li>
-<li><p><strong>order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the scheme (for Lax-Wendroff scheme), defaults to 2</p></li>
 <li><p><strong>lambdacursor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Boolean to indicate the use of a cursor for lambda’s moving among the lamb values, defaults to False</p></li>
 <li><p><strong>nparam</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle, defaults to 300</p></li>
 <li><p><strong>fig_size</strong> (<em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>, </em><em>optional</em>) – Size of the figure, defaults to (10,8)</p></li>
@@ -494,34 +491,6 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="boundaryscheme.schemes.LW">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">LW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LW"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LW" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
-<p>This is a class to represent a Lax-Wendroff scheme of any order.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
-<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
-<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
-<li><p><strong>order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the Lax-Wendroff scheme, defaults to 2</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="boundaryscheme.schemes.LW.allordersschem">
-<span class="sig-name descname"><span class="pre">allordersschem</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[None,</span> <span class="pre">None,</span> <span class="pre">&lt;function</span> <span class="pre">Lwconstructor.&lt;locals&gt;.LWconstructorlamb&gt;]</span></em><a class="headerlink" href="#boundaryscheme.schemes.LW.allordersschem" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="boundaryscheme.schemes.LW.shortname">
-<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LW.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LW.shortname" title="Permalink to this definition">#</a></dt>
-<dd><p>Name method</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="boundaryscheme.schemes.LaxFriedrichs">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">LaxFriedrichs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxFriedrichs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxFriedrichs" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
@@ -543,26 +512,12 @@ return the list of the coordinates of each complex in the R^2 plan</p>
 
 </dd></dl>
 
-<dl class="py class">
+<dl class="py function">
 <dt class="sig sig-object py" id="boundaryscheme.schemes.LaxWendroff">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">LaxWendroff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxWendroff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxWendroff" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
-<p>This is a class to represent the Lax-Wendroff scheme (of order 2).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
-<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
-<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boundaryscheme.schemes.LaxWendroff.shortname">
-<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxWendroff.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxWendroff.shortname" title="Permalink to this definition">#</a></dt>
-<dd><p>Name method</p>
-</dd></dl>
-
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">LaxWendroff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxWendroff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxWendroff" title="Permalink to this definition">#</a></dt>
+<dd><p>This is a function which create the class of LaxWendroff scheme at order ‘order’
+:param order: Order of the Lax-Wendroff scheme, defaults to 2
+:type order: int, optional</p>
 </dd></dl>
 
 <dl class="py class">
@@ -1128,19 +1083,11 @@ and the function g_n such that (U_{-r}^n,…,U_{-1}^n) = B(U_0^n,…,U_{m-1}^n) 
 <li><a class="reference internal" href="#boundaryscheme.schemes.Dissipatif.shortname"><code class="docutils literal notranslate"><span class="pre">Dissipatif.shortname()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#boundaryscheme.schemes.LW"><code class="docutils literal notranslate"><span class="pre">LW</span></code></a><ul>
-<li><a class="reference internal" href="#boundaryscheme.schemes.LW.allordersschem"><code class="docutils literal notranslate"><span class="pre">LW.allordersschem</span></code></a></li>
-<li><a class="reference internal" href="#boundaryscheme.schemes.LW.shortname"><code class="docutils literal notranslate"><span class="pre">LW.shortname()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#boundaryscheme.schemes.LaxFriedrichs"><code class="docutils literal notranslate"><span class="pre">LaxFriedrichs</span></code></a><ul>
 <li><a class="reference internal" href="#boundaryscheme.schemes.LaxFriedrichs.shortname"><code class="docutils literal notranslate"><span class="pre">LaxFriedrichs.shortname()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#boundaryscheme.schemes.LaxWendroff"><code class="docutils literal notranslate"><span class="pre">LaxWendroff</span></code></a><ul>
-<li><a class="reference internal" href="#boundaryscheme.schemes.LaxWendroff.shortname"><code class="docutils literal notranslate"><span class="pre">LaxWendroff.shortname()</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.LaxWendroff"><code class="docutils literal notranslate"><span class="pre">LaxWendroff()</span></code></a></li>
 <li><a class="reference internal" href="#boundaryscheme.schemes.Scheme"><code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a><ul>
 <li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.Kappa"><code class="docutils literal notranslate"><span class="pre">Scheme.Kappa()</span></code></a></li>
 <li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.count_root"><code class="docutils literal notranslate"><span class="pre">Scheme.count_root()</span></code></a></li>

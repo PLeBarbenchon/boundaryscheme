@@ -535,34 +535,6 @@
         <span class="k">return</span> <span class="s2">&quot;Upwind&quot;</span></div></div>
 
 
-<div class="viewcode-block" id="LaxWendroff"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxWendroff">[docs]</a><span class="k">class</span> <span class="nc">LaxWendroff</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the Lax-Wendroff scheme (of order 2).</span>
-
-<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
-<span class="sd">    :type lamb: float</span>
-<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
-<span class="sd">    :type boundary: class:`Boundary`, optional</span>
-<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
-<span class="sd">    :type sigma: float, optional</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
-        <span class="n">coeff1</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">lamb</span> <span class="o">-</span> <span class="n">lamb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-        <span class="n">coeff2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lamb</span><span class="o">**</span><span class="mi">2</span>
-        <span class="n">coeff3</span> <span class="o">=</span> <span class="p">(</span><span class="n">lamb</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">lamb</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">coeff3</span><span class="p">,</span> <span class="n">coeff2</span><span class="p">,</span> <span class="n">coeff1</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<div class="viewcode-block" id="LaxWendroff.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxWendroff.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;LaxWendroff&quot;</span></div></div>
-
-
 <div class="viewcode-block" id="LaxFriedrichs"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxFriedrichs">[docs]</a><span class="k">class</span> <span class="nc">LaxFriedrichs</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent the Lax-Friedrichs scheme.</span>
 
@@ -676,40 +648,39 @@
         <span class="k">return</span> <span class="s2">&quot;Dissipative&quot;</span></div></div>
 
 
-<div class="viewcode-block" id="LW"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LW">[docs]</a><span class="k">class</span> <span class="nc">LW</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to represent a Lax-Wendroff scheme of any order.</span>
-
-<span class="sd">    :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
-<span class="sd">    :type lamb: float</span>
-<span class="sd">    :param boundary: Boundary condition, defaults to Dirichlet()</span>
-<span class="sd">    :type boundary: class:`Boundary`, optional</span>
-<span class="sd">    :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
-<span class="sd">    :type sigma: float, optional</span>
+<div class="viewcode-block" id="LaxWendroff"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LaxWendroff">[docs]</a><span class="k">def</span> <span class="nf">LaxWendroff</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a function which create the class of LaxWendroff scheme at order &#39;order&#39;</span>
 <span class="sd">    :param order: Order of the Lax-Wendroff scheme, defaults to 2</span>
 <span class="sd">    :type order: int, optional</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">class</span> <span class="nc">LW</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This is a class to represent a Lax-Wendroff scheme of any order.</span>
 
-    <span class="n">allordersschem</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<span class="sd">        :param lamb: The Courant number, i.e  a.dt/dx where &quot;a&quot; is the velocity, &quot;dt&quot; the time discretization and &quot;dx&quot; the space discretization</span>
+<span class="sd">        :type lamb: float</span>
+<span class="sd">        :param boundary: Boundary condition, defaults to Dirichlet()</span>
+<span class="sd">        :type boundary: class:`Boundary`, optional</span>
+<span class="sd">        :param sigma: Gap between the mesh and the boundary condition, defaults to 0</span>
+<span class="sd">        :type sigma: float, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order</span> <span class="o">-</span> <span class="n">n</span><span class="p">):</span>
-                <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-            <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">LW</span><span class="o">.</span><span class="n">allordersschem</span><span class="p">[</span><span class="n">order</span><span class="p">](</span><span class="n">lamb</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamb</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">Dirichlet</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Constructor method&quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lamb</span> <span class="o">=</span> <span class="n">lamb</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span>  <span class="n">Lwconstructor</span><span class="p">(</span><span class="n">order</span><span class="p">)(</span><span class="n">lamb</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CFL</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inter</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="LW.shortname"><a class="viewcode-back" href="../../boundaryscheme.html#boundaryscheme.schemes.LW.shortname">[docs]</a>    <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Lax Wendroff </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="si">}</span><span class="s2">&quot;</span></div></div>
+        <span class="k">def</span> <span class="nf">shortname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Name method&quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Lax Wendroff </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">LW</span></div>
+
+
+
 
 
 <span class="c1"># class LeapFrog(Scheme):</span>
