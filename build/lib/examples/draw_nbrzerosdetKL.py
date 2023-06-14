@@ -27,5 +27,3 @@ if __name__ == "__main__":
 
     """plot the number of zeros of Kreiss-Lopatinskii determinant of BeamWarming with SILW(2,3) with respect to lambda and sigma"""
     # bsplt.nbrzerosdetKL(BeamWarming, SILW(2,3), sigma=True, nlambda=40, nsigma = 20)
-
-    plt.show()

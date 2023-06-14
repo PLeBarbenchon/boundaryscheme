@@ -340,34 +340,6 @@ class Upwind(SchemeP0):
         return "Upwind"
 
 
-class LaxWendroff(Scheme):
-    """This is a class to represent the Lax-Wendroff scheme (of order 2).
-
-    :param lamb: The Courant number, i.e  a.dt/dx where "a" is the velocity, "dt" the time discretization and "dx" the space discretization
-    :type lamb: float
-    :param boundary: Boundary condition, defaults to Dirichlet()
-    :type boundary: class:`Boundary`, optional
-    :param sigma: Gap between the mesh and the boundary condition, defaults to 0
-    :type sigma: float, optional
-    """
-
-    def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
-        """Constructor method"""
-        self.sigma = sigma
-        self.lamb = lamb
-        coeff1 = -(lamb - lamb**2) / 2
-        coeff2 = 1 - lamb**2
-        coeff3 = (lamb**2 + lamb) / 2
-        self.inter = np.array([coeff3, coeff2, coeff1])
-        self.center = 1
-        self.CFL = 1
-        super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
-
-    def shortname(self):
-        """Name method"""
-        return "LaxWendroff"
-
-
 class LaxFriedrichs(Scheme):
     """This is a class to represent the Lax-Friedrichs scheme.
 
@@ -481,40 +453,38 @@ class Dissipatif(Scheme):
         return "Dissipative"
 
 
-class LW(Scheme):
-    """This is a class to represent a Lax-Wendroff scheme of any order.
-
-    :param lamb: The Courant number, i.e  a.dt/dx where "a" is the velocity, "dt" the time discretization and "dx" the space discretization
-    :type lamb: float
-    :param boundary: Boundary condition, defaults to Dirichlet()
-    :type boundary: class:`Boundary`, optional
-    :param sigma: Gap between the mesh and the boundary condition, defaults to 0
-    :type sigma: float, optional
+def LaxWendroff(order=2):
+    """
+    This is a function which create the class of LaxWendroff scheme at order 'order'
     :param order: Order of the Lax-Wendroff scheme, defaults to 2
     :type order: int, optional
     """
 
-    allordersschem = [None, None, Lwconstructor(2)]
+    class LW(Scheme):
+        """This is a class to represent a Lax-Wendroff scheme of any order.
 
-    def __init__(self, lamb, boundary=Dirichlet(), sigma=0, order=2, **kwargs):
-        """Constructor method"""
-        self.sigma = sigma
-        self.order = order
-        self.lamb = lamb
-        n = len(LW.allordersschem) - 1
-        if order > n:
-            for i in range(order - n):
-                LW.allordersschem.append(None)
-            LW.allordersschem[order] = Lwconstructor(order)
-        if LW.allordersschem[order] == None:
-            LW.allordersschem[order] = Lwconstructor(order)
-        self.inter, self.center = LW.allordersschem[order](lamb)
-        self.CFL = 1
-        super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
+        :param lamb: The Courant number, i.e  a.dt/dx where "a" is the velocity, "dt" the time discretization and "dx" the space discretization
+        :type lamb: float
+        :param boundary: Boundary condition, defaults to Dirichlet()
+        :type boundary: class:`Boundary`, optional
+        :param sigma: Gap between the mesh and the boundary condition, defaults to 0
+        :type sigma: float, optional
+        """
 
-    def shortname(self):
-        """Name method"""
-        return f"Lax Wendroff {self.order}"
+        def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
+            """Constructor method"""
+            self.sigma = sigma
+            self.order = order
+            self.lamb = lamb
+            self.inter, self.center = Lwconstructor(order)(lamb)
+            self.CFL = 1
+            super().__init__(inter=self.inter, center=self.center, boundary=boundary, sigma=sigma, **kwargs)
+
+        def shortname(self):
+            """Name method"""
+            return f"Lax Wendroff {self.order}"
+
+    return LW
 
 
 # class LeapFrog(Scheme):

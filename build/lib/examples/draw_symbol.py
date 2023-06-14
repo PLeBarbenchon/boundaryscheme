@@ -24,5 +24,3 @@ if __name__ == "__main__":
 
     """plot the BeamWarming symbol curves for lambda in [0.7, 1, 1.6]"""
     # bsplt.symbolplot(BeamWarming, np.array([0.7, 1, 1.6]))
-
-    plt.show()

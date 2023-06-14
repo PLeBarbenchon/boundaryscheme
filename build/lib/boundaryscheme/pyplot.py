@@ -34,10 +34,10 @@ def detKLplotsimple(schem, n_param=300, parametrization_bool=True):
     ax.axvline(x=0, color="0.5")
     ax.axhline(y=0, color="0.5")
     ax.axis("equal")
-    return ax
+    plt.show()
 
 
-def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=False, sigmacursor=False, nparam=300, parametrization_bool=True, order=2, fig_size=(6, 4)):
+def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=False, sigmacursor=False, nparam=300, parametrization_bool=True, fig_size=(6, 4)):
     """Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)
 
     :param schem: Scheme depending on a parameter lambda
@@ -56,8 +56,6 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
     :type n_param: int, optional
     :param parametrization_bool: True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True
     :type parametrization_bool: bool, optional
-    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2
-    :type order: int, optional
     :param fig_size: Size of the figure, defaults to (6,4)
     :type fig_size: (int,int), optional
     :return: the Kreiss-Lopatinskii curve for the scheme
@@ -75,7 +73,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 lamb = np.sort(lamb)
                 fig, ax = plt.subplots(figsize=fig_size)
                 for l in lamb:
-                    S = schem(l, left_bound, order=order, sigma=sigma[0])
+                    S = schem(l, left_bound, sigma=sigma[0])
                     Param, Det = S.detKL(nparam, parametrization_bool)
                     ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\lambda$ = " + str(l))
                 ax.axvline(x=0, color="0.5")
@@ -86,7 +84,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 sigma = np.sort(sigma)
                 fig, ax = plt.subplots(figsize=fig_size)
                 for sig in sigma:
-                    S = schem(lamb[0], left_bound, order=order, sigma=sig)
+                    S = schem(lamb[0], left_bound, sigma=sig)
                     Param, Det = S.detKL(nparam, parametrization_bool)
                     ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\sigma$ = " + str(sig))
                 ax.axvline(x=0, color="0.5")
@@ -98,7 +96,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 fig, ax = plt.subplots(figsize=fig_size)
                 for l in lamb:
                     for sig in sigma:
-                        S = schem(l, left_bound, order=order, sigma=sig)
+                        S = schem(l, left_bound, sigma=sig)
                         Param, Det = S.detKL(nparam, parametrization_bool)
                         ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, label=f"$\lambda$ = " + str(l) + f"et $\sigma$ = " + str(sig))
                 ax.axvline(x=0, color="0.5")
@@ -117,13 +115,13 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             lamb0 = (lambmax + lambmin) / 2
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(1, left_bound, sigma=sigma[0]).name(boundary_bool=True, sigma_bool=True))
-            ax = fig.add_subplot(111)
+            ax = fig.add_subplot(111, label="cursor1")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
 
             def calc_det(l):
-                S = schem(l, left_bound, sigma=sigma[0], order=order)
+                S = schem(l, left_bound, sigma=sigma[0])
                 return S.detKL(nparam, parametrization_bool)[1]
 
             Det = calc_det(lamb0)
@@ -172,13 +170,13 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             sigma0 = (sigmax + sigmin) / 2
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(lamb[0], left_bound).name(boundary_bool=True, lambda_bool=True))
-            ax = fig.add_subplot(111)
+            ax = fig.add_subplot(111, label="cursor2")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
 
             def calc_det(sig):
-                S = schem(lamb[0], left_bound, sigma=sig, order=order)
+                S = schem(lamb[0], left_bound, sigma=sig)
                 return S.detKL(nparam, parametrization_bool)[1]
 
             Det = calc_det(sigma0)
@@ -226,13 +224,13 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
 
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(1, left_bound).name(boundary_bool=True))
-            ax = fig.add_subplot(111)
+            ax = fig.add_subplot(111, label="cursor3")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
 
             def calc_det(l, sigm):
-                S = schem(l, left_bound, sigma=sigm, order=order)
+                S = schem(l, left_bound, sigma=sigm)
                 return S.detKL(nparam, parametrization_bool)[1]
 
             Det = calc_det(lamb0, sigma0)
@@ -276,18 +274,16 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
 
             button.on_clicked(reset)
 
-    return ax
+    plt.show()
 
 
-def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_size=(10, 8)):
+def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8)):
     """Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)
 
     :param schem: Scheme depending on a parameter lambda
     :type schem: class:`Scheme`
     :param lamb: A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None
     :type lamb: int or float or list or numpy.ndarray, optional
-    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2
-    :type order: int, optional
     :param lambdacursor: Boolean to indicate the use of a cursor for lambda's moving among the lamb values, defaults to False
     :type lambdacursor: bool, optional
     :param nparam: Size of the discretization of the unit circle, defaults to 300
@@ -300,7 +296,7 @@ def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_si
     if lambdacursor == False:
         fig, ax = plt.subplots(figsize=fig_size)
         if isinstance(lamb, (int, float)):
-            S = schem(lamb, order=order)
+            S = schem(lamb)
             X, Y = S.symbol(nparam)
             T = np.linspace(0, 7, 1000)
 
@@ -316,7 +312,7 @@ def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_si
             plt.ylim(-1, 1)
             plt.xlim(-1, 1)
             for l in lamb:
-                S = schem(l, order=order)
+                S = schem(l)
                 X, Y = S.symbol(nparam)
                 ax.plot(X, Y, linewidth=2, label=f"$\lambda = $ {l}")
             T = np.linspace(0, 7, 1000)
@@ -332,7 +328,7 @@ def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_si
             lamb = np.array([lamb], dtype=float)
         fig = plt.figure(1, figsize=(10, 8))
         plt.title("Symbol of " + schem(1).name(lambda_bool=False))
-        ax = fig.add_subplot(111)
+        ax = fig.add_subplot(111, label="cursor4")
         fig.subplots_adjust(left=0.25, bottom=0.25)
         ax.set_xlim(-3, 3)
         ax.axis("equal")
@@ -346,7 +342,7 @@ def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_si
         Param = np.cos(2 * pi * Param) + 1j * np.sin(2 * pi * Param)
         Theta = np.linspace(0, 2 * pi, 500)
 
-        X, Y = schem(lamb0, order=order).symbol(nparam)
+        X, Y = schem(lamb0).symbol(nparam)
         [line] = ax.plot(X, Y, linewidth=2, label="symbol")
         [cible] = ax.plot(np.cos(Theta), np.sin(Theta), "--", color="black", label="unit circle")
         ax.legend(loc="best")
@@ -369,7 +365,7 @@ def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_si
         )
 
         def update(val):
-            S = schem(lambda_slider.val, order=order)
+            S = schem(lambda_slider.val)
             X, Y = S.symbol(nparam)
             line.set_xdata(X)
             line.set_ydata(Y)
@@ -386,10 +382,10 @@ def symbolplot(schem, lamb=None, order=2, lambdacursor=False, nparam=300, fig_si
             lambda_slider.reset()
 
         button.on_clicked(reset)
-    return ax
+    plt.show()
 
 
-def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, nparam=100, nlambda=200, nsigma=30, parametrization_bool=True, fig_size=(15, 7), fontsize=18):
+def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100, nlambda=200, nsigma=30, parametrization_bool=True, fig_size=(15, 7), fontsize=18):
     """Computes the number of zeros of the Kreiss-Lopatinskii determinant for different boundary conditions, for different lambdas or/and for different sigmas
 
     .. seealso:: for more details and examples, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]
@@ -402,8 +398,6 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, np
     :type lamb: int or float or list or numpy.ndarray, optional
     :param sigma: Gap between the mesh and the boundary condition, defaults to 0
     :type sigma: int or float or list or numpy.ndarray, optional
-    :param order: Order of the scheme (for Lax-Wendroff scheme), defaults to 2
-    :type order: int, optional
     :param nparam: Size of the discretization of the unit circle for the Kreiss-Lopatinskii curve, defaults to 100
     :type nparam: int, optional
     :param nlambda: Size of the discretization of the lambda's, defaults to 200
@@ -437,7 +431,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, np
     if isinstance(left_bound, list) or (isinstance(left_bound, np.ndarray) and left_bound.ndim == 1):
         n = len(left_bound)
         fig, axs = plt.subplots(nrows=n, ncols=1, figsize=fig_size)
-        axs[0].set_title(f"Number of zeros of KL determinant for {schem(1/2, order = order, sigma=sigma).name(sigma_bool=True)} with respect to $\lambda$")
+        axs[0].set_title(f"Number of zeros of KL determinant for {schem(1/2, sigma=sigma).name(sigma_bool=True)} with respect to $\lambda$")
         for i, bound in enumerate(left_bound):
             if i == n - 1:
                 axs[i].set_xlabel("$\lambda$")
@@ -449,7 +443,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, np
             axs[i].set_ylabel(bound.name())
             WindingNumbers = []
             for l in lambdas:
-                S = schem(l, bound, sigma=sigma, order=order)
+                S = schem(l, bound, sigma=sigma)
                 Param, Det = S.detKL(nparam, parametrization_bool)
                 WindingNumbers.append(Indice(Det))
             separator = []
@@ -471,19 +465,17 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, np
                     else:
                         axs[i].plot([separator[j], separator[j]], [0, 1], color="black")
                         axs[i].text((separator[j] + separator[j - 1]) / 2, 0.5, value[j], horizontalalignment="center", verticalalignment="center", fontsize=fontsize)
-        return axs
+        plt.show()
     else:
         fig, ax = plt.subplots(figsize=fig_size)
         if isinstance(sigma, (int, float)) and not isinstance(sigma, bool):
             WindingNumbers = []
             for l in lambdas:
-                S = schem(l, left_bound, sigma=sigma, order=order)
+                S = schem(l, left_bound, sigma=sigma)
                 Param, Det = S.detKL(nparam, parametrization_bool)
                 WindingNumbers.append(Indice(Det))
             ax.plot(lambdas, S.r - np.array(WindingNumbers))
-            plt.title(
-                f"Number of zeros of KL determinant for {schem(1/2,left_bound, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$"
-            )
+            plt.title(f"Number of zeros of KL determinant for {schem(1/2,left_bound, sigma=sigma).name(boundary_bool = True, sigma_bool = True, lambda_bool = False)} with respect to $\lambda$")
         else:
             if sigma:
                 sigmin = -1 / 2
@@ -496,7 +488,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, np
             WindingNumbers = np.zeros((nsigma, nlambda))
             for i, l in enumerate(lambdas):
                 for j, sig in enumerate(sigmas):
-                    S = schem(l, left_bound, sigma=sig, order=order)
+                    S = schem(l, left_bound, sigma=sig)
                     Param, Det = S.detKL(nparam, parametrization_bool)
                     WindingNumbers[j, i] = Indice(Det)
             data = S.r - WindingNumbers
@@ -504,8 +496,8 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, order=2, np
             plt.contourf(sigmas, lambdas, data)
             plt.colorbar()
             plt.title(
-                f"Number of zeros of KL determinant for {schem(1/2,left_bound, order = order, sigma=sigma).name(boundary_bool = True, sigma_bool = False, lambda_bool = False)} with respect to $\lambda$ and $\sigma$"
+                f"Number of zeros of KL determinant for {schem(1/2,left_bound, sigma=sigma).name(boundary_bool = True, sigma_bool = False, lambda_bool = False)} with respect to $\lambda$ and $\sigma$"
             )
             plt.xlabel("$\lambda$")
             plt.ylabel("$\sigma$")
-        return ax
+        plt.show()
