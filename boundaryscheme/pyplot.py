@@ -34,7 +34,7 @@ def detKLplotsimple(schem, n_param=300, parametrization_bool=True):
     ax.axvline(x=0, color="0.5")
     ax.axhline(y=0, color="0.5")
     ax.axis("equal")
-    return ax
+    plt.show()
 
 
 def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=False, sigmacursor=False, nparam=300, parametrization_bool=True, fig_size=(6, 4)):
@@ -115,7 +115,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             lamb0 = (lambmax + lambmin) / 2
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(1, left_bound, sigma=sigma[0]).name(boundary_bool=True, sigma_bool=True))
-            ax = fig.add_subplot(111)
+            ax = fig.add_subplot(111,label = "cursor1")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -170,7 +170,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             sigma0 = (sigmax + sigmin) / 2
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(lamb[0], left_bound).name(boundary_bool=True, lambda_bool=True))
-            ax = fig.add_subplot(111)
+            ax = fig.add_subplot(111,label = "cursor2")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -224,7 +224,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
 
             fig = plt.figure(1, figsize=(10, 8))
             plt.title("DKL curve of " + schem(1, left_bound).name(boundary_bool=True))
-            ax = fig.add_subplot(111)
+            ax = fig.add_subplot(111,label = "cursor3")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -274,7 +274,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
 
             button.on_clicked(reset)
 
-    return ax
+    plt.show()
 
 
 def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8)):
@@ -328,7 +328,7 @@ def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8
             lamb = np.array([lamb], dtype=float)
         fig = plt.figure(1, figsize=(10, 8))
         plt.title("Symbol of " + schem(1).name(lambda_bool=False))
-        ax = fig.add_subplot(111)
+        ax = fig.add_subplot(111,label = "cursor4")
         fig.subplots_adjust(left=0.25, bottom=0.25)
         ax.set_xlim(-3, 3)
         ax.axis("equal")
@@ -382,7 +382,7 @@ def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8
             lambda_slider.reset()
 
         button.on_clicked(reset)
-    return ax
+    plt.show()
 
 
 def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100, nlambda=200, nsigma=30, parametrization_bool=True, fig_size=(15, 7), fontsize=18):
@@ -465,7 +465,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100,
                     else:
                         axs[i].plot([separator[j], separator[j]], [0, 1], color="black")
                         axs[i].text((separator[j] + separator[j - 1]) / 2, 0.5, value[j], horizontalalignment="center", verticalalignment="center", fontsize=fontsize)
-        return axs
+        plt.show()
     else:
         fig, ax = plt.subplots(figsize=fig_size)
         if isinstance(sigma, (int, float)) and not isinstance(sigma, bool):
@@ -502,4 +502,4 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100,
             )
             plt.xlabel("$\lambda$")
             plt.ylabel("$\sigma$")
-        return ax
+        plt.show()
