@@ -61,7 +61,7 @@ class Name(Scheme):
     :type sigma: float, optional
     """
 
-    def __init__(self, lamb, boundary=Dirichlet(), sigma=0, D=0, **kwargs):
+    def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
         """Constructor method"""
         self.sigma = sigma
         self.lamb = lamb
@@ -79,7 +79,7 @@ $U_{j}^{n+1} = \dfrac{\lambda}{3}U_{j-1}^n + \lambda^2 U_j^n -\dfrac{1}{6} U_{j+
 
 ```python
 class Name(Scheme):
-    def __init__(self, lamb, boundary=Dirichlet(), sigma=0, D=0, **kwargs):
+    def __init__(self, lamb, boundary=Dirichlet(), sigma=0, **kwargs):
         self.sigma = sigma
         self.lamb = lamb
         self.inter = [lamb/3, lamb**2, -1/6, -lamb/6]
