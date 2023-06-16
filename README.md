@@ -40,14 +40,14 @@ plt.show()
 
 # Creation of a scheme
 
-Pour écrire le schéma $U_{j}^{n+1} = \dfrac{1}{3}U_{j-1}^n + U_j^n -\dfrac{1}{6} U_{j+1}^n - \dfrac{1}{6}U_{j+2}^n$ avec un certain bord $B$, il faut écrire 
+To compute the scheme $U_{j}^{n+1} = \dfrac{1}{3}U_{j-1}^n + U_j^n -\dfrac{1}{6} U_{j+1}^n - \dfrac{1}{6}U_{j+2}^n$ with a boundary $B$, write 
 
 ```python
 S = Scheme([1/3,1,-1/6,-1/6],1, B) 
 ```
 
 
-Pour écrire un schéma qui dépend d'un paramètre $\lambda$, on peut créer la classe du schéma de la façon suivante :
+To compute the scheme depending on a parameter $\lambda$, create a Python class using the following formulation:
 
 ```python
 class Name(Scheme):
@@ -74,8 +74,8 @@ class Name(Scheme):
         """Name method"""
         return "Name"
 ```
-Par exemple pour écrire le schéma 
-$U_{j}^{n+1} = \dfrac{\lambda}{3}U_{j-1}^n + \lambda^2 U_j^n -\dfrac{1}{6} U_{j+1}^n - \dfrac{\lambda}{6}U_{j+2}^n$ avec un certain bord $B$, il faut écrire 
+For example, to compute the scheme 
+$U_{j}^{n+1} = \dfrac{\lambda}{3}U_{j-1}^n + \lambda^2 U_j^n -\dfrac{1}{6} U_{j+1}^n - \dfrac{\lambda}{6}U_{j+2}^n$ with a boundary $B$, write 
 
 ```python
 class Name(Scheme):
