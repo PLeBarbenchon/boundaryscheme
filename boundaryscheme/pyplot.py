@@ -79,7 +79,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 ax.axvline(x=0, color="0.5")
                 ax.axhline(y=0, color="0.5")
                 ax.legend(loc="best")
-                plt.title("Symbol of " + S.name(boundary_bool=True, sigma_bool=True, lambda_bool=False))
+                plt.title("Kreiss-Lopatinskii determinant curve of " + S.name(boundary_bool=True, sigma_bool=True, lambda_bool=False))
             elif len(lamb) == 1:
                 sigma = np.sort(sigma)
                 fig, ax = plt.subplots(figsize=fig_size)
@@ -117,14 +117,14 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             plt.title("DKL curve of " + schem(1, left_bound, sigma=sigma[0]).name(boundary_bool=True, sigma_bool=True))
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
-            ax.axis("equal")
+            
 
             def calc_det(l):
                 S = schem(l, left_bound, sigma=sigma[0])
                 return S.detKL(nparam, parametrization_bool)[1]
 
             Det = calc_det(lamb0)
-            [line] = ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, color="green")
+            [line] = ax.plot([z.real for z in Det], [z.imag for z in Det], linewidth=2, color="red")
             ax.axvline(x=0, color="0.5")
             ax.axhline(y=0, color="0.5")
             ax.axis("equal")
@@ -140,7 +140,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 xmax = max([z.real for z in Det])
                 ymin = min([z.imag for z in Det])
                 ymax = max([z.imag for z in Det])
-                ax.set_xlim(xmin, xmax)
+                ax.set_xlim(min(xmin,-0.5), max(xmax,0.5))
                 ax.set_ylim(ymin, ymax)
                 fig.canvas.draw_idle()
 
@@ -351,7 +351,7 @@ def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8
             minvalue = np.min(lamb)
             maxvalue = np.max(lamb)
 
-        axlamb = ax.axes([0.25, 0.08, 0.65, 0.03])
+        axlamb = plt.axes([0.25, 0.08, 0.65, 0.03])
         lambda_slider = Slider(
             ax=axlamb,
             label="lambda",
