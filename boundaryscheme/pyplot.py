@@ -115,7 +115,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             lamb0 = (lambmax + lambmin) / 2
             fig, ax = plt.subplots(figsize=fig_size)
             plt.title("DKL curve of " + schem(1, left_bound, sigma=sigma[0]).name(boundary_bool=True, sigma_bool=True))
-            # fig.subplots_adjust(left=0.25, bottom=0.25)
+            fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
 
@@ -351,7 +351,7 @@ def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8
             minvalue = np.min(lamb)
             maxvalue = np.max(lamb)
 
-        axlamb = plt.axes([0.25, 0.08, 0.65, 0.03])
+        axlamb = ax.axes([0.25, 0.08, 0.65, 0.03])
         lambda_slider = Slider(
             ax=axlamb,
             label="lambda",
