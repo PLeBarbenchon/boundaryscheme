@@ -1,0 +1,1151 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Welcome to boundaryscheme’s documentation!" href="index.html" />
+
+    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
+        <title>boundaryscheme package - boundaryscheme 2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">boundaryscheme 2.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/lightlogo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/darklogo.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">boundaryscheme 2.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">boundaryscheme package</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="boundaryscheme-package">
+<h1>boundaryscheme package<a class="headerlink" href="#boundaryscheme-package" title="Permalink to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-boundaryscheme.boundaries">
+<span id="boundaryscheme-boundaries-module"></span><h2>boundaryscheme.boundaries module<a class="headerlink" href="#module-boundaryscheme.boundaries" title="Permalink to this heading">#</a></h2>
+<p>This file defines the boundaries classes</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.Boundary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.boundaries.</span></span><span class="sig-name descname"><span class="pre">Boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#Boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.Boundary" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class to represent the boundary condition.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.DDJ">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.boundaries.</span></span><span class="sig-name descname"><span class="pre">DDJ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gderivatives</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#DDJ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.DDJ" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.boundaries.Boundary" title="boundaryscheme.boundaries.Boundary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Boundary</span></code></a></p>
+<p>This is a class to represent the boundary Reconstruction procedure explained in [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations] and in [Dakin Desprès Jaouen, 2018 : Inverse Lax–Wendroff boundary treatment for compressible Lagrange-remap hydrodynamics on cartesian grids]</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Warning d represents the order and kd represente the truncature, the notation is not in the same order than SILW, it is to respect the order of [DakinDespresJaouen18]</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kd</strong> (<em>int</em>) – Index of the beginning of extrapolation using</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – Order of consistency of the boundary condition</p></li>
+<li><p><strong>dx</strong> (<em>float</em><em>, </em><em>optional</em>) – Space discretization, defaults to 1/10</p></li>
+<li><p><strong>a</strong> (<em>float</em><em>, </em><em>optional</em>) – Velocity, defaults to 1</p></li>
+<li><p><strong>gderivatives</strong> (<em>list</em><em>, </em><em>optional</em>) – List of the boundary data and its derivatives, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.DDJ.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#DDJ.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.DDJ.name" title="Permalink to this definition">#</a></dt>
+<dd><p>Name</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.Dirichlet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.boundaries.</span></span><span class="sig-name descname"><span class="pre">Dirichlet</span></span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#Dirichlet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.Dirichlet" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.boundaries.Boundary" title="boundaryscheme.boundaries.Boundary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Boundary</span></code></a></p>
+<p>This is a class to represent the homogeneous dirichlet boundary condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>d</strong> (<em>int</em>) – Order of consistency</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.Dirichlet.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#Dirichlet.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.Dirichlet.name" title="Permalink to this definition">#</a></dt>
+<dd><p>Name</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.SILW">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.boundaries.</span></span><span class="sig-name descname"><span class="pre">SILW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gderivatives</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#SILW"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.SILW" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.boundaries.Boundary" title="boundaryscheme.boundaries.Boundary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Boundary</span></code></a></p>
+<p>This is a class to represent the Simplified Inverse Lax Wendroff boundary procedure, see [Vilar,Shu, 2015 : Development and stability analysis of the inverse Lax Wendroff boundary treatment for central compact schemes]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kd</strong> (<em>int</em>) – Index of the beginning of extrapolation using</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – Order of consistency of the boundary condition</p></li>
+<li><p><strong>dx</strong> (<em>float</em><em>, </em><em>optional</em>) – Space discretization, defaults to 1/10</p></li>
+<li><p><strong>a</strong> (<em>float</em><em>, </em><em>optional</em>) – Velocity, defaults to 1</p></li>
+<li><p><strong>gderivatives</strong> (<em>list</em><em>, </em><em>optional</em>) – List of the boundary data and its derivatives, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.boundaries.SILW.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/boundaries.html#SILW.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.boundaries.SILW.name" title="Permalink to this definition">#</a></dt>
+<dd><p>Name</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boundaryscheme.complex_winding_number">
+<span id="boundaryscheme-complex-winding-number-module"></span><h2>boundaryscheme.complex_winding_number module<a class="headerlink" href="#module-boundaryscheme.complex_winding_number" title="Permalink to this heading">#</a></h2>
+<p>This file implements a routine to perform the “point in polygon” inclusion test</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.complex_winding_number.Indice">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.complex_winding_number.</span></span><span class="sig-name descname"><span class="pre">Indice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/complex_winding_number.html#Indice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.complex_winding_number.Indice" title="Permalink to this definition">#</a></dt>
+<dd><p>take a list of (x_i,x_j) representing a polygon
+return the winding number of the origin with respect to the curve</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.complex_winding_number.is_left">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.complex_winding_number.</span></span><span class="sig-name descname"><span class="pre">is_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/complex_winding_number.html#is_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.complex_winding_number.is_left" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.complex_winding_number.translate">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.complex_winding_number.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/complex_winding_number.html#translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.complex_winding_number.translate" title="Permalink to this definition">#</a></dt>
+<dd><p>take a list of complex values
+return the list of the coordinates of each complex in the R^2 plan</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.complex_winding_number.wn_PnPoly">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.complex_winding_number.</span></span><span class="sig-name descname"><span class="pre">wn_PnPoly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/complex_winding_number.html#wn_PnPoly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.complex_winding_number.wn_PnPoly" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-boundaryscheme.pyplot">
+<span id="boundaryscheme-pyplot-module"></span><h2>boundaryscheme.pyplot module<a class="headerlink" href="#module-boundaryscheme.pyplot" title="Permalink to this heading">#</a></h2>
+<p>This file defines utils function specific to the library</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.pyplot.detKLplot">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">detKLplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bound=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambdacursor=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigmacursor=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam=300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size=(10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#detKLplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.detKLplot" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schem</strong> (class:<cite>Scheme</cite>) – Scheme depending on a parameter lambda</p></li>
+<li><p><strong>left_bound</strong> (class:<cite>Boundary</cite>, optional) – Left boundary of the class Boundary, defaults to Dirichlet()</p></li>
+<li><p><strong>lamb</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</p></li>
+<li><p><strong>sigma</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+<li><p><strong>lambdacursor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Boolean to indicate the use of a cursor for lambda’s moving among the lamb values, defaults to False</p></li>
+<li><p><strong>sigmacursor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Boolean to indicate the use of a cursor for sigma’s moving among the sigma values, defaults to False</p></li>
+<li><p><strong>n_param</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle, defaults to 300</p></li>
+<li><p><strong>parametrization_bool</strong> (<em>bool</em><em>, </em><em>optional</em>) – True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</p></li>
+<li><p><strong>fig_size</strong> (<em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>, </em><em>optional</em>) – Size of the figure, defaults to (6,4)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the Kreiss-Lopatinskii curve for the scheme</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>plot object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.pyplot.detKLplotsimple">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">detKLplotsimple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#detKLplotsimple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.detKLplotsimple" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the Kreiss-Lopatinskii determinant curve for a given scheme</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schem</strong> (class:<cite>Scheme</cite>) – Scheme considered</p></li>
+<li><p><strong>n_param</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle, defaults to 300</p></li>
+<li><p><strong>parametrization_bool</strong> (<em>bool</em><em>, </em><em>optional</em>) – True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the Kreiss-Lopatinskii curve</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>plot object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.pyplot.nbrzerosdetKL">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">nbrzerosdetKL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bound=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlambda=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsigma=30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size=(15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize=18</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#nbrzerosdetKL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.nbrzerosdetKL" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the number of zeros of the Kreiss-Lopatinskii determinant for different boundary conditions, for different lambdas or/and for different sigmas</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>for more details and examples, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schem</strong> (class:<cite>Scheme</cite>) – Scheme depending on a parameter lambda</p></li>
+<li><p><strong>left_bound</strong> (class:<cite>Boundary</cite> or list of class:<cite>Boundary</cite>, optional) – Left boundary of the class Boundary, defaults to Dirichlet()</p></li>
+<li><p><strong>lamb</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</p></li>
+<li><p><strong>sigma</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+<li><p><strong>nparam</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle for the Kreiss-Lopatinskii curve, defaults to 100</p></li>
+<li><p><strong>nlambda</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the lambda’s, defaults to 200</p></li>
+<li><p><strong>nsigma</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the sigma’s, defaults to 30</p></li>
+<li><p><strong>parametrization_bool</strong> (<em>bool</em><em>, </em><em>optional</em>) – True to have a refinment close to the origin, False to have a uniform discretization of the unit circle, defaults to True</p></li>
+<li><p><strong>fig_size</strong> (<em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>, </em><em>optional</em>) – Size of the figure, defaults to (15,7)</p></li>
+<li><p><strong>fontsize</strong> (<em>int</em><em> , </em><em>optional</em>) – Size of the font of the text in the plot, defaults to 18</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the number of zeros of the Kreiss-Lopatinskii determinant for the scheme</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>plot object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.pyplot.show">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.show" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.pyplot.symbolplot">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.pyplot.</span></span><span class="sig-name descname"><span class="pre">symbolplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambdacursor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nparam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">8)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/pyplot.html#symbolplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.pyplot.symbolplot" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schem</strong> (class:<cite>Scheme</cite>) – Scheme depending on a parameter lambda</p></li>
+<li><p><strong>lamb</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em> or </em><em>numpy.ndarray</em><em>, </em><em>optional</em>) – A value lambda or a numpy.ndarray of several values of lambda (lambda is the Courant number a.dt/dx), defaults to None</p></li>
+<li><p><strong>lambdacursor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Boolean to indicate the use of a cursor for lambda’s moving among the lamb values, defaults to False</p></li>
+<li><p><strong>nparam</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the discretization of the unit circle, defaults to 300</p></li>
+<li><p><strong>fig_size</strong> (<em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>, </em><em>optional</em>) – Size of the figure, defaults to (10,8)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the symbol curve of the scheme</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>plot object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-boundaryscheme.schemes">
+<span id="boundaryscheme-schemes-module"></span><h2>boundaryscheme.schemes module<a class="headerlink" href="#module-boundaryscheme.schemes" title="Permalink to this heading">#</a></h2>
+<p>This file defines the schemes classes</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.BB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">BB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#BB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.BB" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
+<p>This is a class to represent an example of numerical scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.BB.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#BB.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.BB.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Name method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.BeamWarming">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">BeamWarming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#BeamWarming"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.BeamWarming" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.SchemeP0" title="boundaryscheme.schemes.SchemeP0"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemeP0</span></code></a></p>
+<p>This is a class to represent the Beam-Warming scheme (which is totally upwind).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.BeamWarming.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#BeamWarming.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.BeamWarming.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Name method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Dissipatif">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">Dissipatif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Dissipatif"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Dissipatif" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
+<p>This is a class to represent a dissipative scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+<li><p><strong>D</strong> (<em>float</em><em>, </em><em>optional</em>) – A parameter of the dissipativity, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Dissipatif.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Dissipatif.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Dissipatif.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Name method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.LaxFriedrichs">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">LaxFriedrichs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxFriedrichs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxFriedrichs" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
+<p>This is a class to represent the Lax-Friedrichs scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.LaxFriedrichs.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxFriedrichs.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxFriedrichs.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Name method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.LaxWendroff">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">LaxWendroff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#LaxWendroff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.LaxWendroff" title="Permalink to this definition">#</a></dt>
+<dd><p>This is a function which create the class of LaxWendroff scheme at order ‘order’
+:param order: Order of the Lax-Wendroff scheme, defaults to 2
+:type order: int, optional</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">Scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class to represent a numerical scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inter</strong> (<em>list</em>) – List of float coefficient that represent the interior scheme</p></li>
+<li><p><strong>center</strong> (<em>int</em>) – Index of the central coefficient of the scheme</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>[Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.Kappa">
+<span class="sig-name descname"><span class="pre">Kappa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.Kappa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.Kappa" title="Permalink to this definition">#</a></dt>
+<dd><p>Selection of kappas that come from the inside of the unit disk
+:param z0: Parameter z0 of the characteristic polynomial
+:type z0: complex
+:return: Roots of the characteristic polynomial for z0 that are inside the unit disk or are coming from the inside of the unit disk
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.count_root">
+<span class="sig-name descname"><span class="pre">count_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.count_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.count_root" title="Permalink to this definition">#</a></dt>
+<dd><p>Counts the number of roots from kappa(z0) that comes from the inside of the unit disk
+:param eta: Gap between z and z0
+:type eta: float
+:param eps: Threshold
+:type eps: float
+:param z0: Parameter z0
+:type z0: complex
+:param kappa: Multiple root kappa linked to z0
+:type kappa: complex
+:return: Number of roots coming from the inside of the unit disk
+:rtype: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.detKL">
+<span class="sig-name descname"><span class="pre">detKL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.detKL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.detKL" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the Kreiss-Lopatinskii determinant on the unit circle
+:param n_param: Number of discretization of the unit circle
+:type n_param: int
+:param parametrization_bool: If True, the discretization is refined close to the origin. If False, the discretization is uniform on the unit circle.
+:type parametrization_bool: bool
+:return: The parametrization of the unit circle and the value of the Kreiss-Lopatinskii determinant on the unit circle
+:rtype: (numpy.ndarray, numpy.ndarray)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundary_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.name" title="Permalink to this definition">#</a></dt>
+<dd><p>Gives a name of the scheme</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.pol">
+<span class="sig-name descname"><span class="pre">pol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.pol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.pol" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the characteristic polynomial of the scheme
+:param z: Parameter z of the characteristic polynomial
+:type z: complex
+:return: Characteristic polynomial of the scheme
+:rtype: class: Polynomial</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.roots">
+<span class="sig-name descname"><span class="pre">roots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.roots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.roots" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the roots of the characteristic polynomial
+:param z: Parameter z of the characteristic polynomial
+:type z: complex
+:return: Roots of the characteristic polynomial sorting by utils.sort function
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.scheme">
+<span class="sig-name descname"><span class="pre">scheme</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.scheme" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the parameters of the scheme : the interior coefficients et the center
+:return: Parameters of the scheme
+:rtype: (list,int)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Gives a short name of the scheme</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.symbol">
+<span class="sig-name descname"><span class="pre">symbol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.symbol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.symbol" title="Permalink to this definition">#</a></dt>
+<dd><p>To draw the symbol curve of the scheme
+:param n: Number of points of the parametrisation of the unit circle, defaults to 300
+:type n: int, optional
+:return: Abscissa and Ordinate of the symbol curve of the scheme
+:rtype: (list,list)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.toep">
+<span class="sig-name descname"><span class="pre">toep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">J</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([],</span> <span class="pre">shape=(1,</span> <span class="pre">0),</span> <span class="pre">dtype=float64)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.toep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.toep" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the Toeplitz matrix of the scheme with two boundaries
+:param J: Size of the Toeplitz matrix
+:type J: int
+:param right_bound: Right boundary of the scheme
+:type right_bound: class:<cite>Boundary</cite>
+:return: Toeplitz matrix of the scheme
+:rtype: numpy.ndarray</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Scheme.toep_circ">
+<span class="sig-name descname"><span class="pre">toep_circ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">J</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Scheme.toep_circ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Scheme.toep_circ" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the circulant Toeplitz matrix of the scheme
+:param J: Size of the circulant matrix
+:type J: int
+:return: Circulant matrix of the scheme
+:rtype: numpy.ndarray</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.SchemeP0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">SchemeP0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#SchemeP0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.SchemeP0" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
+<p>This is a class to represent a totally upwind scheme (with p = 0).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inter</strong> (<em>list</em>) – List of float coefficient that represent the interior scheme</p></li>
+<li><p><strong>center</strong> (<em>int</em>) – Index of the central coefficient of the scheme</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>[Boutin, Le Barbenchon, Seguin, 2023 : On the stability of totally upwind schemes for the hyperbolic initial boundary value problem]</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.SchemeP0.detKL">
+<span class="sig-name descname"><span class="pre">detKL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametrization_bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#SchemeP0.detKL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.SchemeP0.detKL" title="Permalink to this definition">#</a></dt>
+<dd><p>Redefinition of the detKL method of the :class: <cite>Scheme</cite> but in the particular case of totally upwind scheme
+:param n_param: Number of discretization of the unit circle
+:type n_param: int
+:param parametrization_bool: If True, the discretization is refined close to the origin. If False, the discretization is uniform on the unit circle.
+:type parametrization_bool: bool
+:return: The parametrization of the unit circle and the value of the Kreiss-Lopatinskii determinant on the unit circle
+:rtype: (numpy.ndarray, numpy.ndarray)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.ThirdOrder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">ThirdOrder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#ThirdOrder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.ThirdOrder" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.Scheme" title="boundaryscheme.schemes.Scheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scheme</span></code></a></p>
+<p>This is a class to represent the O3-scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.ThirdOrder.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#ThirdOrder.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.ThirdOrder.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Name method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Upwind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boundaryscheme.schemes.</span></span><span class="sig-name descname"><span class="pre">Upwind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=&lt;boundaryscheme.boundaries.Dirichlet</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Upwind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Upwind" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boundaryscheme.schemes.SchemeP0" title="boundaryscheme.schemes.SchemeP0"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemeP0</span></code></a></p>
+<p>This is a class to represent the Upwind scheme (which is totally upwind).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+<li><p><strong>boundary</strong> (class:<cite>Boundary</cite>, optional) – Boundary condition, defaults to Dirichlet()</p></li>
+<li><p><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Gap between the mesh and the boundary condition, defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryscheme.schemes.Upwind.shortname">
+<span class="sig-name descname"><span class="pre">shortname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/schemes.html#Upwind.shortname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.schemes.Upwind.shortname" title="Permalink to this definition">#</a></dt>
+<dd><p>Name method</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boundaryscheme.utils">
+<span id="boundaryscheme-utils-module"></span><h2>boundaryscheme.utils module<a class="headerlink" href="#module-boundaryscheme.utils" title="Permalink to this heading">#</a></h2>
+<p>This file defines utils function specific to the library</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.Lwconstructor">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">Lwconstructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#Lwconstructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.Lwconstructor" title="Permalink to this definition">#</a></dt>
+<dd><p>Constructor of Lax-Wendroff scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>order</strong> (<em>int</em>) – Order of Lax Wendroff scheme</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Function depending on the Courant number lambda and maps to the parameters of the Lax-Wendroff scheme</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.boundary_quasi_toep_to_boundary">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">boundary_quasi_toep_to_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quasi_toep_boundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#boundary_quasi_toep_to_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.boundary_quasi_toep_to_boundary" title="Permalink to this definition">#</a></dt>
+<dd><p>Transformation from a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix to a boundary condition written with ghost points.
+:param quasi_toep_boundary: Boundary condition BB written as the extraction of the r first rows of a Quasi-Toeplitz matrix
+:type quasi_toep_boundary: numpy.ndarray
+:param bn: Boundary data bn such that (U_0^{n+1},…,U_{r-1}^{n+1}) = BB (U_0^n,…,U_{m-1}^n) + b_n(t^n)
+:type bn: function
+:param inter: List of float coefficient that represent the interior scheme
+:type inter: list
+:param center: Index of the central coefficient of the scheme
+:type center: int
+:return: Boundary condition B written as U_{-r} = …, …, U_{-1} =…
+and the function g_n such that (U_{-r}^n,…,U_{-1}^n) = B(U_0^n,…,U_{m-1}^n) + g_n(t^n)
+:rtype: (numpy.ndarray,function)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.boundary_to_boundary_quasi_toep">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">boundary_to_boundary_quasi_toep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundary_condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#boundary_to_boundary_quasi_toep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.boundary_to_boundary_quasi_toep" title="Permalink to this definition">#</a></dt>
+<dd><p>Transformation from a boundary condition written with ghost points to a boundary condition written as the extraction of the r first rows of the Quasi-Toeplitz matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>boundary_condition</strong> (<em>numpy.ndarray</em>) – Boundary condition written as U_{-r} = …, …,U_{-1} =…, etc</p></li>
+<li><p><strong>gn</strong> (<em>function</em>) – Boundary data</p></li>
+<li><p><strong>inter</strong> (<em>list</em>) – List of float coefficient that represent the interior scheme</p></li>
+<li><p><strong>center</strong> (<em>int</em>) – Index of the central coefficient of the scheme</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extraction of the r first rows of the Quasi-Toeplitz matrix and the function b_n(t) such that (U_0^{n+1},…,U_{r-1}^{n+1}) = T_J (U_0^n,…,U_{m-1}^n) + b_n(t^n)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(numpy.ndarray,function)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.coefBinomial">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">coefBinomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#coefBinomial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.coefBinomial" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the binomial coefficient</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of elements</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – Number of choosen elements</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Binomial coefficient “n choose k”</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.epsilon">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">epsilon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#epsilon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.epsilon" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the half of the smallest distance between two distincts elements of the list L</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>L</strong> (<em>list</em>) – List of complex numbers (z_i)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>min |z_i-z_j| / 2 (when z_i != z_j)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.eta_func">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">eta_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polynom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#eta_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.eta_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the distance eta
+.. note:: for more details, see [Boutin, Le Barbenchon, Seguin, 2023 : Stability of finite difference schemes for the hyperbolic initial boundary value problem by winding number computations]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eps</strong> (<em>float</em>) – Radius</p></li>
+<li><p><strong>kappa0</strong> (<em>complex</em>) – Center</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Number of discretization of the circle centered in kappa0 of radius eps</p></li>
+<li><p><strong>polynom</strong> (<em>Polynomial</em>) – Polynomial</p></li>
+<li><p><strong>r</strong> (<em>int</em>) – Integer</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>min |polynom(kappa)|/(1+eps)^r for kappa on the circle centered in kappa0 of radius eps</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.neighboor">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">neighboor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#neighboor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.neighboor" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if z2 is in a neighboring sector of sector1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sector1</strong> (<em>int</em>) – Integer between 0 and 7 and represent the angular sector [sector1*pi/4, (sector1+1)*pi/4[</p></li>
+<li><p><strong>z2</strong> (<em>complex</em>) – Complex number</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if and only if the complex z2 is in a neighboring sector of [sector1*pi/4, (sector1+1)*pi/4[</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.parametrization">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">parametrization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve_formula</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#parametrization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.parametrization" title="Permalink to this definition">#</a></dt>
+<dd><p>Finds the discretization of the curve refine if it is needed (as [ZapataMartin2014] procedure).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_param</strong> (<em>int</em>) – Integer for the default discretization of [0,2pi]</p></li>
+<li><p><strong>curve_formula</strong> – A fonction : z in the unit circle mapsto a complex and represent a curve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The discretization of the unit circle and the values of the curve for this discretization</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(list,list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.recflux">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">recflux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#recflux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.recflux" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the coefficient of the Lax-Wendroff scheme at any order. Recursive function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – Order of Lax Wendroff scheme</p></li>
+<li><p><strong>lamb</strong> (<em>float</em>) – The Courant number, i.e  a.dt/dx where “a” is the velocity, “dt” the time discretization and “dx” the space discretization</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parameters of the Lax-Wendroff scheme : interior coefficient and the center.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(np.ndarray,int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.schemscal">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">schemscal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#schemscal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.schemscal" title="Permalink to this definition">#</a></dt>
+<dd><p>Multiplication of a scheme by a scalar</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schem</strong> (<em>(</em><em>list</em><em>,</em><em>int</em><em>)</em>) – Representation of a numerical scheme with the interior coefficients and the center</p></li>
+<li><p><strong>scal</strong> (<em>float</em>) – Scalar element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Multiplication of schem by scal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(list,int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.schemsum">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">schemsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schem1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schem2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#schemsum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.schemsum" title="Permalink to this definition">#</a></dt>
+<dd><p>Addition of two numerical schemes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schem1</strong> (<em>(</em><em>list</em><em>,</em><em>int</em><em>)</em>) – Representation of a numerical scheme with the interior coefficients and the center</p></li>
+<li><p><strong>schem2</strong> (<em>(</em><em>list</em><em>,</em><em>int</em><em>)</em>) – Representation of a numerical scheme with the interior coefficients and the center</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sum of schem1 and schem2</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(list,int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.sector">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#sector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.sector" title="Permalink to this definition">#</a></dt>
+<dd><p>Finds the sector of z</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the argument is between -pi and pi and here “a” is between 0 and 7</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>complex</em>) – Complex number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sector of z, it is an integer “a” between 0 and 7 which correspond to the angular sector [a*pi/4, (a+1)*pi/4[</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boundaryscheme.utils.sort">
+<span class="sig-prename descclassname"><span class="pre">boundaryscheme.utils.</span></span><span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boundaryscheme/utils.html#sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryscheme.utils.sort" title="Permalink to this definition">#</a></dt>
+<dd><p>Sort (bubble sort)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>L</strong> (<em>list</em>) – List of complex numbers</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The same list but in the ascending order of modulus and for values with same modulus, sort in the ascending order of argument (between -pi and pi)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Pierre Le Barbenchon
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">boundaryscheme package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-boundaryscheme.boundaries">boundaryscheme.boundaries module</a><ul>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.Boundary"><code class="docutils literal notranslate"><span class="pre">Boundary</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.DDJ"><code class="docutils literal notranslate"><span class="pre">DDJ</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.DDJ.name"><code class="docutils literal notranslate"><span class="pre">DDJ.name()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.Dirichlet"><code class="docutils literal notranslate"><span class="pre">Dirichlet</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.Dirichlet.name"><code class="docutils literal notranslate"><span class="pre">Dirichlet.name()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.SILW"><code class="docutils literal notranslate"><span class="pre">SILW</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.boundaries.SILW.name"><code class="docutils literal notranslate"><span class="pre">SILW.name()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-boundaryscheme.complex_winding_number">boundaryscheme.complex_winding_number module</a><ul>
+<li><a class="reference internal" href="#boundaryscheme.complex_winding_number.Indice"><code class="docutils literal notranslate"><span class="pre">Indice()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.complex_winding_number.is_left"><code class="docutils literal notranslate"><span class="pre">is_left()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.complex_winding_number.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.complex_winding_number.wn_PnPoly"><code class="docutils literal notranslate"><span class="pre">wn_PnPoly()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-boundaryscheme.pyplot">boundaryscheme.pyplot module</a><ul>
+<li><a class="reference internal" href="#boundaryscheme.pyplot.detKLplot"><code class="docutils literal notranslate"><span class="pre">detKLplot()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.pyplot.detKLplotsimple"><code class="docutils literal notranslate"><span class="pre">detKLplotsimple()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.pyplot.nbrzerosdetKL"><code class="docutils literal notranslate"><span class="pre">nbrzerosdetKL()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.pyplot.show"><code class="docutils literal notranslate"><span class="pre">show()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.pyplot.symbolplot"><code class="docutils literal notranslate"><span class="pre">symbolplot()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-boundaryscheme.schemes">boundaryscheme.schemes module</a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.BB"><code class="docutils literal notranslate"><span class="pre">BB</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.BB.shortname"><code class="docutils literal notranslate"><span class="pre">BB.shortname()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.BeamWarming"><code class="docutils literal notranslate"><span class="pre">BeamWarming</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.BeamWarming.shortname"><code class="docutils literal notranslate"><span class="pre">BeamWarming.shortname()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Dissipatif"><code class="docutils literal notranslate"><span class="pre">Dissipatif</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Dissipatif.shortname"><code class="docutils literal notranslate"><span class="pre">Dissipatif.shortname()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.LaxFriedrichs"><code class="docutils literal notranslate"><span class="pre">LaxFriedrichs</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.LaxFriedrichs.shortname"><code class="docutils literal notranslate"><span class="pre">LaxFriedrichs.shortname()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.LaxWendroff"><code class="docutils literal notranslate"><span class="pre">LaxWendroff()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme"><code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.Kappa"><code class="docutils literal notranslate"><span class="pre">Scheme.Kappa()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.count_root"><code class="docutils literal notranslate"><span class="pre">Scheme.count_root()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.detKL"><code class="docutils literal notranslate"><span class="pre">Scheme.detKL()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.name"><code class="docutils literal notranslate"><span class="pre">Scheme.name()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.pol"><code class="docutils literal notranslate"><span class="pre">Scheme.pol()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.roots"><code class="docutils literal notranslate"><span class="pre">Scheme.roots()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.scheme"><code class="docutils literal notranslate"><span class="pre">Scheme.scheme()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.shortname"><code class="docutils literal notranslate"><span class="pre">Scheme.shortname()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.symbol"><code class="docutils literal notranslate"><span class="pre">Scheme.symbol()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.toep"><code class="docutils literal notranslate"><span class="pre">Scheme.toep()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Scheme.toep_circ"><code class="docutils literal notranslate"><span class="pre">Scheme.toep_circ()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.SchemeP0"><code class="docutils literal notranslate"><span class="pre">SchemeP0</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.SchemeP0.detKL"><code class="docutils literal notranslate"><span class="pre">SchemeP0.detKL()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.ThirdOrder"><code class="docutils literal notranslate"><span class="pre">ThirdOrder</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.ThirdOrder.shortname"><code class="docutils literal notranslate"><span class="pre">ThirdOrder.shortname()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Upwind"><code class="docutils literal notranslate"><span class="pre">Upwind</span></code></a><ul>
+<li><a class="reference internal" href="#boundaryscheme.schemes.Upwind.shortname"><code class="docutils literal notranslate"><span class="pre">Upwind.shortname()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-boundaryscheme.utils">boundaryscheme.utils module</a><ul>
+<li><a class="reference internal" href="#boundaryscheme.utils.Lwconstructor"><code class="docutils literal notranslate"><span class="pre">Lwconstructor()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.boundary_quasi_toep_to_boundary"><code class="docutils literal notranslate"><span class="pre">boundary_quasi_toep_to_boundary()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.boundary_to_boundary_quasi_toep"><code class="docutils literal notranslate"><span class="pre">boundary_to_boundary_quasi_toep()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.coefBinomial"><code class="docutils literal notranslate"><span class="pre">coefBinomial()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.epsilon"><code class="docutils literal notranslate"><span class="pre">epsilon()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.eta_func"><code class="docutils literal notranslate"><span class="pre">eta_func()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.neighboor"><code class="docutils literal notranslate"><span class="pre">neighboor()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.parametrization"><code class="docutils literal notranslate"><span class="pre">parametrization()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.recflux"><code class="docutils literal notranslate"><span class="pre">recflux()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.schemscal"><code class="docutils literal notranslate"><span class="pre">schemscal()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.schemsum"><code class="docutils literal notranslate"><span class="pre">schemsum()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.sector"><code class="docutils literal notranslate"><span class="pre">sector()</span></code></a></li>
+<li><a class="reference internal" href="#boundaryscheme.utils.sort"><code class="docutils literal notranslate"><span class="pre">sort()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>
