@@ -37,7 +37,7 @@ def detKLplotsimple(schem, n_param=300, parametrization_bool=True):
     plt.show()
 
 
-def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=False, sigmacursor=False, nparam=300, parametrization_bool=True, fig_size=(6, 4)):
+def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=False, sigmacursor=False, nparam=300, parametrization_bool=True, fig_size=(10, 8)):
     """Computes the Kreiss-Lopatinskii determinant curve for different lambdas and different sigmas or with cursor(s)
 
     :param schem: Scheme depending on a parameter lambda
@@ -79,7 +79,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 ax.axvline(x=0, color="0.5")
                 ax.axhline(y=0, color="0.5")
                 ax.legend(loc="best")
-                plt.title("Symbol of " + S.name(boundary_bool=True, sigma_bool=True, lambda_bool=False))
+                plt.title("Kreiss-Lopatinskii determinant curve of " + S.name(boundary_bool=True, sigma_bool=True, lambda_bool=False))
             elif len(lamb) == 1:
                 sigma = np.sort(sigma)
                 fig, ax = plt.subplots(figsize=fig_size)
@@ -113,12 +113,11 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 lambmin = np.min(lamb)
 
             lamb0 = (lambmax + lambmin) / 2
-            fig = plt.figure(1, figsize=(10, 8))
+            fig, ax = plt.subplots(figsize=fig_size)
             plt.title("DKL curve of " + schem(1, left_bound, sigma=sigma[0]).name(boundary_bool=True, sigma_bool=True))
-            ax = fig.add_subplot(111, label="cursor1")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
-            ax.axis("equal")
+            
 
             def calc_det(l):
                 S = schem(l, left_bound, sigma=sigma[0])
@@ -141,7 +140,7 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
                 xmax = max([z.real for z in Det])
                 ymin = min([z.imag for z in Det])
                 ymax = max([z.imag for z in Det])
-                ax.set_xlim(xmin, xmax)
+                ax.set_xlim(min(xmin,-0.5), max(xmax,0.5))
                 ax.set_ylim(ymin, ymax)
                 fig.canvas.draw_idle()
 
@@ -168,9 +167,8 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             if len(lamb) > 1:
                 raise TypeError("With a sigma cursor, lambda has to be a single value")
             sigma0 = (sigmax + sigmin) / 2
-            fig = plt.figure(1, figsize=(10, 8))
+            fig, ax = plt.subplots(figsize=fig_size)
             plt.title("DKL curve of " + schem(lamb[0], left_bound).name(boundary_bool=True, lambda_bool=True))
-            ax = fig.add_subplot(111, label="cursor2")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -222,9 +220,8 @@ def detKLplot(schem, left_bound=Dirichlet(), lamb=None, sigma=0, lambdacursor=Fa
             sigma0 = (sigmax + sigmin) / 2
             lamb0 = (lambmin + lambmax) / 2
 
-            fig = plt.figure(1, figsize=(10, 8))
+            fig, ax = plt.subplots(figsize=fig_size)
             plt.title("DKL curve of " + schem(1, left_bound).name(boundary_bool=True))
-            ax = fig.add_subplot(111, label="cursor3")
             fig.subplots_adjust(left=0.25, bottom=0.25)
             ax.set_xlim(-3, 3)
             ax.axis("equal")
@@ -326,9 +323,8 @@ def symbolplot(schem, lamb=None, lambdacursor=False, nparam=300, fig_size=(10, 8
             lamb = schem(1).CFL
         if isinstance(lamb, (int, float)):
             lamb = np.array([lamb], dtype=float)
-        fig = plt.figure(1, figsize=(10, 8))
+        fig, ax = plt.subplots(figsize=fig_size)
         plt.title("Symbol of " + schem(1).name(lambda_bool=False))
-        ax = fig.add_subplot(111, label="cursor4")
         fig.subplots_adjust(left=0.25, bottom=0.25)
         ax.set_xlim(-3, 3)
         ax.axis("equal")
@@ -452,7 +448,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100,
                 if WindingNumbers[j] != WindingNumbers[j + 1]:
                     separator.append((lambdas[j] + lambdas[j + 1]) / 2)
                     value.append(S.r - WindingNumbers[j])
-            value.append(WindingNumbers[-1])
+            value.append(S.r - WindingNumbers[-1])
             if separator == []:
                 axs[i].text((lambmax + lambmin) / 2, 0.5, value[0], horizontalalignment="center", verticalalignment="center", fontsize=fontsize)
             else:

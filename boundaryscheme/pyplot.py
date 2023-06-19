@@ -448,7 +448,7 @@ def nbrzerosdetKL(schem, left_bound=Dirichlet(), lamb=None, sigma=0, nparam=100,
                 if WindingNumbers[j] != WindingNumbers[j + 1]:
                     separator.append((lambdas[j] + lambdas[j + 1]) / 2)
                     value.append(S.r - WindingNumbers[j])
-            value.append(WindingNumbers[-1])
+            value.append(S.r - WindingNumbers[-1])
             if separator == []:
                 axs[i].text((lambmax + lambmin) / 2, 0.5, value[0], horizontalalignment="center", verticalalignment="center", fontsize=fontsize)
             else:
